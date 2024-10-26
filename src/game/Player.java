@@ -4,7 +4,7 @@ import fileio.CardInput;
 
 import java.util.ArrayList;
 
-public class Player {
+public final class Player {
 
     private ArrayList<Card> deck;
     private ArrayList<Card> hand;
@@ -15,10 +15,11 @@ public class Player {
 
     private int wins;
 
-    public Player(ArrayList<CardInput> deck, CardInput hero) {
+    public Player(final ArrayList<CardInput> deck, final CardInput hero) {
         this.deck = new ArrayList<>();
-        for (CardInput cardInput : deck)
+        for (CardInput cardInput : deck) {
             this.deck.add(new Card(cardInput));
+        }
         this.hand = new ArrayList<>();
         this.hero = new Card(hero);
 
@@ -31,7 +32,7 @@ public class Player {
         return deck;
     }
 
-    public void setDeck(ArrayList<Card> deck) {
+    public void setDeck(final ArrayList<Card> deck) {
         this.deck = deck;
     }
 
@@ -39,7 +40,7 @@ public class Player {
         return hand;
     }
 
-    public void setHand(ArrayList<Card> hand) {
+    public void setHand(final ArrayList<Card> hand) {
         this.hand = hand;
     }
 
@@ -47,7 +48,7 @@ public class Player {
         return hero;
     }
 
-    public void setHero(Card hero) {
+    public void setHero(final Card hero) {
         this.hero = hero;
     }
 
@@ -55,7 +56,7 @@ public class Player {
         return mana;
     }
 
-    public void setMana(int mana) {
+    public void setMana(final int mana) {
         this.mana = mana;
     }
 
@@ -63,7 +64,7 @@ public class Player {
         return hisTurn;
     }
 
-    public void setHisTurn(boolean hisTurn) {
+    public void setHisTurn(final boolean hisTurn) {
         this.hisTurn = hisTurn;
     }
 
@@ -71,7 +72,7 @@ public class Player {
         return wins;
     }
 
-    public void setWins(int wins) {
+    public void setWins(final int wins) {
         this.wins = wins;
     }
 }

@@ -6,17 +6,13 @@ public enum Hero {
     KING_MUDFACE("King Mudface"),
     GENERAL_KOCIORAW("General Kocioraw");
 
-    private String name;
+    private final String name;
 
-    Hero(String name) {
+    Hero(final String name) {
         this.name = name;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

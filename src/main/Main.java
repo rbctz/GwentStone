@@ -38,7 +38,6 @@ public final class Main {
     public static void main(final String[] args) throws IOException {
         File directory = new File(CheckerConstants.TESTS_PATH);
         Path path = Paths.get(CheckerConstants.RESULT_PATH);
-
         if (Files.exists(path)) {
             File resultFile = new File(String.valueOf(path));
             for (File file : Objects.requireNonNull(resultFile.listFiles())) {
@@ -47,7 +46,6 @@ public final class Main {
             resultFile.delete();
         }
         Files.createDirectories(path);
-
         for (File file : Objects.requireNonNull(directory.listFiles())) {
             String filepath = CheckerConstants.OUT_PATH + file.getName();
             File out = new File(filepath);
@@ -56,7 +54,6 @@ public final class Main {
                 action(file.getName(), filepath);
             }
         }
-
         Checker.calculateScore();
     }
 
@@ -68,17 +65,13 @@ public final class Main {
     public static void action(final String filePath1,
                               final String filePath2) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        Input inputData = objectMapper.readValue(new File(CheckerConstants.TESTS_PATH + filePath1),
-                Input.class);
-
+        Input inputData = objectMapper.readValue(new File(CheckerConstants.TESTS_PATH
+                        + filePath1), Input.class);
         ArrayList<ArrayList<CardInput>> playerOneDecks = inputData.getPlayerOneDecks().getDecks();
         ArrayList<ArrayList<CardInput>> playerTwoDecks = inputData.getPlayerTwoDecks().getDecks();
         ArrayList<GameInput> gameList = inputData.getGames();
-
         GameThread gameThread = GameThread.getInstance(playerOneDecks, playerTwoDecks, gameList);
-
         ArrayNode output = gameThread.run();
-
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(filePath2), output);
     }

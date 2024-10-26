@@ -13,7 +13,7 @@ public enum Category {
 
     private final String category;
 
-    Category(String category) {
+    Category(final String category) {
         this.category = category;
     }
 

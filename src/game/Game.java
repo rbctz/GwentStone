@@ -1,48 +1,50 @@
 package game;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import enums.Category;
 import enums.Command;
 import enums.Constants;
-
 import fileio.ActionsInput;
 import fileio.CardInput;
-
 import java.util.ArrayList;
+import static game.Actions.getPlayerDeck;
+import static game.Actions.getPlayerHero;
+import static game.Actions.getPlayerTurn;
 
-import static game.Actions.*;
 
-
-public class Game {
+public final class Game {
 
     private final Player playerOne, playerTwo;
     private int mana;
     private int round;
-    private Card[][] table = new Card[4][5];
+    private Card[][] table
+            = new Card[Constants.TABLE_ROWS.getValue()][Constants.TABLE_COLS.getValue()];
 
-    public Game(int startingPlayer, ArrayList<CardInput> deckOne, ArrayList<CardInput> deckTwo,
-                CardInput heroOne, CardInput heroTwo) {
-
+    public Game(final int startingPlayer,
+                final ArrayList<CardInput> deckOne,
+                final ArrayList<CardInput> deckTwo,
+                final CardInput heroOne,
+                final CardInput heroTwo) {
         playerOne = new Player(deckOne, heroOne);
         playerTwo = new Player(deckTwo, heroTwo);
-
-        if (startingPlayer == 1)
+        if (startingPlayer == 1) {
             playerOne.setHisTurn(true);
-        else
+        } else {
             playerTwo.setHisTurn(true);
-
+        }
         round = 2;
         mana = 1;
-
         playerOne.getHand().add(playerOne.getDeck().getFirst());
         playerOne.getDeck().removeFirst();
         playerTwo.getHand().add(playerTwo.getDeck().getFirst());
         playerTwo.getDeck().removeFirst();
     }
 
-    public ObjectNode execute(ActionsInput actionsInput) {
+    /**
+     *
+     * @param actionsInput
+     * @return
+     */
+    public ObjectNode execute(final ActionsInput actionsInput) {
         ObjectNode value = null;
         for (Command command : Command.values()) {
             if (command.getCommand().equals(actionsInput.getCommand())) {
@@ -83,6 +85,8 @@ public class Game {
                     case GET_PLAYER_ONE_WINS:
                         break;
                     case GET_PLAYER_TWO_WINS:
+                        break;
+                    case null:
                         break;
                 }
             }

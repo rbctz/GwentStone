@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class GameThread {
+public final class GameThread {
 
-    Random random;
+    private Random random;
 
     private static volatile GameThread instance;
 
@@ -21,18 +21,24 @@ public class GameThread {
     private final ArrayList<ArrayList<CardInput>> playerTwoDecks;
     private final ArrayList<GameInput> gameList;
 
-    private GameThread(ArrayList<ArrayList<CardInput>> playerOneDecks,
-                       ArrayList<ArrayList<CardInput>> playerTwoDecks,
-                       ArrayList<GameInput> gameList) {
+    private GameThread(final ArrayList<ArrayList<CardInput>> playerOneDecks,
+                       final ArrayList<ArrayList<CardInput>> playerTwoDecks,
+                       final ArrayList<GameInput> gameList) {
         this.playerOneDecks = playerOneDecks;
         this.playerTwoDecks = playerTwoDecks;
         this.gameList = gameList;
     }
 
-    // Singleton pattern
-    public static GameThread getInstance(ArrayList<ArrayList<CardInput>> playerOneDecks,
-                                         ArrayList<ArrayList<CardInput>> playerTwoDecks,
-                                         ArrayList<GameInput> gameList) {
+    /**
+     * Singleton pattern since we need just one instance
+     * @param playerOneDecks
+     * @param playerTwoDecks
+     * @param gameList
+     * @return
+     */
+    public static GameThread getInstance(final ArrayList<ArrayList<CardInput>> playerOneDecks,
+                                         final ArrayList<ArrayList<CardInput>> playerTwoDecks,
+                                         final ArrayList<GameInput> gameList) {
         if (instance == null) {
             synchronized (GameThread.class) {
                 if (instance == null) {
@@ -43,6 +49,10 @@ public class GameThread {
         return instance;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayNode run() {
         ArrayList<CardInput> deckOne;
         ArrayList<CardInput> deckTwo;
@@ -51,10 +61,8 @@ public class GameThread {
         int startingPlayer;
         int seed;
         Game game;
-
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayNode returnValue = objectMapper.createArrayNode();
-
         for (GameInput gameInput : gameList) {
             seed = gameInput.getStartGame().getShuffleSeed();
 
@@ -78,7 +86,6 @@ public class GameThread {
                 returnValue.add(game.execute(actionsInput));
             }
         }
-
         return returnValue;
     }
 }

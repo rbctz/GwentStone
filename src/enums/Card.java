@@ -10,7 +10,7 @@ public enum Card {
 
     private final String field;
 
-    Card(String field) {
+    Card(final String field) {
         this.field = field;
     }
 
