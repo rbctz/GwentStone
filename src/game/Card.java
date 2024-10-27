@@ -5,7 +5,7 @@ import fileio.CardInput;
 public final class Card {
 
     private CardInput card;
-    private boolean isFrozen;
+    private boolean frozen;
     private boolean usedAttack;
     private boolean usedAbility;
     private int x;
@@ -19,7 +19,7 @@ public final class Card {
         this.card.setMana(card.getMana());
         this.card.setAttackDamage(card.getAttackDamage());
         this.card.setHealth(card.getHealth());
-        this.isFrozen = false;
+        this.frozen = false;
         this.x = 0;
         this.y = 0;
     }
@@ -28,23 +28,23 @@ public final class Card {
         return card;
     }
 
-    public void setCard(CardInput card) {
+    public void setCard(final CardInput card) {
         this.card = card;
     }
 
     public boolean isFrozen() {
-        return isFrozen;
+        return frozen;
     }
 
-    public void setFrozen(boolean frozen) {
-        isFrozen = frozen;
+    public void setFrozen(final boolean frozen) {
+        this.frozen = frozen;
     }
 
     public boolean isUsedAttack() {
         return usedAttack;
     }
 
-    public void setUsedAttack(boolean usedAttack) {
+    public void setUsedAttack(final boolean usedAttack) {
         this.usedAttack = usedAttack;
     }
 
@@ -52,7 +52,7 @@ public final class Card {
         return usedAbility;
     }
 
-    public void setUsedAbility(boolean usedAbility) {
+    public void setUsedAbility(final boolean usedAbility) {
         this.usedAbility = usedAbility;
     }
 
@@ -60,7 +60,7 @@ public final class Card {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(final int x) {
         this.x = x;
     }
 
@@ -68,7 +68,7 @@ public final class Card {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(final int y) {
         this.y = y;
     }
 }

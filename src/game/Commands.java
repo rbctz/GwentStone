@@ -3,9 +3,16 @@ package game;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import enums.*;
-import fileio.ActionsInput;
+
+import enums.BackRowMinions;
+import enums.Category;
+import enums.Command;
+import enums.ErrorMessage;
+import enums.FrontRowMinions;
+import enums.Constants;
 import fileio.CardInput;
+import fileio.ActionsInput;
+
 
 public abstract class Commands {
     private Commands() { }
@@ -132,39 +139,35 @@ public abstract class Commands {
         switchTurns(game);
         if (game.getPlayerOne().isHisTurn()) {
             for (Card card : game.getGameTable()[Constants.PLAYER_ONE_FRONT.getValue()]) {
-                if (card != null) {
-                    card.setFrozen(false);
-                    card.setUsedAbility(false);
-                    card.setUsedAttack(false);
-                }
+                resetCard(card);
             }
             for (Card card : game.getGameTable()[Constants.PLAYER_ONE_BACK.getValue()]) {
-                if (card != null) {
-                    card.setFrozen(false);
-                    card.setUsedAbility(false);
-                    card.setUsedAttack(false);
-                }
+                resetCard(card);
             }
         } else {
             for (Card card : game.getGameTable()[Constants.PLAYER_TWO_FRONT.getValue()]) {
-                if (card != null) {
-                    card.setFrozen(false);
-                    card.setUsedAbility(false);
-                    card.setUsedAttack(false);
-                }
+                resetCard(card);
             }
             for (Card card : game.getGameTable()[Constants.PLAYER_TWO_BACK.getValue()]) {
-                if (card != null) {
-                    card.setFrozen(false);
-                    card.setUsedAbility(false);
-                    card.setUsedAttack(false);
-                }
+                resetCard(card);
             }
         }
         game.setTurn(game.getTurn() + 1);
 
         // Every two turns (each player takes one turn) there is a round change
         checkRound(game);
+    }
+
+    /**
+     *
+     * @param card the card
+     */
+    public static void resetCard(final Card card) {
+        if (card != null) {
+            card.setFrozen(false);
+            card.setUsedAbility(false);
+            card.setUsedAttack(false);
+        }
     }
     /**
      *
@@ -185,6 +188,12 @@ public abstract class Commands {
         return returnValue;
     }
 
+    /**
+     *
+     * @param actionsInput the current command
+     * @param game the current game
+     * @return ret
+     */
     public static ObjectNode getCardsInHand(final ActionsInput actionsInput, final Game game) {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode returnValue = objectMapper.createObjectNode();
@@ -205,6 +214,12 @@ public abstract class Commands {
         return returnValue;
     }
 
+    /**
+     *
+     * @param actionsInput the current command
+     * @param game the current game
+     * @return return value
+     */
     public static ObjectNode getCardsOnTable(final ActionsInput actionsInput, final Game game) {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode returnValue = objectMapper.createObjectNode();
@@ -223,10 +238,17 @@ public abstract class Commands {
         return returnValue;
     }
 
+    /**
+     *
+     * @param actionsInput the current command
+     * @param game the current game
+     * @return return value
+     */
     public static ObjectNode placeCard(final ActionsInput actionsInput, final Game game) {
         boolean notEnoughMana = false;
         boolean notEnoughSpace = true;
         ObjectNode returnValue = null;
+        int row;
 
         if (game.getPlayerOne().isHisTurn()) {
             Card card = game.getPlayerOne().getHand().get(actionsInput.getHandIdx());
@@ -234,11 +256,12 @@ public abstract class Commands {
                 notEnoughMana = true;
             }
             if (!notEnoughMana) {
+                row = Constants.PLAYER_ONE_BACK.getValue();
                 for (BackRowMinions backRowMinion : BackRowMinions.values()) {
                     if (card.getCard().getName().equals(backRowMinion.getName())) {
-                        for (int pos = 0; pos < Constants.TABLE_COLS.getValue(); pos++) {
-                            if (game.getGameTable()[Constants.PLAYER_ONE_BACK.getValue()][pos] == null) {
-                                game.getGameTable()[Constants.PLAYER_ONE_BACK.getValue()][pos] = card;
+                        for (int col = 0; col < Constants.TABLE_COLS.getValue(); col++) {
+                            if (game.getGameTable()[row][col] == null) {
+                                game.getGameTable()[row][col] = card;
                                 notEnoughSpace = false;
                                 break;
                             }
@@ -246,11 +269,12 @@ public abstract class Commands {
                     }
                 }
 
+                row = Constants.PLAYER_ONE_FRONT.getValue();
                 for (FrontRowMinions frontRowMinion : FrontRowMinions.values()) {
                     if (card.getCard().getName().equals(frontRowMinion.getName())) {
-                        for (int pos = 0; pos < Constants.TABLE_COLS.getValue(); pos++) {
-                            if (game.getGameTable()[Constants.PLAYER_ONE_FRONT.getValue()][pos] == null) {
-                                game.getGameTable()[Constants.PLAYER_ONE_FRONT.getValue()][pos] = card;
+                        for (int col = 0; col < Constants.TABLE_COLS.getValue(); col++) {
+                            if (game.getGameTable()[row][col] == null) {
+                                game.getGameTable()[row][col] = card;
                                 notEnoughSpace = false;
                                 break;
                             }
@@ -259,7 +283,8 @@ public abstract class Commands {
                 }
 
                 if (!notEnoughSpace) {
-                    game.getPlayerOne().setMana(game.getPlayerOne().getMana() - card.getCard().getMana());
+                    game.getPlayerOne().setMana(game.getPlayerOne().getMana()
+                            - card.getCard().getMana());
                     game.getPlayerOne().getHand().remove(actionsInput.getHandIdx());
                 }
             }
@@ -269,11 +294,12 @@ public abstract class Commands {
                 notEnoughMana = true;
             }
             if (!notEnoughMana) {
+                row = Constants.PLAYER_TWO_BACK.getValue();
                 for (BackRowMinions backRowMinion : BackRowMinions.values()) {
                     if (card.getCard().getName().equals(backRowMinion.getName())) {
-                        for (int pos = 0; pos < Constants.TABLE_COLS.getValue(); pos++) {
-                            if (game.getGameTable()[Constants.PLAYER_TWO_BACK.getValue()][pos] == null) {
-                                game.getGameTable()[Constants.PLAYER_TWO_BACK.getValue()][pos] = card;
+                        for (int col = 0; col < Constants.TABLE_COLS.getValue(); col++) {
+                            if (game.getGameTable()[row][col] == null) {
+                                game.getGameTable()[row][col] = card;
                                 notEnoughSpace = false;
                                 break;
                             }
@@ -281,11 +307,12 @@ public abstract class Commands {
                     }
                 }
 
+                row = Constants.PLAYER_TWO_FRONT.getValue();
                 for (FrontRowMinions frontRowMinion : FrontRowMinions.values()) {
                     if (card.getCard().getName().equals(frontRowMinion.getName())) {
-                        for (int pos = 0; pos < Constants.TABLE_COLS.getValue(); pos++) {
-                            if (game.getGameTable()[Constants.PLAYER_TWO_FRONT.getValue()][pos] == null) {
-                                game.getGameTable()[Constants.PLAYER_TWO_FRONT.getValue()][pos] = card;
+                        for (int col = 0; col < Constants.TABLE_COLS.getValue(); col++) {
+                            if (game.getGameTable()[row][col] == null) {
+                                game.getGameTable()[row][col] = card;
                                 notEnoughSpace = false;
                                 break;
                             }
@@ -294,7 +321,8 @@ public abstract class Commands {
                 }
 
                 if (!notEnoughSpace) {
-                    game.getPlayerTwo().setMana(game.getPlayerTwo().getMana() - card.getCard().getMana());
+                    game.getPlayerTwo().setMana(game.getPlayerTwo().getMana()
+                            - card.getCard().getMana());
                     game.getPlayerTwo().getHand().remove(actionsInput.getHandIdx());
                 }
             }
@@ -306,9 +334,11 @@ public abstract class Commands {
             returnValue.put(Category.COMMAND.getCategory(), actionsInput.getCommand());
             returnValue.put(Category.HAND_INDEX.getCategory(), actionsInput.getHandIdx());
             if (notEnoughMana) {
-                returnValue.put(Category.ERROR.getCategory(), ErrorMessage.NOT_ENOUGH_MANA_MINION.getMessage());
+                returnValue.put(Category.ERROR.getCategory(),
+                        ErrorMessage.NOT_ENOUGH_MANA_MINION.getMessage());
             } else {
-                returnValue.put(Category.ERROR.getCategory(), ErrorMessage.NOT_ENOUGH_SPACE.getMessage());
+                returnValue.put(Category.ERROR.getCategory(),
+                        ErrorMessage.NOT_ENOUGH_SPACE.getMessage());
             }
         }
         return returnValue;
@@ -348,6 +378,4 @@ public abstract class Commands {
             }
         }
     }
-
-
 }

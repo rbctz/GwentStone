@@ -7,7 +7,15 @@ import fileio.ActionsInput;
 import fileio.CardInput;
 import java.util.ArrayList;
 
-import static game.Commands.*;
+import static game.Commands.endPlayerTurn;
+import static game.Commands.getCardsInHand;
+import static game.Commands.getCardsOnTable;
+import static game.Commands.getPlayerDeck;
+import static game.Commands.getPlayerHero;
+import static game.Commands.getPlayerMana;
+import static game.Commands.getPlayerTurn;
+import static game.Commands.placeCard;
+
 
 public final class Game {
 
@@ -129,7 +137,7 @@ public final class Game {
         return turn;
     }
 
-    public void setTurn(int turn) {
+    public void setTurn(final int turn) {
         this.turn = turn;
     }
 
