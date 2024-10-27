@@ -6,9 +6,10 @@ import enums.Constants;
 import fileio.ActionsInput;
 import fileio.CardInput;
 import java.util.ArrayList;
-import static game.Actions.getPlayerDeck;
-import static game.Actions.getPlayerHero;
-import static game.Actions.getPlayerTurn;
+
+import static commands.GetPlayerDeck.getPlayerDeck;
+import static commands.GetPlayerHero.getPlayerHero;
+import static commands.GetPlayerTurn.getPlayerTurn;
 
 
 public final class Game {

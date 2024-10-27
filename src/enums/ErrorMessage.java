@@ -15,7 +15,7 @@ public enum ErrorMessage {
     NO_STEALING_FULL_ROW("Cannot steal enemy card since the player's row is full."),
     NO_CARD("No card at that position.");
 
-    private String message;
+    private final String message;
 
     ErrorMessage(final String message) {
         this.message = message;

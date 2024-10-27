@@ -6,7 +6,7 @@ public enum BackRowMinions {
     THE_CURSED_ONE("The Cursed One"),
     DISCIPLE("Disciple");
 
-    private String name;
+    private final String name;
 
     BackRowMinions(final String name) {
         this.name = name;
@@ -14,9 +14,5 @@ public enum BackRowMinions {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
     }
 }

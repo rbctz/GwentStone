@@ -1,4 +1,4 @@
 Starting audit...
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\Game.java:51:17: switch without "default" clause. [MissingSwitchDefault]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\Game.java:52:17: switch without "default" clause. [MissingSwitchDefault]
 Audit done.
 Checkstyle ends with 1 errors.

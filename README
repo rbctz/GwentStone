@@ -1,0 +1,8 @@
+Singleton pattern for GameThread class to avoid more than one instance,
+it runs all the games that are played, which are objects of the Game class.
+
+Made the package commands in order to avoid having an abstract "God class",
+that stores all the static methods, which would have become hard to manage.
+So inside that package there is a class for every static method that is
+implemented. We don't need instances of these classes so they are final
+with private constructors.
