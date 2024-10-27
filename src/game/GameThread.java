@@ -3,6 +3,7 @@ package game;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.ActionsInput;
 import fileio.CardInput;
 import fileio.GameInput;
@@ -51,6 +52,13 @@ public final class GameThread {
 
     /**
      *
+     */
+    public void setInstanceNull() {
+        instance = null;
+    }
+
+    /**
+     *
      * @return
      */
     public ArrayNode run() {
@@ -83,7 +91,11 @@ public final class GameThread {
             game = new Game(startingPlayer, deckOne, deckTwo, heroOne, heroTwo);
 
             for (ActionsInput actionsInput : gameInput.getActions()) {
-                returnValue.add(game.execute(actionsInput));
+                ObjectNode value = game.execute(actionsInput);
+
+                if (value != null) {
+                    returnValue.add(value);
+                }
             }
         }
         return returnValue;

@@ -72,6 +72,7 @@ public final class Main {
         ArrayList<GameInput> gameList = inputData.getGames();
         GameThread gameThread = GameThread.getInstance(playerOneDecks, playerTwoDecks, gameList);
         ArrayNode output = gameThread.run();
+        gameThread.setInstanceNull();
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(filePath2), output);
     }

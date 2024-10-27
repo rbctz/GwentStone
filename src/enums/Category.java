@@ -9,7 +9,8 @@ public enum Category {
     AFFECTED_ROW("affectedRow"),
     X("x"),
     Y("y"),
-    OUTPUT("output");
+    OUTPUT("output"),
+    ERROR("error");
 
     private final String category;
 

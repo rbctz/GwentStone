@@ -1,20 +1,19 @@
 package game;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import commands.GetPlayerDeck;
-import commands.GetPlayerHero;
-import commands.GetPlayerTurn;
 import enums.Command;
 import enums.Constants;
 import fileio.ActionsInput;
 import fileio.CardInput;
 import java.util.ArrayList;
 
+import static game.Commands.*;
+
 public final class Game {
 
     private Player playerOne, playerTwo;
     private int mana;
-    private int round;
+    private int turn;
     private Card[][] gameTable
             = new Card[Constants.TABLE_ROWS.getValue()][Constants.TABLE_COLS.getValue()];
 
@@ -30,12 +29,18 @@ public final class Game {
         } else {
             playerTwo.setHisTurn(true);
         }
-        round = 2;
+        turn = 1;
         mana = 1;
         playerOne.getHand().add(playerOne.getDeck().getFirst());
         playerOne.getDeck().removeFirst();
         playerTwo.getHand().add(playerTwo.getDeck().getFirst());
         playerTwo.getDeck().removeFirst();
+
+        for (int i = 0; i < Constants.TABLE_ROWS.getValue(); i++) {
+            for (int j = 0; j < Constants.TABLE_COLS.getValue(); j++) {
+                gameTable[i][j] = null;
+            }
+        }
     }
 
     /**
@@ -46,22 +51,25 @@ public final class Game {
     public ObjectNode execute(final ActionsInput actionsInput) {
         ObjectNode value = null;
         for (Command command : Command.values()) {
-            if (command.getCommand().equals(actionsInput.getCommand())) {
+            if (actionsInput.getCommand().equals(command.getCommand())) {
                 switch (command) {
                     case GET_PLAYER_DECK:
-                        value = GetPlayerDeck.getPlayerDeck(actionsInput, playerOne, playerTwo);
+                        value = getPlayerDeck(actionsInput, playerOne, playerTwo);
                         break;
                     case GET_PLAYER_HERO:
-                        value = GetPlayerHero.getPlayerHero(actionsInput, playerOne, playerTwo);
+                        value = getPlayerHero(actionsInput, playerOne, playerTwo);
                         break;
                     case GET_PLAYER_MANA:
+                        value = getPlayerMana(actionsInput, this);
                         break;
                     case GET_PLAYER_TURN:
-                        value = GetPlayerTurn.getPlayerTurn(playerOne);
+                        value = getPlayerTurn(this);
                         break;
                     case END_PLAYER_TURN:
+                        endPlayerTurn(this);
                         break;
                     case PLACE_CARD:
+                        value = placeCard(actionsInput, this);
                         break;
                     case CARD_USES_ATTACK:
                         break;
@@ -72,8 +80,10 @@ public final class Game {
                     case USE_HERO_ABILITY:
                         break;
                     case GET_CARDS_IN_HAND:
+                        value = getCardsInHand(actionsInput, this);
                         break;
                     case GET_CARDS_ON_TABLE:
+                        value = getCardsOnTable(actionsInput, this);
                         break;
                     case GET_CARD_AT_POSITION:
                         break;
@@ -115,12 +125,12 @@ public final class Game {
         this.mana = mana;
     }
 
-    public int getRound() {
-        return round;
+    public int getTurn() {
+        return turn;
     }
 
-    public void setRound(final int round) {
-        this.round = round;
+    public void setTurn(int turn) {
+        this.turn = turn;
     }
 
     public Card[][] getGameTable() {

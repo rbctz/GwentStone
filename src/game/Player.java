@@ -1,5 +1,6 @@
 package game;
 
+import enums.Constants;
 import fileio.CardInput;
 
 import java.util.ArrayList;
@@ -22,8 +23,9 @@ public final class Player {
         }
         this.hand = new ArrayList<>();
         this.hero = new Card(hero);
+        this.hero.getCard().setHealth(Constants.HERO_HEALTH.getValue());
 
-        this.mana = 0;
+        this.mana = 1;
         this.hisTurn = false;
         this.wins = 0;
     }

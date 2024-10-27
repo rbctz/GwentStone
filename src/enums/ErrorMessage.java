@@ -2,7 +2,7 @@ package enums;
 
 public enum ErrorMessage {
     NOT_ENOUGH_MANA_MINION("Not enough mana to place card on table."),
-    NO_PLACING_FULL_ROW("Cannot place card on table since row is full."),
+    NOT_ENOUGH_SPACE("Cannot place card on table since row is full."),
     NOT_ENEMY("Attacked card does not belong to the enemy."),
     ATTACKER_ALREADY_ATTACKED("Attacker card has already attacked this turn."),
     FROZEN("Attacker card is frozen."),

@@ -24,51 +24,51 @@ public final class Card {
         this.y = 0;
     }
 
-    public int getY() {
-        return y;
+    public CardInput getCard() {
+        return card;
     }
 
-    public void setY(final int y) {
-        this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(final int x) {
-        this.x = x;
-    }
-
-    public boolean isUsedAbility() {
-        return usedAbility;
-    }
-
-    public void setUsedAbility(final boolean usedAbility) {
-        this.usedAbility = usedAbility;
-    }
-
-    public boolean isUsedAttack() {
-        return usedAttack;
-    }
-
-    public void setUsedAttack(final boolean usedAttack) {
-        this.usedAttack = usedAttack;
+    public void setCard(CardInput card) {
+        this.card = card;
     }
 
     public boolean isFrozen() {
         return isFrozen;
     }
 
-    public void setFrozen(final boolean frozen) {
+    public void setFrozen(boolean frozen) {
         isFrozen = frozen;
     }
 
-    public CardInput getCard() {
-        return card;
+    public boolean isUsedAttack() {
+        return usedAttack;
     }
 
-    public void setCard(final CardInput card) {
-        this.card = card;
+    public void setUsedAttack(boolean usedAttack) {
+        this.usedAttack = usedAttack;
+    }
+
+    public boolean isUsedAbility() {
+        return usedAbility;
+    }
+
+    public void setUsedAbility(boolean usedAbility) {
+        this.usedAbility = usedAbility;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }
