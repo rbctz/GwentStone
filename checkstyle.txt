@@ -1,4 +1,18 @@
 Starting audit...
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\Game.java:63:17: switch without "default" clause. [MissingSwitchDefault]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:5:13: Using the '.*' form of import should be avoided - enums.*. [AvoidStarImport]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:124: Line is longer than 100 characters (found 119). [LineLength]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:126: Line is longer than 100 characters (found 103). [LineLength]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:128: Line is longer than 100 characters (found 102). [LineLength]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:193: Line is longer than 100 characters (found 119). [LineLength]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:196: Line is longer than 100 characters (found 119). [LineLength]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:210: Line is longer than 100 characters (found 119). [LineLength]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:212: Line is longer than 100 characters (found 102). [LineLength]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\CardUsesAttack.java:3:55: '{' is not preceded with whitespace. [WhitespaceAround]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\Game.java:4:8: Unused import - commands.CardUsesAttack. [UnusedImports]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\Game.java:12:32: Using the '.*' form of import should be avoided - commands.Commands.*. [AvoidStarImport]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\Game.java:58:17: switch without "default" clause. [MissingSwitchDefault]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\GameThread.java:119:41: Parameter playerTwoWins should be final. [FinalParameters]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\GameThread.java:127:41: Parameter playerOneWins should be final. [FinalParameters]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\GameThread.java:135:33: Parameter games should be final. [FinalParameters]
 Audit done.
-Checkstyle ends with 1 errors.
+Checkstyle ends with 15 errors.

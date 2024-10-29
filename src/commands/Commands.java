@@ -1,17 +1,20 @@
-package game;
+package commands;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import enums.BackRowMinions;
-import enums.Category;
+import enums.OutputMessage;
 import enums.Command;
 import enums.ErrorMessage;
 import enums.FrontRowMinions;
 import enums.Constants;
 import fileio.CardInput;
 import fileio.ActionsInput;
+import game.Card;
+import game.Game;
+import game.Player;
 
 
 public abstract class Commands {
@@ -70,21 +73,21 @@ public abstract class Commands {
                                            final Player playerTwo) {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode returnValue = objectMapper.createObjectNode();
-        returnValue.put(Category.COMMAND.getCategory(),
+        returnValue.put(OutputMessage.COMMAND.getMessage(),
                 actionsInput.getCommand());
-        returnValue.put(Category.PLAYER_INDEX.getCategory(),
+        returnValue.put(OutputMessage.PLAYER_INDEX.getMessage(),
                 actionsInput.getPlayerIdx());
         ArrayNode deck = objectMapper.createArrayNode();
         if (actionsInput.getPlayerIdx() == Constants.PLAYER_ONE.getValue()) {
             for (Card card : playerOne.getDeck()) {
                 deck.add(getCardHelper(card.getCard()));
             }
-            returnValue.set(Category.OUTPUT.getCategory(), deck);
+            returnValue.set(OutputMessage.OUTPUT.getMessage(), deck);
         } else {
             for (Card card : playerTwo.getDeck()) {
                 deck.add(getCardHelper(card.getCard()));
             }
-            returnValue.set(Category.OUTPUT.getCategory(), deck);
+            returnValue.set(OutputMessage.OUTPUT.getMessage(), deck);
         }
         return returnValue;
     }
@@ -101,13 +104,13 @@ public abstract class Commands {
                                            final Player playerTwo) {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode returnValue = objectMapper.createObjectNode();
-        returnValue.put(Category.COMMAND.getCategory(), actionsInput.getCommand());
-        returnValue.put(Category.PLAYER_INDEX.getCategory(), actionsInput.getPlayerIdx());
+        returnValue.put(OutputMessage.COMMAND.getMessage(), actionsInput.getCommand());
+        returnValue.put(OutputMessage.PLAYER_INDEX.getMessage(), actionsInput.getPlayerIdx());
         if (actionsInput.getPlayerIdx() == Constants.PLAYER_ONE.getValue()) {
-            returnValue.set(Category.OUTPUT.getCategory(),
+            returnValue.set(OutputMessage.OUTPUT.getMessage(),
                     getHeroHelper(playerOne.getHero().getCard()));
         } else {
-            returnValue.set(Category.OUTPUT.getCategory(),
+            returnValue.set(OutputMessage.OUTPUT.getMessage(),
                     getHeroHelper(playerTwo.getHero().getCard()));
         }
         return returnValue;
@@ -121,11 +124,11 @@ public abstract class Commands {
     public static ObjectNode getPlayerTurn(final Game game) {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode returnValue = objectMapper.createObjectNode();
-        returnValue.put(Category.COMMAND.getCategory(), Command.GET_PLAYER_TURN.getCommand());
+        returnValue.put(OutputMessage.COMMAND.getMessage(), Command.GET_PLAYER_TURN.getCommand());
         if (game.getPlayerOne().isHisTurn()) {
-            returnValue.put(Category.OUTPUT.getCategory(), Constants.PLAYER_ONE.getValue());
+            returnValue.put(OutputMessage.OUTPUT.getMessage(), Constants.PLAYER_ONE.getValue());
         } else {
-            returnValue.put(Category.OUTPUT.getCategory(), Constants.PLAYER_TWO.getValue());
+            returnValue.put(OutputMessage.OUTPUT.getMessage(), Constants.PLAYER_TWO.getValue());
         }
         return returnValue;
     }
@@ -178,12 +181,12 @@ public abstract class Commands {
     public static ObjectNode getPlayerMana(final ActionsInput actionsInput, final Game game) {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode returnValue = objectMapper.createObjectNode();
-        returnValue.put(Category.COMMAND.getCategory(), actionsInput.getCommand());
-        returnValue.put(Category.PLAYER_INDEX.getCategory(), actionsInput.getPlayerIdx());
+        returnValue.put(OutputMessage.COMMAND.getMessage(), actionsInput.getCommand());
+        returnValue.put(OutputMessage.PLAYER_INDEX.getMessage(), actionsInput.getPlayerIdx());
         if (actionsInput.getPlayerIdx() == Constants.PLAYER_ONE.getValue()) {
-            returnValue.put(Category.OUTPUT.getCategory(), game.getPlayerOne().getMana());
+            returnValue.put(OutputMessage.OUTPUT.getMessage(), game.getPlayerOne().getMana());
         } else {
-            returnValue.put(Category.OUTPUT.getCategory(), game.getPlayerTwo().getMana());
+            returnValue.put(OutputMessage.OUTPUT.getMessage(), game.getPlayerTwo().getMana());
         }
         return returnValue;
     }
@@ -197,19 +200,19 @@ public abstract class Commands {
     public static ObjectNode getCardsInHand(final ActionsInput actionsInput, final Game game) {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode returnValue = objectMapper.createObjectNode();
-        returnValue.put(Category.COMMAND.getCategory(), actionsInput.getCommand());
-        returnValue.put(Category.PLAYER_INDEX.getCategory(), actionsInput.getPlayerIdx());
+        returnValue.put(OutputMessage.COMMAND.getMessage(), actionsInput.getCommand());
+        returnValue.put(OutputMessage.PLAYER_INDEX.getMessage(), actionsInput.getPlayerIdx());
         ArrayNode cardsInHand = objectMapper.createArrayNode();
         if (actionsInput.getPlayerIdx() == Constants.PLAYER_ONE.getValue()) {
             for (Card card : game.getPlayerOne().getHand()) {
                 cardsInHand.add(getCardHelper(card.getCard()));
             }
-            returnValue.set(Category.OUTPUT.getCategory(), cardsInHand);
+            returnValue.set(OutputMessage.OUTPUT.getMessage(), cardsInHand);
         } else {
             for (Card card : game.getPlayerTwo().getHand()) {
                 cardsInHand.add(getCardHelper(card.getCard()));
             }
-            returnValue.set(Category.OUTPUT.getCategory(), cardsInHand);
+            returnValue.set(OutputMessage.OUTPUT.getMessage(), cardsInHand);
         }
         return returnValue;
     }
@@ -223,7 +226,7 @@ public abstract class Commands {
     public static ObjectNode getCardsOnTable(final ActionsInput actionsInput, final Game game) {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode returnValue = objectMapper.createObjectNode();
-        returnValue.put(Category.COMMAND.getCategory(), actionsInput.getCommand());
+        returnValue.put(OutputMessage.COMMAND.getMessage(), actionsInput.getCommand());
         ArrayNode cardsOnTable = objectMapper.createArrayNode();
         for (Card[] cardRow : game.getGameTable()) {
             ArrayNode row = objectMapper.createArrayNode();
@@ -234,7 +237,7 @@ public abstract class Commands {
             }
             cardsOnTable.add(row);
         }
-        returnValue.set(Category.OUTPUT.getCategory(), cardsOnTable);
+        returnValue.set(OutputMessage.OUTPUT.getMessage(), cardsOnTable);
         return returnValue;
     }
 
@@ -331,15 +334,41 @@ public abstract class Commands {
         if (notEnoughMana || notEnoughSpace) {
             ObjectMapper objectMapper = new ObjectMapper();
             returnValue = objectMapper.createObjectNode();
-            returnValue.put(Category.COMMAND.getCategory(), actionsInput.getCommand());
-            returnValue.put(Category.HAND_INDEX.getCategory(), actionsInput.getHandIdx());
+            returnValue.put(OutputMessage.COMMAND.getMessage(), actionsInput.getCommand());
+            returnValue.put(OutputMessage.HAND_INDEX.getMessage(), actionsInput.getHandIdx());
             if (notEnoughMana) {
-                returnValue.put(Category.ERROR.getCategory(),
+                returnValue.put(OutputMessage.ERROR.getMessage(),
                         ErrorMessage.NOT_ENOUGH_MANA_MINION.getMessage());
             } else {
-                returnValue.put(Category.ERROR.getCategory(),
+                returnValue.put(OutputMessage.ERROR.getMessage(),
                         ErrorMessage.NOT_ENOUGH_SPACE.getMessage());
             }
+        }
+        return returnValue;
+    }
+
+    /**
+     *
+     * @param actionsInput the current command
+     * @param game the current game
+     * @return return value
+     */
+    public static ObjectNode getCardAtPosition(final ActionsInput actionsInput, final Game game) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode returnValue = objectMapper.createObjectNode();
+        returnValue.put(OutputMessage.COMMAND.getMessage(), actionsInput.getCommand());
+
+        int x = actionsInput.getX();
+        int y = actionsInput.getY();
+
+        returnValue.put(OutputMessage.X.getMessage(), x);
+        returnValue.put(OutputMessage.Y.getMessage(), y);
+
+        if (game.getGameTable()[x][y] != null) {
+            returnValue.set(OutputMessage.OUTPUT.getMessage(),
+                    getCardHelper(game.getGameTable()[x][y].getCard()));
+        } else {
+            returnValue.put(OutputMessage.OUTPUT.getMessage(), ErrorMessage.NO_CARD.getMessage());
         }
         return returnValue;
     }

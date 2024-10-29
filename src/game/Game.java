@@ -1,20 +1,15 @@
 package game;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import commands.CardUsesAttack;
 import enums.Command;
 import enums.Constants;
 import fileio.ActionsInput;
 import fileio.CardInput;
 import java.util.ArrayList;
 
-import static game.Commands.endPlayerTurn;
-import static game.Commands.getCardsInHand;
-import static game.Commands.getCardsOnTable;
-import static game.Commands.getPlayerDeck;
-import static game.Commands.getPlayerHero;
-import static game.Commands.getPlayerMana;
-import static game.Commands.getPlayerTurn;
-import static game.Commands.placeCard;
+import static commands.AttackCommandSuper.cardUsesAttack;
+import static commands.Commands.*;
 
 
 public final class Game {
@@ -80,6 +75,7 @@ public final class Game {
                         value = placeCard(actionsInput, this);
                         break;
                     case CARD_USES_ATTACK:
+                        value = cardUsesAttack(actionsInput, this);
                         break;
                     case CARD_USES_ABILITY:
                         break;
@@ -94,6 +90,7 @@ public final class Game {
                         value = getCardsOnTable(actionsInput, this);
                         break;
                     case GET_CARD_AT_POSITION:
+                        value = getCardAtPosition(actionsInput, this);
                         break;
                     case GET_FROZEN_CARDS_ON_TABLE:
                         break;
