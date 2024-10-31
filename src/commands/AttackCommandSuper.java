@@ -131,6 +131,11 @@ public abstract class AttackCommandSuper {
         return returnValue;
     }
 
+    public static ObjectNode cardUsesAbility(final ActionsInput actionsInput, final Game game) {
+
+        return null;
+    }
+
     /**
      * This method is used to attack the enemy hero.
      * @param actionsInput the current command
@@ -202,6 +207,7 @@ public abstract class AttackCommandSuper {
             ObjectNode posAttacker = objectMapper.createObjectNode();
             posAttacker.put(OutputMessage.X.getMessage(), xAttacker);
             posAttacker.put(OutputMessage.Y.getMessage(), yAttacker);
+
             returnValue.put(OutputMessage.CARD_ATTACKER.getMessage(), posAttacker);
 
             if (errorFrozen) {

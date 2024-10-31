@@ -1,7 +1,6 @@
 package game;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import commands.CardUsesAttack;
 import enums.Command;
 import enums.Constants;
 import fileio.ActionsInput;

@@ -12,7 +12,6 @@ public enum ErrorMessage {
     NOT_ENEMY_ROW_HERO("Selected row does not belong to the enemy."),
     NOT_CURRENT_PLAYER_ROW("Selected row does not belong to the current player."),
     NOT_ENOUGH_MANA_HERO("Not enough mana to use hero's ability."),
-    NO_STEALING_FULL_ROW("Cannot steal enemy card since the player's row is full."),
     NO_CARD("No card available at that position.");
 
     private final String message;
