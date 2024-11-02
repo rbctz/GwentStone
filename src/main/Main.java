@@ -6,17 +6,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import checker.CheckerConstants;
-import fileio.CardInput;
-import fileio.GameInput;
 import fileio.Input;
-import game.GameThread;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -67,12 +63,27 @@ public final class Main {
         ObjectMapper objectMapper = new ObjectMapper();
         Input inputData = objectMapper.readValue(new File(CheckerConstants.TESTS_PATH
                         + filePath1), Input.class);
-        ArrayList<ArrayList<CardInput>> playerOneDecks = inputData.getPlayerOneDecks().getDecks();
-        ArrayList<ArrayList<CardInput>> playerTwoDecks = inputData.getPlayerTwoDecks().getDecks();
-        ArrayList<GameInput> gameList = inputData.getGames();
-        GameThread gameThread = GameThread.getInstance(playerOneDecks, playerTwoDecks, gameList);
-        ArrayNode output = gameThread.run();
-        gameThread.setInstanceNull();
+
+        ArrayNode output = objectMapper.createArrayNode();
+
+//       /*
+//         * TODO Implement your function here
+//         *
+//         * How to add output to the output array?
+//         * There are multiple ways to do this, here is one example:
+//         *
+//         * ObjectMapper mapper = new ObjectMapper();
+//         *
+//         * ObjectNode objectNode = mapper.createObjectNode();
+//         * objectNode.put("field_name", "field_value");
+//         *
+//         * ArrayNode arrayNode = mapper.createArrayNode();
+//         * arrayNode.add(objectNode);
+//         *
+//         * output.add(arrayNode);
+//         * output.add(objectNode);
+//         *
+//         */
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(filePath2), output);
     }

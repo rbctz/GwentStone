@@ -22,9 +22,6 @@ public final class GameThread {
     private final ArrayList<ArrayList<CardInput>> playerTwoDecks;
     private final ArrayList<GameInput> gameList;
 
-    private static int playerOneWins;
-    private static int playerTwoWins;
-    private static int games;
     /**
      * Constructor
      * @param playerOneDecks
@@ -37,8 +34,6 @@ public final class GameThread {
         this.playerOneDecks = playerOneDecks;
         this.playerTwoDecks = playerTwoDecks;
         this.gameList = gameList;
-        this.playerOneWins = 0;
-        this.playerTwoWins = 0;
     }
 
     /**
@@ -112,27 +107,5 @@ public final class GameThread {
         return returnValue;
     }
 
-    public static int getPlayerTwoWins() {
-        return playerTwoWins;
-    }
 
-    public static void setPlayerTwoWins(int playerTwoWins) {
-        GameThread.playerTwoWins = playerTwoWins;
-    }
-
-    public static int getPlayerOneWins() {
-        return playerOneWins;
-    }
-
-    public static void setPlayerOneWins(int playerOneWins) {
-        GameThread.playerOneWins = playerOneWins;
-    }
-
-    public int getGames() {
-        return games;
-    }
-
-    public static void setGames(int games) {
-        GameThread.games = games;
-    }
 }

@@ -1,6 +1,6 @@
 package enums;
 
-public enum Hero {
+public enum HeroType {
     LORD_ROYCE("Lord Royce"),
     EMPRESS_THORINA("Empress Thorina"),
     KING_MUDFACE("King Mudface"),
@@ -8,7 +8,7 @@ public enum Hero {
 
     private final String name;
 
-    Hero(final String name) {
+    HeroType(final String name) {
         this.name = name;
     }
 

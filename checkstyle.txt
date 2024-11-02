@@ -1,17 +1,8 @@
 Starting audit...
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:5:13: Using the '.*' form of import should be avoided - enums.*. [AvoidStarImport]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:124: Line is longer than 100 characters (found 119). [LineLength]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:126: Line is longer than 100 characters (found 103). [LineLength]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:128: Line is longer than 100 characters (found 102). [LineLength]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:134:5: Missing a Javadoc comment. [MissingJavadocMethod]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:198: Line is longer than 100 characters (found 119). [LineLength]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:201: Line is longer than 100 characters (found 119). [LineLength]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:216: Line is longer than 100 characters (found 119). [LineLength]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\commands\AttackCommandSuper.java:218: Line is longer than 100 characters (found 102). [LineLength]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\Game.java:11:32: Using the '.*' form of import should be avoided - commands.Commands.*. [AvoidStarImport]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\Game.java:57:17: switch without "default" clause. [MissingSwitchDefault]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\GameThread.java:119:41: Parameter playerTwoWins should be final. [FinalParameters]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\GameThread.java:127:41: Parameter playerOneWins should be final. [FinalParameters]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\GameThread.java:135:33: Parameter games should be final. [FinalParameters]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\Game.java:53:17: switch without "default" clause. [MissingSwitchDefault]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\main\Main.java:9:8: Unused import - fileio.CardInput. [UnusedImports]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\main\Main.java:10:8: Unused import - fileio.GameInput. [UnusedImports]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\main\Main.java:12:8: Unused import - game.GameThread. [UnusedImports]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\main\Main.java:19:8: Unused import - java.util.ArrayList. [UnusedImports]
 Audit done.
-Checkstyle ends with 14 errors.
+Checkstyle ends with 5 errors.

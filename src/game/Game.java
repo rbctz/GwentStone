@@ -1,15 +1,12 @@
 package game;
 
+import cards.Card;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Command;
 import enums.Constants;
 import fileio.ActionsInput;
 import fileio.CardInput;
 import java.util.ArrayList;
-
-import static commands.AttackCommandSuper.cardUsesAttack;
-import static commands.Commands.*;
-
 
 public final class Game {
 
@@ -56,25 +53,18 @@ public final class Game {
             if (actionsInput.getCommand().equals(command.getCommand())) {
                 switch (command) {
                     case GET_PLAYER_DECK:
-                        value = getPlayerDeck(actionsInput, playerOne, playerTwo);
                         break;
                     case GET_PLAYER_HERO:
-                        value = getPlayerHero(actionsInput, playerOne, playerTwo);
                         break;
                     case GET_PLAYER_MANA:
-                        value = getPlayerMana(actionsInput, this);
                         break;
                     case GET_PLAYER_TURN:
-                        value = getPlayerTurn(this);
                         break;
                     case END_PLAYER_TURN:
-                        endPlayerTurn(this);
                         break;
                     case PLACE_CARD:
-                        value = placeCard(actionsInput, this);
                         break;
                     case CARD_USES_ATTACK:
-                        value = cardUsesAttack(actionsInput, this);
                         break;
                     case CARD_USES_ABILITY:
                         break;
@@ -83,13 +73,10 @@ public final class Game {
                     case USE_HERO_ABILITY:
                         break;
                     case GET_CARDS_IN_HAND:
-                        value = getCardsInHand(actionsInput, this);
                         break;
                     case GET_CARDS_ON_TABLE:
-                        value = getCardsOnTable(actionsInput, this);
                         break;
                     case GET_CARD_AT_POSITION:
-                        value = getCardAtPosition(actionsInput, this);
                         break;
                     case GET_FROZEN_CARDS_ON_TABLE:
                         break;

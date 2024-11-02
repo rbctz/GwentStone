@@ -1,57 +1,37 @@
 package game;
 
-import enums.Constants;
+import cards.Card;
+import cards.CardHelper;
+import cards.HeroCard;
 import fileio.CardInput;
 
 import java.util.ArrayList;
 
 public final class Player {
 
-    private ArrayList<Card> deck;
-    private ArrayList<Card> hand;
-    private Card hero;
+    private final ArrayList<Card> deck;
+    private final ArrayList<Card> hand;
 
     private int mana;
-    private boolean hisTurn;
+    private int numTanksOnBoard = 0;
+    private final HeroCard hero;
 
-    private int wins;
+    private final int frontRow;
+    private final int backRow;
 
-    public Player(final ArrayList<CardInput> deck, final CardInput hero) {
+    public Player(final ArrayList<CardInput> deck, final CardInput hero,
+                  final int frontRow, final int backRow) {
+
+        CardHelper cardHelper = new CardHelper();
         this.deck = new ArrayList<>();
         for (CardInput cardInput : deck) {
-            this.deck.add(new Card(cardInput));
+            this.deck.add(cardHelper.createCard(cardInput));
         }
         this.hand = new ArrayList<>();
-        this.hero = new Card(hero);
-        this.hero.getCard().setHealth(Constants.HERO_HEALTH.getValue());
-
+        this.hero = (HeroCard) cardHelper.createCard(hero);
+        this.frontRow = frontRow;
+        this.backRow = backRow;
         this.mana = 1;
-        this.hisTurn = false;
-        this.wins = 0;
-    }
-
-    public ArrayList<Card> getDeck() {
-        return deck;
-    }
-
-    public void setDeck(final ArrayList<Card> deck) {
-        this.deck = deck;
-    }
-
-    public ArrayList<Card> getHand() {
-        return hand;
-    }
-
-    public void setHand(final ArrayList<Card> hand) {
-        this.hand = hand;
-    }
-
-    public Card getHero() {
-        return hero;
-    }
-
-    public void setHero(final Card hero) {
-        this.hero = hero;
     }
 
     public int getMana() {
@@ -62,19 +42,60 @@ public final class Player {
         this.mana = mana;
     }
 
-    public boolean isHisTurn() {
-        return hisTurn;
+    public ArrayList<Card> getDeck() {
+        return deck;
     }
 
-    public void setHisTurn(final boolean hisTurn) {
-        this.hisTurn = hisTurn;
+    public ArrayList<Card> getHand() {
+        return hand;
     }
 
-    public int getWins() {
-        return wins;
+    public int getBackRow() {
+        return backRow;
     }
 
-    public void setWins(final int wins) {
-        this.wins = wins;
+    public int getFrontRow() {
+        return frontRow;
     }
+
+    public HeroCard getHero() {
+        return hero;
+    }
+
+    public int getNumTanksOnBoard() {
+        return numTanksOnBoard;
+    }
+
+    /**
+     * adds a tank to the board
+     */
+    public void addTankOnBoard() {
+        numTanksOnBoard++;
+    }
+
+    /**
+     * removes a tank from the board
+     */
+    public void removeTankFromBoard() {
+        numTanksOnBoard--;
+    }
+
+    /**
+     * reduces the mana of the player by the cost of the action
+     * @param actionCost the cost of the action
+     */
+    public void reduceMana(final int actionCost) {
+        this.mana -= actionCost;
+    }
+
+    /**
+     * draws a card from the deck and adds it to the hand
+     */
+    public void drawCard() {
+        if (!deck.isEmpty()) {
+            hand.add(deck.getFirst());
+            deck.removeFirst();
+        }
+    }
+
 }
