@@ -10,6 +10,10 @@ public final class LordRoyce extends HeroCard {
         super(cardInput, HeroType.LORD_ROYCE);
     }
 
+    public LordRoyce(final HeroCard heroCard) {
+        super(heroCard);
+    }
+
     @Override
     public void useAbility(final GameBoard gameBoard, final int row) {
 

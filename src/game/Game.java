@@ -44,15 +44,15 @@ public final class Game {
                 .get(startGameInput.getPlayerTwoDeckIdx()),
                 startGameInput.getPlayerTwoHero(), 1, 0);
 
-        playerOne.drawCard();
-        playerTwo.drawCard();
-
-        gameBoard = new GameBoard();
-
         random = new Random(startGameInput.getShuffleSeed());
         Collections.shuffle(playerOne.getDeck(), random);
         random = new Random(startGameInput.getShuffleSeed());
         Collections.shuffle(playerTwo.getDeck(), random);
+
+        playerOne.drawCard();
+        playerTwo.drawCard();
+
+        gameBoard = new GameBoard();
 
         if (startingPlayer == 1) {
             currentPlayerTurn = playerOne;
@@ -108,5 +108,9 @@ public final class Game {
 
     public Player getPlayerTwo() {
         return playerTwo;
+    }
+
+    public Player getCurrentPlayerTurn() {
+        return currentPlayerTurn;
     }
 }

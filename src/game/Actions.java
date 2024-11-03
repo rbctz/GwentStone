@@ -1,11 +1,8 @@
 package game;
 
 import cards.Card;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import cards.HeroCard;
 import enums.Command;
-import enums.OutputMessage;
 import fileio.ActionsInput;
 
 import java.util.ArrayList;
@@ -14,7 +11,6 @@ public final class Actions {
 
     private final Parser parser;
     private final Game game;
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     public Actions(final Parser parser, final Game game) {
         this.parser = parser;
@@ -39,13 +35,15 @@ public final class Actions {
                     case USE_HERO_ABILITY:
                         break;
                     case GET_PLAYER_DECK:
-                        getPlayerDeck(actionsInput);
+                        getPlayerDeck(actionsInput.getPlayerIdx());
                         break;
                     case GET_PLAYER_HERO:
+                        getPlayerHero(actionsInput.getPlayerIdx());
                         break;
                     case GET_PLAYER_MANA:
                         break;
                     case GET_PLAYER_TURN:
+                        getPlayerTurn();
                         break;
                     case GET_CARDS_IN_HAND:
                         break;
@@ -75,28 +73,38 @@ public final class Actions {
         }
     }
 
-    private void getPlayerDeck(final ActionsInput actionsInput) {
+    private void getPlayerTurn() {
+        final int playerTurnIndex;
+        if (game.getCurrentPlayerTurn() == game.getPlayerOne()) {
+            playerTurnIndex = 1;
+        } else {
+            playerTurnIndex = 2;
+        }
+        Parser.getArrayNodeOutput()
+                .addPOJO(new OutputConstructor(Command.GET_PLAYER_TURN.getCommand(), playerTurnIndex));
+    }
+
+    private void getPlayerDeck(final int playerIdx) {
         ArrayList<Card> deck;
-        if (actionsInput.getPlayerIdx() == 1) {
+        if (playerIdx == 1) {
             deck = game.getPlayerOne().getDeck();
         } else {
             deck = game.getPlayerTwo().getDeck();
         }
-        ObjectNode objectNode = objectMapper.createObjectNode();
-        objectNode.put(OutputMessage.COMMAND.getMessage(), actionsInput.getCommand());
-        objectNode.put(OutputMessage.PLAYER_INDEX.getMessage(), actionsInput.getPlayerIdx());
-        ArrayNode deckArrayNode = objectMapper.createArrayNode();
-        if (actionsInput.getPlayerIdx() == 1) {
-            for (Card card : deck) {
-                deckArrayNode.add(card.toString());
-            }
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(Command.
+                GET_PLAYER_DECK.getCommand(), playerIdx, deck));
+    }
+
+    private void getPlayerHero(final int playerIdx) {
+        HeroCard hero;
+        if (playerIdx == 1) {
+            hero = game.getPlayerOne().getHero();
         } else {
-            for (Card card : deck) {
-                deckArrayNode.add(card.toString());
-            }
+            hero = game.getPlayerTwo().getHero();
         }
-        objectNode.set(OutputMessage.OUTPUT.getMessage(), deckArrayNode);
-        parser.getArrayNodeOutput().add(objectNode);
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(Command.
+                GET_PLAYER_HERO.getCommand(), hero, playerIdx));
+
     }
 
 }

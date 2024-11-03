@@ -11,6 +11,10 @@ public final class TheRipper extends MinionCard {
         super(cardInput, false, 1, MinionType.THE_RIPPER);
     }
 
+    public TheRipper(final MinionCard minionCard) {
+        super(minionCard);
+    }
+
     @Override
     public void useAbility(final Game game, final ActionsInput actionsInput) {
 

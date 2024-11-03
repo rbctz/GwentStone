@@ -7,7 +7,7 @@ import fileio.Input;
 public final class Parser {
 
     ObjectMapper objectMapper = new ObjectMapper();
-    private ArrayNode arrayNodeOutput;
+    private static ArrayNode arrayNodeOutput;
 
     private int playerOneWins;
     private int playerTwoWins;
@@ -23,7 +23,7 @@ public final class Parser {
         }
     }
 
-    public ArrayNode getArrayNodeOutput() {
+    public static ArrayNode getArrayNodeOutput() {
         return arrayNodeOutput;
     }
 

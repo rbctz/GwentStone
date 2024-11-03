@@ -11,6 +11,10 @@ public final class Disciple extends MinionCard {
         super(cardInput, false, 1, MinionType.DISCIPLE);
     }
 
+    public Disciple(final MinionCard minionCard) {
+        super(minionCard);
+    }
+
     @Override
     public void useAbility(final Game game, final ActionsInput actionsInput) {
 

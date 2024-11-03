@@ -9,4 +9,8 @@ public final class Goliath extends MinionCard {
     public Goliath(final CardInput cardInput) {
         super(cardInput, true, 1, MinionType.GOLIATH);
     }
+
+    public Goliath(final MinionCard minionCard) {
+        super(minionCard);
+    }
 }

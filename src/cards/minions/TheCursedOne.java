@@ -11,6 +11,10 @@ public final class TheCursedOne extends MinionCard {
         super(cardInput, false, 0, MinionType.THE_CURSED_ONE);
     }
 
+    public TheCursedOne(final MinionCard minionCard) {
+        super(minionCard);
+    }
+
     @Override
     public void useAbility(final Game game, final ActionsInput actionsInput) {
 

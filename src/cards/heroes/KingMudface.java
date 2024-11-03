@@ -10,6 +10,10 @@ public final class KingMudface extends HeroCard {
         super(cardInput, HeroType.KING_MUDFACE);
     }
 
+    public KingMudface(final HeroCard heroCard) {
+        super(heroCard);
+    }
+
     @Override
     public void useAbility(final GameBoard gameBoard, final int row) {
 

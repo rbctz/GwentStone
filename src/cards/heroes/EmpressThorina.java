@@ -10,6 +10,10 @@ public final class EmpressThorina extends HeroCard {
         super(cardInput, HeroType.EMPRESS_THORINA);
     }
 
+    public EmpressThorina(final HeroCard heroCard) {
+        super(heroCard);
+    }
+
     @Override
     public void useAbility(final GameBoard gameBoard, final int row) {
 

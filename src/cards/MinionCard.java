@@ -1,5 +1,6 @@
 package cards;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import enums.CardType;
 import enums.MinionType;
 import fileio.ActionsInput;
@@ -27,6 +28,20 @@ public abstract class MinionCard extends Card {
         this.minionType = minionType;
     }
 
+    /**
+     * Copy constructor.
+     */
+    public MinionCard(final MinionCard minionCard) {
+        super(minionCard);
+        this.health = minionCard.health;
+        this.attackDamage = minionCard.attackDamage;
+        this.frozen = minionCard.frozen;
+        this.attacked = minionCard.attacked;
+        this.isTank = minionCard.isTank;
+        this.row = minionCard.row;
+        this.minionType = minionCard.minionType;
+    }
+
     public void freeze() {
         this.frozen = true;
     }
@@ -39,11 +54,43 @@ public abstract class MinionCard extends Card {
         // this method is for overriding
     }
 
+    public int getAttackDamage() {
+        return attackDamage;
+    }
+
+    public void setAttackDamage(int attackDamage) {
+        this.attackDamage = attackDamage;
+    }
+
+
     public boolean getAttacked() {
         return attacked;
     }
 
-    public void setAttacked(final boolean attacked) {
+    public void setAttacked(boolean attacked) {
         this.attacked = attacked;
+    }
+
+    @JsonIgnore
+    public boolean getIsTank() {
+        return isTank;
+    }
+
+    @JsonIgnore
+    public MinionType getMinionType() {
+        return minionType;
+    }
+
+    @JsonIgnore
+    public int getRow() {
+        return row;
+    }
+    @JsonIgnore
+    public boolean isFrozen() {
+        return frozen;
+    }
+
+    public void setFrozen(boolean frozen) {
+        this.frozen = frozen;
     }
 }

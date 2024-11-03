@@ -1,9 +1,123 @@
-[ {
-  "command" : "getPlayerDeck",
-  "playerIdx" : 2,
-  "output" : [ "cards.minions.Disciple@19dc67c2", "cards.minions.TheCursedOne@221af3c0", "cards.minions.Disciple@62bd765", "cards.minions.TheRipper@23a5fd2" ]
-}, {
-  "command" : "getPlayerDeck",
-  "playerIdx" : 1,
-  "output" : [ "cards.minions.TheCursedOne@78a2da20", "cards.minions.Warden@dd3b207", "cards.minions.Miraj@551bdc27", "cards.minions.TheCursedOne@58fdd99" ]
-} ]
+[
+  {
+    "command" : "getPlayerTurn",
+    "output" : 1
+  },
+  {
+    "command" : "getPlayerTurn",
+    "output" : 2
+  },
+  {
+    "command" : "getPlayerDeck",
+    "playerIdx" : 2,
+    "output" : [
+      {
+        "mana" : 1,
+        "health" : 3,
+        "description" : "Standard card: Trained by the best, nothing will catch him off-guard.",
+        "name" : "Sentinel",
+        "colors" : [
+          "Black",
+          "Grey",
+          "Blue"
+        ],
+        "attackDamage" : 1,
+        "attacked" : false
+      },
+      {
+        "mana" : 3,
+        "health" : 7,
+        "description" : "Standard card: A warrior who is never afraid of battle, no matter the costs",
+        "name" : "Goliath",
+        "colors" : [
+          "Red",
+          "Purple"
+        ],
+        "attackDamage" : 1,
+        "attacked" : false
+      },
+      {
+        "mana" : 2,
+        "health" : 3,
+        "description" : "Premium card: Nobody suspects an outcast, not even the Gods.",
+        "name" : "The Cursed One",
+        "colors" : [
+          "Pink",
+          "Purple"
+        ],
+        "attackDamage" : 0,
+        "attacked" : false
+      },
+      {
+        "mana" : 4,
+        "health" : 3,
+        "description" : "Standard card: Death incarnate. No better time to die than now.",
+        "name" : "The Ripper",
+        "colors" : [
+          "Orange",
+          "Red",
+          "Black"
+        ],
+        "attackDamage" : 6,
+        "attacked" : false
+      }
+    ]
+  },
+  {
+    "command" : "getPlayerDeck",
+    "playerIdx" : 1,
+    "output" : [
+      {
+        "mana" : 5,
+        "health" : 3,
+        "description" : "Standard card: When he is near, close your eyes. They betray your mind.",
+        "name" : "Miraj",
+        "colors" : [
+          "Yellow",
+          "Orange",
+          "Red"
+        ],
+        "attackDamage" : 5,
+        "attacked" : false
+      },
+      {
+        "mana" : 3,
+        "health" : 7,
+        "description" : "Standard card: A warrior who is never afraid of battle, no matter the costs",
+        "name" : "Goliath",
+        "colors" : [
+          "Brown",
+          "Black",
+          "Grey"
+        ],
+        "attackDamage" : 2,
+        "attacked" : false
+      },
+      {
+        "mana" : 2,
+        "health" : 6,
+        "description" : "Premium card: You shall not pass, you shall not prevail, you shall perish.",
+        "name" : "Warden",
+        "colors" : [
+          "Black",
+          "White",
+          "Green"
+        ],
+        "attackDamage" : 3,
+        "attacked" : false
+      },
+      {
+        "mana" : 2,
+        "health" : 1,
+        "description" : "Premium card: Nobody suspects an outcast, not even the Gods.",
+        "name" : "The Cursed One",
+        "colors" : [
+          "Pink",
+          "Purple"
+        ],
+        "attackDamage" : 0,
+        "attacked" : false
+      }
+    ]
+  }
+]

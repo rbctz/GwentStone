@@ -2,8 +2,13 @@ package main;
 
 import checker.Checker;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.util.DefaultIndenter;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import checker.CheckerConstants;
 import fileio.Input;
@@ -61,13 +66,18 @@ public final class Main {
      */
     public static void action(final String filePath1,
                               final String filePath2) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         Input inputData = objectMapper.readValue(new File(CheckerConstants.TESTS_PATH
                         + filePath1), Input.class);
         Parser parser = new Parser();
         parser.parseGames(inputData);
-        ArrayNode output = parser.getArrayNodeOutput();
+        ArrayNode output = Parser.getArrayNodeOutput();
 
+        final DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
+        prettyPrinter.indentArraysWith(new DefaultIndenter("  ", "\n"));
+        objectMapper.setDefaultPrettyPrinter(prettyPrinter);
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(filePath2), output);
     }

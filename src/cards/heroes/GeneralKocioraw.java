@@ -10,6 +10,10 @@ public final class GeneralKocioraw extends HeroCard {
         super(cardInput, HeroType.GENERAL_KOCIORAW);
     }
 
+    public GeneralKocioraw(final HeroCard heroCard) {
+        super(heroCard);
+    }
+
 
     @Override
     public void useAbility(final GameBoard gameBoard, final int row) {
