@@ -1,7 +1,75 @@
 [
   {
+    "command" : "getCardAtPosition",
+    "x" : 3,
+    "y" : 0,
+    "output" : {
+      "mana" : 3,
+      "health" : 4,
+      "description" : "Premium card: The will of Gods has been spoken, obey and you shall be saved...or not.",
+      "name" : "Disciple",
+      "colors" : [
+        "Green",
+        "Yellow",
+        "Blue"
+      ],
+      "attackDamage" : 0
+    }
+  },
+  {
+    "command" : "getCardAtPosition",
+    "x" : 1,
+    "y" : 0,
+    "output" : {
+      "mana" : 4,
+      "health" : 7,
+      "description" : "Standard card: A warrior who is never afraid of battle, no matter the costs",
+      "name" : "Goliath",
+      "colors" : [
+        "Brown",
+        "Black",
+        "Grey"
+      ],
+      "attackDamage" : 2
+    }
+  },
+  {
     "command" : "getPlayerTurn",
     "output" : 2
+  },
+  {
+    "command" : "getCardAtPosition",
+    "x" : 1,
+    "y" : 0,
+    "output" : {
+      "mana" : 4,
+      "health" : 7,
+      "description" : "Standard card: A warrior who is never afraid of battle, no matter the costs",
+      "name" : "Goliath",
+      "colors" : [
+        "Brown",
+        "Black",
+        "Grey"
+      ],
+      "attackDamage" : 2
+    }
+  },
+  {
+    "command" : "getCardAtPosition",
+    "x" : 3,
+    "y" : 0,
+    "output" : {
+      "mana" : 3,
+      "health" : 4,
+      "description" : "Premium card: The will of Gods has been spoken, obey and you shall be saved...or not.",
+      "name" : "Disciple",
+      "colors" : [
+        "Green",
+        "Yellow",
+        "Blue"
+      ],
+      "attackDamage" : 0
+    }
   },
   {
     "command" : "getPlayerMana",

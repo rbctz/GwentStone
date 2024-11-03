@@ -5,6 +5,7 @@ import cards.HeroCard;
 import cards.MinionCard;
 import enums.Command;
 import enums.ErrorMessage;
+import enums.MinionType;
 import fileio.ActionsInput;
 import fileio.Coordinates;
 
@@ -31,9 +32,10 @@ public final class Actions {
                         placeCard(actionsInput.getHandIdx());
                         break;
                     case CARD_USES_ATTACK:
-                        //cardUsesAttack(actionsInput.getCardAttacker(), actionsInput.getCardAttacked());
+                        cardUsesAttack(actionsInput.getCardAttacker(), actionsInput.getCardAttacked());
                         break;
                     case CARD_USES_ABILITY:
+                        cardUsesAbility(actionsInput.getCardAttacker(), actionsInput.getCardAttacked());
                         break;
                     case USE_ATTACK_HERO:
                         break;
@@ -76,19 +78,30 @@ public final class Actions {
     }
 
     private void cardUsesAttack(final Coordinates attacker, final Coordinates target) {
+
+        if (game.getGameBoard().getBoard().get(attacker.getX()).size() <= attacker.getY()) {
+            return;
+        }
+        if (game.getGameBoard().getBoard().get(target.getX()).size() <= target.getY()) {
+            return;
+        }
+
         boolean cardAttacked = false;
         boolean cardFrozen = false;
         boolean notEnemy = false;
         boolean enemyNotATank = false;
+
         if (game.getGameBoard().getCardFromTable(attacker).getAttacked()) {
             cardAttacked = true;
         } else if (game.getGameBoard().getCardFromTable(attacker).isFrozen()) {
             cardFrozen = true;
         } else if (!game.getGameBoard().isEnemy(game.getCurrentPlayerTurn(), target)) {
             notEnemy = true;
-        } else if (game.enemyHasTanks() && !game.getGameBoard().getBoard().get(target.getX()).get(target.getY()).getIsTank()) {
+        } else if (game.enemyHasTanks()
+                && !game.getGameBoard().getCardFromTable(target).getIsTank()) {
             enemyNotATank = true;
         }
+
         if (cardAttacked) {
             Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
                     (Command.CARD_USES_ATTACK.getCommand(), attacker, target,
@@ -110,6 +123,71 @@ public final class Actions {
             attackerCard.setAttacked(true);
             game.cardAttacksMinion(attacker, target);
         }
+    }
+
+    private void cardUsesAbility(final Coordinates attacker, final Coordinates target) {
+        if (game.getGameBoard().getBoard().get(attacker.getX()).size() <= attacker.getY()) {
+            return;
+        }
+        if (game.getGameBoard().getBoard().get(target.getX()).size() <= target.getY()) {
+            return;
+        }
+
+        boolean cardAttacked = false;
+        boolean cardFrozen = false;
+
+
+        if (game.getGameBoard().getCardFromTable(attacker).getAttacked()) {
+            cardAttacked = true;
+        } else if (game.getGameBoard().getCardFromTable(attacker).isFrozen()) {
+            cardFrozen = true;
+        }
+
+        boolean notCurrentPlayer = false;
+        boolean notEnemy = false;
+        boolean enemyNotATank = false;
+        final MinionType minionType = game.getGameBoard().
+                getCardFromTable(attacker).getMinionType();
+        if (minionType == MinionType.DISCIPLE) {
+            if (game.getGameBoard().isEnemy(game.getCurrentPlayerTurn(), attacker)) {
+                notCurrentPlayer = true;
+            }
+        } else if (minionType == MinionType.MIRAJ
+                || minionType == MinionType.THE_CURSED_ONE
+                || minionType == MinionType.THE_RIPPER) {
+            if (!game.getGameBoard().isEnemy(game.getCurrentPlayerTurn(), target)) {
+                notEnemy = true;
+            } else if (game.enemyHasTanks()
+                    && !game.getGameBoard().getCardFromTable(target).getIsTank()) {
+                enemyNotATank = true;
+            }
+        }
+        if (cardAttacked) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.CARD_USES_ABILITY.getCommand(), attacker, target,
+                    ErrorMessage.ATTACKER_ALREADY_ATTACKED.getMessage()));
+        } else if (cardFrozen) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.CARD_USES_ABILITY.getCommand(), attacker, target,
+                    ErrorMessage.FROZEN.getMessage()));
+        } else if (notCurrentPlayer) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.CARD_USES_ABILITY.getCommand(), attacker, target,
+                    ErrorMessage.NOT_CURRENT_PLAYER.getMessage()));
+        } else if (notEnemy) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.CARD_USES_ABILITY.getCommand(), attacker, target,
+                    ErrorMessage.NOT_ENEMY.getMessage()));
+        } else if (enemyNotATank) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.CARD_USES_ABILITY.getCommand(), attacker, target,
+                    ErrorMessage.NOT_TANK.getMessage()));
+        } else {
+            MinionCard attackerCard = game.getGameBoard().getCardFromTable(attacker);
+            attackerCard.setAttacked(true);
+            attackerCard.useAbility(game, target);
+        }
+
     }
 
     private void endPlayerTurn() {
@@ -219,7 +297,18 @@ public final class Actions {
     }
 
     private void getCardAtPosition(final int x, final int y) {
-
+        if (game.getGameBoard().getBoard().get(x).size() >= y) {
+            Coordinates coordinates = new Coordinates();
+            coordinates.setX(x);
+            coordinates.setY(y);
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.GET_CARD_AT_POSITION.getCommand(), x, y,
+                            game.getGameBoard().getCardFromTable(coordinates)));
+        } else {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.GET_CARD_AT_POSITION.getCommand(), x, y,
+                            ErrorMessage.NO_CARD.getMessage()));
+        }
     }
 }
 

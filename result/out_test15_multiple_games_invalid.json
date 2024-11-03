@@ -22,6 +22,22 @@
     "playerIdx" : 1
   },
   {
+    "command" : "getCardAtPosition",
+    "x" : 0,
+    "y" : 0,
+    "output" : {
+      "mana" : 2,
+      "health" : 3,
+      "description" : "Standard card: Trained by the best, nothing will catch him off-guard.",
+      "name" : "Sentinel",
+      "colors" : [
+        "Black",
+        "White"
+      ],
+      "attackDamage" : 5
+    }
+  },
+  {
     "command" : "getCardsOnTable",
     "output" : [
       [
@@ -71,19 +87,7 @@
           "attackDamage" : 5
         }
       ],
-      [
-        {
-          "mana" : 2,
-          "health" : 6,
-          "description" : "Standard card: He has seen everything, his mind has never been asleep since the making of the realm.",
-          "name" : "Warden",
-          "colors" : [
-            "Brown",
-            "Blue"
-          ],
-          "attackDamage" : 8
-        }
-      ],
+      [ ],
       [
         {
           "mana" : 2,
@@ -184,6 +188,22 @@
     "playerIdx" : 1
   },
   {
+    "command" : "getCardAtPosition",
+    "x" : 0,
+    "y" : 0,
+    "output" : {
+      "mana" : 1,
+      "health" : 2,
+      "description" : "Standard card: A drink can always be served, with the blood of his enemies.",
+      "name" : "Berserker",
+      "colors" : [
+        "Purple",
+        "Yellow"
+      ],
+      "attackDamage" : 5
+    }
+  },
+  {
     "command" : "getPlayerMana",
     "output" : 1,
     "playerIdx" : 2
@@ -191,6 +211,22 @@
   {
     "command" : "getPlayerTurn",
     "output" : 2
+  },
+  {
+    "command" : "getCardAtPosition",
+    "x" : 3,
+    "y" : 0,
+    "output" : {
+      "mana" : 2,
+      "health" : 2,
+      "description" : "Premium card: The will of Gods has been spoken, obey and you shall be saved...or not.",
+      "name" : "Disciple",
+      "colors" : [
+        "Yellow",
+        "White"
+      ],
+      "attackDamage" : 0
+    }
   },
   {
     "command" : "getPlayerTurn",

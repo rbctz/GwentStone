@@ -14,7 +14,6 @@ import static enums.Constants.MAX_MANA;
 
 public final class Game {
 
-    private Random random;
     private final Parser parser;
     private Player playerOne;
     private Player playerTwo;
@@ -47,7 +46,7 @@ public final class Game {
                 startGameInput.getPlayerTwoHero(), 1, 0);
         gameBoard = new GameBoard();
 
-        random = new Random(startGameInput.getShuffleSeed());
+        Random random = new Random(startGameInput.getShuffleSeed());
         Collections.shuffle(playerOne.getDeck(), random);
         random = new Random(startGameInput.getShuffleSeed());
         Collections.shuffle(playerTwo.getDeck(), random);
@@ -145,6 +144,7 @@ public final class Game {
 
     public void cardAttacksMinion(final Coordinates attackCoordinates,
                                   final Coordinates targetCoordinates) {
+
         MinionCard attacker = gameBoard.getCardFromTable(attackCoordinates);
         MinionCard target = gameBoard.getCardFromTable(targetCoordinates);
 

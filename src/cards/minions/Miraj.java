@@ -4,6 +4,7 @@ import cards.MinionCard;
 import enums.MinionType;
 import fileio.ActionsInput;
 import fileio.CardInput;
+import fileio.Coordinates;
 import game.Game;
 
 public final class Miraj extends MinionCard {
@@ -16,7 +17,10 @@ public final class Miraj extends MinionCard {
     }
 
     @Override
-    public void useAbility(final Game game, final ActionsInput actionsInput) {
-
+    public void useAbility(final Game game, final Coordinates coordinates) {
+        MinionCard minionCard = game.getGameBoard().getCardFromTable(coordinates);
+        int auxHealth = minionCard.getHealth();
+        minionCard.setHealth(this.getHealth());
+        this.setHealth(auxHealth);
     }
 }

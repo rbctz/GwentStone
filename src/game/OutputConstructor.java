@@ -39,10 +39,8 @@ public final class OutputConstructor {
 
     private Coordinates attackCoordinates;
     private Coordinates targetCoordinates;
-    @JsonIgnore
-    private int x;
-    @JsonIgnore
-    private int y;
+    private Integer x;
+    private Integer y;
 
     /**
      * Constructor for the getPlayerDeck and getCardsInHand command.
@@ -148,9 +146,9 @@ public final class OutputConstructor {
      * @param y the y coordinate
      * @param error the error message
      */
-    public OutputConstructor(final String command, final int x, final int y, final String error) {
+    public OutputConstructor(final String command, final Integer x, final Integer y, final String error) {
         this.command = command;
-        this.error = error;
+        this.outputString = error;
         this.x = x;
         this.y = y;
     }
@@ -162,7 +160,7 @@ public final class OutputConstructor {
      * @param y the y coordinate
      * @param card the card at the position
      */
-    public OutputConstructor(final String command, final int x, final int y, final Card card) {
+    public OutputConstructor(final String command, final Integer x, final Integer y, final Card card) {
         this.command = command;
         this.outputCard = cardHelper.createCard(card);
         this.x = x;
@@ -184,5 +182,37 @@ public final class OutputConstructor {
             return outputString;
         }
         return outputInteger;
+    }
+
+    public String getCommand() {
+        return command;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public Integer getPlayerIndex() {
+        return playerIndex;
+    }
+
+    public Integer getHandIndex() {
+        return handIndex;
+    }
+
+    public Coordinates getAttackCoordinates() {
+        return attackCoordinates;
+    }
+
+    public Coordinates getTargetCoordinates() {
+        return targetCoordinates;
+    }
+
+    public Integer getX() {
+        return x;
+    }
+
+    public Integer getY() {
+        return y;
     }
 }

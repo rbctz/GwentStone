@@ -4,6 +4,7 @@ import cards.MinionCard;
 import enums.MinionType;
 import fileio.ActionsInput;
 import fileio.CardInput;
+import fileio.Coordinates;
 import game.Game;
 
 public final class TheRipper extends MinionCard {
@@ -16,7 +17,11 @@ public final class TheRipper extends MinionCard {
     }
 
     @Override
-    public void useAbility(final Game game, final ActionsInput actionsInput) {
-
+    public void useAbility(final Game game, final Coordinates coordinates) {
+        MinionCard minionCard = game.getGameBoard().getCardFromTable(coordinates);
+        minionCard.setAttackDamage(minionCard.getAttackDamage() - 2);
+        if (minionCard.getAttackDamage() < 0) {
+            minionCard.setAttackDamage(0);
+        }
     }
 }

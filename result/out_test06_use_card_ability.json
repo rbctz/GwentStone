@@ -37,6 +37,23 @@
     "output" : 2
   },
   {
+    "command" : "getCardAtPosition",
+    "x" : 0,
+    "y" : 0,
+    "output" : {
+      "mana" : 3,
+      "health" : 2,
+      "description" : "Standard card: Everything is sacred to him, all is but a gift from the saints.",
+      "name" : "Disciple",
+      "colors" : [
+        "Green",
+        "Yellow",
+        "Blue"
+      ],
+      "attackDamage" : 0
+    }
+  },
+  {
     "command" : "getCardsInHand",
     "output" : [
       {
@@ -75,6 +92,23 @@
     "output" : 2
   },
   {
+    "command" : "getCardAtPosition",
+    "x" : 0,
+    "y" : 0,
+    "output" : {
+      "mana" : 3,
+      "health" : 2,
+      "description" : "Standard card: Everything is sacred to him, all is but a gift from the saints.",
+      "name" : "Disciple",
+      "colors" : [
+        "Green",
+        "Yellow",
+        "Blue"
+      ],
+      "attackDamage" : 0
+    }
+  },
+  {
     "command" : "getPlayerMana",
     "output" : 7,
     "playerIdx" : 1
@@ -94,7 +128,7 @@
       [
         {
           "mana" : 3,
-          "health" : 2,
+          "health" : 8,
           "description" : "Standard card: Everything is sacred to him, all is but a gift from the saints.",
           "name" : "Disciple",
           "colors" : [
@@ -131,18 +165,18 @@
       [
         {
           "mana" : 3,
-          "health" : 7,
+          "health" : 5,
           "description" : "Standard card: A warrior who is never afraid of battle, no matter the costs",
           "name" : "Goliath",
           "colors" : [
             "Red",
             "Purple"
           ],
-          "attackDamage" : 1
+          "attackDamage" : 0
         },
         {
           "mana" : 5,
-          "health" : 3,
+          "health" : 6,
           "description" : "Standard card: When he is near, close your eyes. They betray your mind.",
           "name" : "Miraj",
           "colors" : [
@@ -189,7 +223,7 @@
         },
         {
           "mana" : 5,
-          "health" : 4,
+          "health" : 11,
           "description" : "Standard card: When he is near, close your eyes. They betray your mind.",
           "name" : "Miraj",
           "colors" : [
@@ -203,14 +237,14 @@
       [
         {
           "mana" : 1,
-          "health" : 3,
+          "health" : 2,
           "description" : "Premium card: His presence is not known even by ghosts, success at all costs.",
           "name" : "Sentinel",
           "colors" : [
             "Black",
             "White"
           ],
-          "attackDamage" : 2
+          "attackDamage" : 3
         }
       ]
     ]
