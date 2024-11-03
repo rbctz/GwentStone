@@ -21,7 +21,11 @@ public final class Actions {
         this.game = game;
     }
 
-    public void parseActions(ActionsInput actionsInput) {
+    /**
+     * Method that parses the actions from the input file
+     * @param actionsInput the input from the file
+     */
+    public void parseActions(final ActionsInput actionsInput) {
         for (Command command : Command.values()) {
             if (command.getCommand().equals(actionsInput.getCommand())) {
                 switch (command) {
@@ -32,10 +36,12 @@ public final class Actions {
                         placeCard(actionsInput.getHandIdx());
                         break;
                     case CARD_USES_ATTACK:
-                        cardUsesAttack(actionsInput.getCardAttacker(), actionsInput.getCardAttacked());
+                        cardUsesAttack(actionsInput.getCardAttacker(),
+                                actionsInput.getCardAttacked());
                         break;
                     case CARD_USES_ABILITY:
-                        cardUsesAbility(actionsInput.getCardAttacker(), actionsInput.getCardAttacked());
+                        cardUsesAbility(actionsInput.getCardAttacker(),
+                                actionsInput.getCardAttacked());
                         break;
                     case USE_ATTACK_HERO:
                         break;
@@ -72,6 +78,8 @@ public final class Actions {
                         break;
                     case GAME_ENDED:
                         break;
+                    default:
+                        break;
                 }
             }
         }
@@ -103,20 +111,20 @@ public final class Actions {
         }
 
         if (cardAttacked) {
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.CARD_USES_ATTACK.getCommand(), attacker, target,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.CARD_USES_ATTACK.getCommand(), attacker, target,
                     ErrorMessage.ATTACKER_ALREADY_ATTACKED.getMessage()));
         } else if (cardFrozen) {
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.CARD_USES_ATTACK.getCommand(), attacker, target,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.CARD_USES_ATTACK.getCommand(), attacker, target,
                     ErrorMessage.FROZEN.getMessage()));
         } else if (notEnemy) {
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.CARD_USES_ATTACK.getCommand(), attacker, target,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.CARD_USES_ATTACK.getCommand(), attacker, target,
                     ErrorMessage.NOT_ENEMY.getMessage()));
         } else if (enemyNotATank) {
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.CARD_USES_ATTACK.getCommand(), attacker, target,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.CARD_USES_ATTACK.getCommand(), attacker, target,
                     ErrorMessage.NOT_TANK.getMessage()));
         } else {
             MinionCard attackerCard = game.getGameBoard().getCardFromTable(attacker);
@@ -163,24 +171,24 @@ public final class Actions {
             }
         }
         if (cardAttacked) {
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.CARD_USES_ABILITY.getCommand(), attacker, target,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.CARD_USES_ABILITY.getCommand(), attacker, target,
                     ErrorMessage.ATTACKER_ALREADY_ATTACKED.getMessage()));
         } else if (cardFrozen) {
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.CARD_USES_ABILITY.getCommand(), attacker, target,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.CARD_USES_ABILITY.getCommand(), attacker, target,
                     ErrorMessage.FROZEN.getMessage()));
         } else if (notCurrentPlayer) {
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.CARD_USES_ABILITY.getCommand(), attacker, target,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.CARD_USES_ABILITY.getCommand(), attacker, target,
                     ErrorMessage.NOT_CURRENT_PLAYER.getMessage()));
         } else if (notEnemy) {
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.CARD_USES_ABILITY.getCommand(), attacker, target,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.CARD_USES_ABILITY.getCommand(), attacker, target,
                     ErrorMessage.NOT_ENEMY.getMessage()));
         } else if (enemyNotATank) {
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.CARD_USES_ABILITY.getCommand(), attacker, target,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.CARD_USES_ABILITY.getCommand(), attacker, target,
                     ErrorMessage.NOT_TANK.getMessage()));
         } else {
             MinionCard attackerCard = game.getGameBoard().getCardFromTable(attacker);
@@ -204,8 +212,8 @@ public final class Actions {
         } else {
             playerTurnIndex = 2;
         }
-        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                (Command.GET_PLAYER_TURN.getCommand(), playerTurnIndex));
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                Command.GET_PLAYER_TURN.getCommand(), playerTurnIndex));
     }
 
     private void getPlayerDeck(final int playerIdx) {
@@ -253,12 +261,12 @@ public final class Actions {
         }
 
         if (notEnoughMana) {
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.PLACE_CARD.getCommand(), handIndex,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.PLACE_CARD.getCommand(), handIndex,
                     ErrorMessage.NOT_ENOUGH_MANA_MINION.getMessage()));
         } else if (rowFull) {
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.PLACE_CARD.getCommand(), handIndex,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.PLACE_CARD.getCommand(), handIndex,
                     ErrorMessage.NOT_ENOUGH_SPACE.getMessage()));
         } else {
             MinionCard minionCardToBePlaced =
@@ -270,8 +278,8 @@ public final class Actions {
 
     private void getCardsOnTable() {
         ArrayList<ArrayList<MinionCard>> cardsOnTable = game.getGameBoard().getAllCardsOnTable();
-        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                (Command.GET_CARDS_ON_TABLE.getCommand(), cardsOnTable));
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                Command.GET_CARDS_ON_TABLE.getCommand(), cardsOnTable));
     }
 
     private void getPlayerMana(final int playerIndex) {
@@ -281,8 +289,8 @@ public final class Actions {
         } else {
             mana = game.getPlayerTwo().getMana();
         }
-        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                (Command.GET_PLAYER_MANA.getCommand(), playerIndex, mana));
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                Command.GET_PLAYER_MANA.getCommand(), playerIndex, mana));
     }
 
     private void getCardsInHand(final int playerIndex) {
@@ -292,8 +300,8 @@ public final class Actions {
         } else {
             hand = game.getPlayerTwo().getHand();
         }
-        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                (Command.GET_CARDS_IN_HAND.getCommand(), playerIndex, hand));
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                Command.GET_CARDS_IN_HAND.getCommand(), playerIndex, hand));
     }
 
     private void getCardAtPosition(final int x, final int y) {
@@ -301,12 +309,12 @@ public final class Actions {
             Coordinates coordinates = new Coordinates();
             coordinates.setX(x);
             coordinates.setY(y);
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.GET_CARD_AT_POSITION.getCommand(), x, y,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.GET_CARD_AT_POSITION.getCommand(), x, y,
                             game.getGameBoard().getCardFromTable(coordinates)));
         } else {
-            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
-                    (Command.GET_CARD_AT_POSITION.getCommand(), x, y,
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.GET_CARD_AT_POSITION.getCommand(), x, y,
                             ErrorMessage.NO_CARD.getMessage()));
         }
     }

@@ -111,8 +111,16 @@ public final class GameBoard {
         }
     }
 
+    /**
+     * Checks if a card is on the board is
+     *  an enemy of the current player
+     * @param player - the player
+     * @param coordinates - the coordinates
+     * @return
+     */
     public boolean isEnemy(final Player player, final Coordinates coordinates) {
-        if (coordinates.getX() != player.getBackRow() && coordinates.getX() != player.getFrontRow()) {
+        if (coordinates.getX() != player.getBackRow()
+                && coordinates.getX() != player.getFrontRow()) {
             return true;
         }
         return false;

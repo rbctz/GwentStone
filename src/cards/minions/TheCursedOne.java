@@ -2,7 +2,6 @@ package cards.minions;
 
 import cards.MinionCard;
 import enums.MinionType;
-import fileio.ActionsInput;
 import fileio.CardInput;
 import fileio.Coordinates;
 import game.Game;

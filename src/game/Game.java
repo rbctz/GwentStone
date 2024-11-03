@@ -2,6 +2,7 @@ package game;
 
 import cards.MinionCard;
 import enums.Command;
+import enums.Constants;
 import fileio.ActionsInput;
 import fileio.Coordinates;
 import fileio.Input;
@@ -40,10 +41,14 @@ public final class Game {
 
         playerOne = new Player(input.getPlayerOneDecks().getDecks()
                 .get(startGameInput.getPlayerOneDeckIdx()),
-                startGameInput.getPlayerOneHero(), 2, 3);
+                startGameInput.getPlayerOneHero(),
+                Constants.PLAYER_ONE_FRONT.getValue(),
+                Constants.PLAYER_ONE_BACK.getValue());
         playerTwo = new Player(input.getPlayerTwoDecks().getDecks()
                 .get(startGameInput.getPlayerTwoDeckIdx()),
-                startGameInput.getPlayerTwoHero(), 1, 0);
+                startGameInput.getPlayerTwoHero(),
+                Constants.PLAYER_TWO_FRONT.getValue(),
+                Constants.PLAYER_TWO_BACK.getValue());
         gameBoard = new GameBoard();
 
         Random random = new Random(startGameInput.getShuffleSeed());
@@ -63,15 +68,18 @@ public final class Game {
         final Actions actions = new Actions(parser, this);
         for (ActionsInput actionsInput : input.getGames().get(index).getActions()) {
             actions.parseActions(actionsInput);
-            if (!parser.getArrayNodeOutput().isEmpty() &&
-                parser.getArrayNodeOutput().get(parser.getArrayNodeOutput().size() - 1)
-                .has(Command.GAME_ENDED.getCommand())) {
+            if (!Parser.getArrayNodeOutput().isEmpty()
+                    && Parser.getArrayNodeOutput().get(Parser.getArrayNodeOutput().size() - 1)
+                    .has(Command.GAME_ENDED.getCommand())) {
                 break;
             }
         }
 
     }
 
+    /**
+     * Ends a players turn.
+     */
     public void endTurn() {
         gameBoard.unfreezeAllCardsOnRow(currentPlayerTurn.getBackRow());
         gameBoard.unfreezeAllCardsOnRow(currentPlayerTurn.getFrontRow());
@@ -88,6 +96,9 @@ public final class Game {
         this.turnsPlayed++;
     }
 
+    /**
+     * Ends a round.
+     */
     public void endRound() {
         if (manaPerTurn < MAX_MANA.getValue()) {
             manaPerTurn++;
@@ -134,6 +145,10 @@ public final class Game {
         return gameBoard;
     }
 
+    /**
+     * Checks if the game has ended.
+     * @return
+     */
     public boolean enemyHasTanks() {
         if (currentPlayerTurn == playerOne) {
             return playerTwo.getNumTanksOnBoard() > 0;
@@ -142,6 +157,11 @@ public final class Game {
         }
     }
 
+    /**
+     * Attacks a minion with another minion.
+     * @param attackCoordinates
+     * @param targetCoordinates
+     */
     public void cardAttacksMinion(final Coordinates attackCoordinates,
                                   final Coordinates targetCoordinates) {
 

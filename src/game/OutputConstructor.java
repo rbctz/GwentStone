@@ -6,7 +6,6 @@ import cards.MinionCard;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import enums.Constants;
 import fileio.Coordinates;
 
 import java.util.ArrayList;
@@ -112,7 +111,8 @@ public final class OutputConstructor {
      * @param command the command to be executed
      * @param outputTable the 2D ArrayList of cards
      */
-    public OutputConstructor(final String command, ArrayList<ArrayList<MinionCard>> outputTable) {
+    public OutputConstructor(final String command,
+                             final ArrayList<ArrayList<MinionCard>> outputTable) {
         this.command = command;
         this.outputTable = new ArrayList<>();
         for (int i = 0; i < GameBoard.getBoardRows(); ++i) {
@@ -132,7 +132,9 @@ public final class OutputConstructor {
      * @param playerIndex the index of the player
      * @param outputInteger the value returned
      */
-    public OutputConstructor(final String command, final int playerIndex, final Integer outputInteger) {
+    public OutputConstructor(final String command,
+                             final int playerIndex,
+                             final Integer outputInteger) {
         this.command = command;
         this.playerIndex = playerIndex;
         this.outputInteger = outputInteger;
@@ -146,7 +148,10 @@ public final class OutputConstructor {
      * @param y the y coordinate
      * @param error the error message
      */
-    public OutputConstructor(final String command, final Integer x, final Integer y, final String error) {
+    public OutputConstructor(final String command,
+                             final Integer x,
+                             final Integer y,
+                             final String error) {
         this.command = command;
         this.outputString = error;
         this.x = x;
@@ -160,13 +165,20 @@ public final class OutputConstructor {
      * @param y the y coordinate
      * @param card the card at the position
      */
-    public OutputConstructor(final String command, final Integer x, final Integer y, final Card card) {
+    public OutputConstructor(final String command,
+                             final Integer x,
+                             final Integer y,
+                             final Card card) {
         this.command = command;
         this.outputCard = cardHelper.createCard(card);
         this.x = x;
         this.y = y;
     }
 
+    /**
+     *
+     * @return the main part of the output
+     */
     @JsonProperty("output")
     public Object returnOutput() {
         if (outputList != null) {

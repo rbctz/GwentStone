@@ -2,13 +2,12 @@ package cards.minions;
 
 import cards.MinionCard;
 import enums.MinionType;
-import fileio.ActionsInput;
 import fileio.CardInput;
 import fileio.Coordinates;
 import game.Game;
 
 public final class Disciple extends MinionCard {
-    public Disciple(CardInput cardInput) {
+    public Disciple(final CardInput cardInput) {
         super(cardInput, false, 0, MinionType.DISCIPLE);
     }
 

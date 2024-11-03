@@ -6,16 +6,19 @@ import fileio.Input;
 
 public final class Parser {
 
-    ObjectMapper objectMapper = new ObjectMapper();
     private static ArrayNode arrayNodeOutput;
 
     private int playerOneWins;
     private int playerTwoWins;
 
     public Parser() {
+        ObjectMapper objectMapper = new ObjectMapper();
         arrayNodeOutput = objectMapper.createArrayNode();
     }
 
+    /**
+     * Parses the input and starts the games.
+     */
     public void parseGames(final Input input) {
         for (int i = 0; i < input.getGames().size(); i++) {
             Game game = new Game(this);

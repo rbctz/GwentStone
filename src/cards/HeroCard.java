@@ -23,5 +23,8 @@ public abstract class HeroCard extends Card {
         this.heroType = heroCard.heroType;
     }
 
+    /**
+     * for overriding in subclasses.
+     */
     public abstract void useAbility(GameBoard gameBoard, int row);
 }
