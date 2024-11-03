@@ -1,1 +1,9 @@
-[ ]
+[ {
+  "command" : "getPlayerDeck",
+  "playerIdx" : 2,
+  "output" : [ "cards.minions.Miraj@76329302", "cards.minions.Miraj@5e25a92e", "cards.minions.Berserker@4df828d7", "cards.minions.Miraj@b59d31" ]
+}, {
+  "command" : "getPlayerDeck",
+  "playerIdx" : 1,
+  "output" : [ "cards.minions.TheRipper@62fdb4a6", "cards.minions.Goliath@11e21d0e", "cards.minions.Sentinel@1dd02175", "cards.minions.Miraj@31206beb" ]
+} ]

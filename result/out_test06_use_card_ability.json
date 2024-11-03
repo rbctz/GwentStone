@@ -1,1 +1,9 @@
-[ ]
+[ {
+  "command" : "getPlayerDeck",
+  "playerIdx" : 1,
+  "output" : [ "cards.minions.Miraj@525b461a" ]
+}, {
+  "command" : "getPlayerDeck",
+  "playerIdx" : 2,
+  "output" : [ "cards.minions.Miraj@58c1c010" ]
+} ]

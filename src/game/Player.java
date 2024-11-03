@@ -97,5 +97,4 @@ public final class Player {
             deck.removeFirst();
         }
     }
-
 }

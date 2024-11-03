@@ -1,134 +1,112 @@
 package game;
 
-import cards.Card;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Command;
-import enums.Constants;
 import fileio.ActionsInput;
-import fileio.CardInput;
-import java.util.ArrayList;
+import fileio.Input;
+import fileio.StartGameInput;
+
+import java.util.Collections;
+import java.util.Random;
+
+import static enums.Constants.MAX_MANA;
 
 public final class Game {
 
-    private Player playerOne, playerTwo;
-    private int mana;
-    private int turn;
-    private Card[][] gameTable
-            = new Card[Constants.TABLE_ROWS.getValue()][Constants.TABLE_COLS.getValue()];
+    private Random random;
+    private final Parser parser;
+    private Player playerOne;
+    private Player playerTwo;
+    private GameBoard gameBoard;
+    private Player currentPlayerTurn;
 
-    public Game(final int startingPlayer,
-                final ArrayList<CardInput> deckOne,
-                final ArrayList<CardInput> deckTwo,
-                final CardInput heroOne,
-                final CardInput heroTwo) {
-        playerOne = new Player(deckOne, heroOne);
-        playerTwo = new Player(deckTwo, heroTwo);
-        if (startingPlayer == 1) {
-            playerOne.setHisTurn(true);
-        } else {
-            playerTwo.setHisTurn(true);
-        }
-        turn = 1;
-        mana = 1;
-        playerOne.getHand().add(playerOne.getDeck().getFirst());
-        playerOne.getDeck().removeFirst();
-        playerTwo.getHand().add(playerTwo.getDeck().getFirst());
-        playerTwo.getDeck().removeFirst();
+    private int turnsPlayed = 0;
+    private int manaPerTurn = 1;
 
-        for (int i = 0; i < Constants.TABLE_ROWS.getValue(); i++) {
-            for (int j = 0; j < Constants.TABLE_COLS.getValue(); j++) {
-                gameTable[i][j] = null;
-            }
-        }
+
+    public Game(final Parser parser) {
+        this.parser = parser;
     }
 
     /**
-     *
-     * @param actionsInput the current command
-     * @return the return value of the command called
+     * Starts the game.
+     * @param input
+     * @param index
      */
-    public ObjectNode execute(final ActionsInput actionsInput) {
-        ObjectNode value = null;
-        for (Command command : Command.values()) {
-            if (actionsInput.getCommand().equals(command.getCommand())) {
-                switch (command) {
-                    case GET_PLAYER_DECK:
-                        break;
-                    case GET_PLAYER_HERO:
-                        break;
-                    case GET_PLAYER_MANA:
-                        break;
-                    case GET_PLAYER_TURN:
-                        break;
-                    case END_PLAYER_TURN:
-                        break;
-                    case PLACE_CARD:
-                        break;
-                    case CARD_USES_ATTACK:
-                        break;
-                    case CARD_USES_ABILITY:
-                        break;
-                    case USE_ATTACK_HERO:
-                        break;
-                    case USE_HERO_ABILITY:
-                        break;
-                    case GET_CARDS_IN_HAND:
-                        break;
-                    case GET_CARDS_ON_TABLE:
-                        break;
-                    case GET_CARD_AT_POSITION:
-                        break;
-                    case GET_FROZEN_CARDS_ON_TABLE:
-                        break;
-                    case GET_TOTAL_GAMES_PLAYED:
-                        break;
-                    case GET_PLAYER_ONE_WINS:
-                        break;
-                    case GET_PLAYER_TWO_WINS:
-                        break;
-                }
+    public void startGame(final Input input, final int index) {
+        final StartGameInput startGameInput = input.getGames().get(index).getStartGame();
+
+        int startingPlayer = startGameInput.getStartingPlayer();
+
+        playerOne = new Player(input.getPlayerOneDecks().getDecks()
+                .get(startGameInput.getPlayerOneDeckIdx()),
+                startGameInput.getPlayerOneHero(), 2, 3);
+        playerTwo = new Player(input.getPlayerTwoDecks().getDecks()
+                .get(startGameInput.getPlayerTwoDeckIdx()),
+                startGameInput.getPlayerTwoHero(), 1, 0);
+
+        playerOne.drawCard();
+        playerTwo.drawCard();
+
+        gameBoard = new GameBoard();
+
+        random = new Random(startGameInput.getShuffleSeed());
+        Collections.shuffle(playerOne.getDeck(), random);
+        random = new Random(startGameInput.getShuffleSeed());
+        Collections.shuffle(playerTwo.getDeck(), random);
+
+        if (startingPlayer == 1) {
+            currentPlayerTurn = playerOne;
+        } else {
+            currentPlayerTurn = playerTwo;
+        }
+
+        final Actions actions = new Actions(parser, this);
+        for (ActionsInput actionsInput : input.getGames().get(index).getActions()) {
+            actions.parseActions(actionsInput);
+            if (!parser.getArrayNodeOutput().isEmpty() &&
+                parser.getArrayNodeOutput().get(parser.getArrayNodeOutput().size() - 1)
+                .has(Command.GAME_ENDED.getCommand())) {
+                break;
             }
         }
-        return value;
+
+    }
+
+    public void endTurn() {
+        gameBoard.unfreezeAllCardsOnRow(currentPlayerTurn.getBackRow());
+        gameBoard.unfreezeAllCardsOnRow(currentPlayerTurn.getFrontRow());
+
+        gameBoard.resetAttackedOnRow(currentPlayerTurn.getBackRow());
+        gameBoard.resetAttackedOnRow(currentPlayerTurn.getFrontRow());
+
+        if (currentPlayerTurn == playerOne) {
+            currentPlayerTurn = playerTwo;
+        } else {
+            currentPlayerTurn = playerOne;
+        }
+
+        this.turnsPlayed++;
+    }
+
+    public void endRound() {
+        if (manaPerTurn < MAX_MANA.getValue()) {
+            manaPerTurn++;
+        }
+        playerOne.setMana(playerOne.getMana() + manaPerTurn);
+        playerTwo.setMana(playerTwo.getMana() + manaPerTurn);
+        playerOne.drawCard();
+        playerTwo.drawCard();
+    }
+
+    public int getTurnsPlayed() {
+        return turnsPlayed;
     }
 
     public Player getPlayerOne() {
         return playerOne;
     }
 
-    public void setPlayerOne(final Player playerOne) {
-        this.playerOne = playerOne;
-    }
-
     public Player getPlayerTwo() {
         return playerTwo;
-    }
-
-    public void setPlayerTwo(final Player playerTwo) {
-        this.playerTwo = playerTwo;
-    }
-
-    public int getMana() {
-        return mana;
-    }
-
-    public void setMana(final int mana) {
-        this.mana = mana;
-    }
-
-    public int getTurn() {
-        return turn;
-    }
-
-    public void setTurn(final int turn) {
-        this.turn = turn;
-    }
-
-    public Card[][] getGameTable() {
-        return gameTable;
-    }
-
-    public void setGameTable(final Card[][] gameTable) {
-        this.gameTable = gameTable;
     }
 }

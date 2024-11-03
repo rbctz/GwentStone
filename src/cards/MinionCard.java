@@ -38,4 +38,12 @@ public abstract class MinionCard extends Card {
     public void useAbility(final Game game, final ActionsInput actionsInput) {
         // this method is for overriding
     }
+
+    public boolean getAttacked() {
+        return attacked;
+    }
+
+    public void setAttacked(final boolean attacked) {
+        this.attacked = attacked;
+    }
 }

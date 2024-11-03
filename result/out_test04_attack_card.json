@@ -1,1 +1,9 @@
-[ ]
+[ {
+  "command" : "getPlayerDeck",
+  "playerIdx" : 2,
+  "output" : [ "cards.minions.Disciple@19dc67c2", "cards.minions.TheCursedOne@221af3c0", "cards.minions.Disciple@62bd765", "cards.minions.TheRipper@23a5fd2" ]
+}, {
+  "command" : "getPlayerDeck",
+  "playerIdx" : 1,
+  "output" : [ "cards.minions.TheCursedOne@78a2da20", "cards.minions.Warden@dd3b207", "cards.minions.Miraj@551bdc27", "cards.minions.TheCursedOne@58fdd99" ]
+} ]
