@@ -8,7 +8,7 @@ import game.Game;
 
 public final class Disciple extends MinionCard {
     public Disciple(CardInput cardInput) {
-        super(cardInput, false, 1, MinionType.DISCIPLE);
+        super(cardInput, false, 0, MinionType.DISCIPLE);
     }
 
     public Disciple(final MinionCard minionCard) {

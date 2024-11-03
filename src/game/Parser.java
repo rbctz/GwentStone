@@ -27,4 +27,32 @@ public final class Parser {
         return arrayNodeOutput;
     }
 
+    public int getPlayerOneWins() {
+        return playerOneWins;
+    }
+
+    public int getPlayerTwoWins() {
+        return playerTwoWins;
+    }
+
+    /**
+     * Increments the number of wins for player one.
+     */
+    public void incrementPlayerOneWins() {
+        this.playerOneWins++;
+    }
+
+    /**
+     * Increments the number of wins for player two.
+     */
+    public void incrementPlayerTwoWins() {
+        this.playerTwoWins++;
+    }
+
+    /**
+     * Returns the total number of games played.
+     */
+    public int getGamesPlayed() {
+        return playerOneWins + playerTwoWins;
+    }
 }

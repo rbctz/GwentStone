@@ -2,8 +2,11 @@ package game;
 
 import cards.Card;
 import cards.HeroCard;
+import cards.MinionCard;
 import enums.Command;
+import enums.ErrorMessage;
 import fileio.ActionsInput;
+import fileio.Coordinates;
 
 import java.util.ArrayList;
 
@@ -25,8 +28,10 @@ public final class Actions {
                         endPlayerTurn();
                         break;
                     case PLACE_CARD:
+                        placeCard(actionsInput.getHandIdx());
                         break;
                     case CARD_USES_ATTACK:
+                        //cardUsesAttack(actionsInput.getCardAttacker(), actionsInput.getCardAttacked());
                         break;
                     case CARD_USES_ABILITY:
                         break;
@@ -41,15 +46,19 @@ public final class Actions {
                         getPlayerHero(actionsInput.getPlayerIdx());
                         break;
                     case GET_PLAYER_MANA:
+                        getPlayerMana(actionsInput.getPlayerIdx());
                         break;
                     case GET_PLAYER_TURN:
                         getPlayerTurn();
                         break;
                     case GET_CARDS_IN_HAND:
+                        getCardsInHand(actionsInput.getPlayerIdx());
                         break;
                     case GET_CARDS_ON_TABLE:
+                        getCardsOnTable();
                         break;
                     case GET_CARD_AT_POSITION:
+                        getCardAtPosition(actionsInput.getX(), actionsInput.getY());
                         break;
                     case GET_FROZEN_CARDS_ON_TABLE:
                         break;
@@ -63,6 +72,43 @@ public final class Actions {
                         break;
                 }
             }
+        }
+    }
+
+    private void cardUsesAttack(final Coordinates attacker, final Coordinates target) {
+        boolean cardAttacked = false;
+        boolean cardFrozen = false;
+        boolean notEnemy = false;
+        boolean enemyNotATank = false;
+        if (game.getGameBoard().getCardFromTable(attacker).getAttacked()) {
+            cardAttacked = true;
+        } else if (game.getGameBoard().getCardFromTable(attacker).isFrozen()) {
+            cardFrozen = true;
+        } else if (!game.getGameBoard().isEnemy(game.getCurrentPlayerTurn(), target)) {
+            notEnemy = true;
+        } else if (game.enemyHasTanks() && !game.getGameBoard().getBoard().get(target.getX()).get(target.getY()).getIsTank()) {
+            enemyNotATank = true;
+        }
+        if (cardAttacked) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.CARD_USES_ATTACK.getCommand(), attacker, target,
+                    ErrorMessage.ATTACKER_ALREADY_ATTACKED.getMessage()));
+        } else if (cardFrozen) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.CARD_USES_ATTACK.getCommand(), attacker, target,
+                    ErrorMessage.FROZEN.getMessage()));
+        } else if (notEnemy) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.CARD_USES_ATTACK.getCommand(), attacker, target,
+                    ErrorMessage.NOT_ENEMY.getMessage()));
+        } else if (enemyNotATank) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.CARD_USES_ATTACK.getCommand(), attacker, target,
+                    ErrorMessage.NOT_TANK.getMessage()));
+        } else {
+            MinionCard attackerCard = game.getGameBoard().getCardFromTable(attacker);
+            attackerCard.setAttacked(true);
+            game.cardAttacksMinion(attacker, target);
         }
     }
 
@@ -80,8 +126,8 @@ public final class Actions {
         } else {
             playerTurnIndex = 2;
         }
-        Parser.getArrayNodeOutput()
-                .addPOJO(new OutputConstructor(Command.GET_PLAYER_TURN.getCommand(), playerTurnIndex));
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                (Command.GET_PLAYER_TURN.getCommand(), playerTurnIndex));
     }
 
     private void getPlayerDeck(final int playerIdx) {
@@ -107,6 +153,74 @@ public final class Actions {
 
     }
 
+    private void placeCard(final int handIndex) {
+        Card cardToBePlaced = game.getCurrentPlayerTurn().getHand().get(handIndex);
+        boolean notEnoughMana = false;
+        boolean rowFull = false;
+
+        if (game.getCurrentPlayerTurn().getMana() < cardToBePlaced.getMana()) {
+            notEnoughMana = true;
+        } else {
+            int row;
+            MinionCard minionCardToBePlaced = (MinionCard) cardToBePlaced;
+            if (minionCardToBePlaced.getRow() == 0) {
+                row = game.getCurrentPlayerTurn().getBackRow();
+            } else {
+                row = game.getCurrentPlayerTurn().getFrontRow();
+            }
+
+            if (game.getGameBoard().isRowFull(row)) {
+                rowFull = true;
+            }
+        }
+
+        if (notEnoughMana) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.PLACE_CARD.getCommand(), handIndex,
+                    ErrorMessage.NOT_ENOUGH_MANA_MINION.getMessage()));
+        } else if (rowFull) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                    (Command.PLACE_CARD.getCommand(), handIndex,
+                    ErrorMessage.NOT_ENOUGH_SPACE.getMessage()));
+        } else {
+            MinionCard minionCardToBePlaced =
+                    (MinionCard) game.getCurrentPlayerTurn().getHand().get(handIndex);
+            game.placeCard(minionCardToBePlaced);
+            game.getCurrentPlayerTurn().getHand().remove(handIndex);
+        }
+    }
+
+    private void getCardsOnTable() {
+        ArrayList<ArrayList<MinionCard>> cardsOnTable = game.getGameBoard().getAllCardsOnTable();
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                (Command.GET_CARDS_ON_TABLE.getCommand(), cardsOnTable));
+    }
+
+    private void getPlayerMana(final int playerIndex) {
+        int mana;
+        if (playerIndex == 1) {
+            mana = game.getPlayerOne().getMana();
+        } else {
+            mana = game.getPlayerTwo().getMana();
+        }
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                (Command.GET_PLAYER_MANA.getCommand(), playerIndex, mana));
+    }
+
+    private void getCardsInHand(final int playerIndex) {
+        ArrayList<Card> hand;
+        if (playerIndex == 1) {
+            hand = game.getPlayerOne().getHand();
+        } else {
+            hand = game.getPlayerTwo().getHand();
+        }
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor
+                (Command.GET_CARDS_IN_HAND.getCommand(), playerIndex, hand));
+    }
+
+    private void getCardAtPosition(final int x, final int y) {
+
+    }
 }
 
 

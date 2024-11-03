@@ -14,5 +14,200 @@
   {
     "command" : "getPlayerTurn",
     "output" : 2
+  },
+  {
+    "command" : "getPlayerMana",
+    "output" : 16,
+    "playerIdx" : 2
+  },
+  {
+    "command" : "getPlayerMana",
+    "output" : 16,
+    "playerIdx" : 1
+  },
+  {
+    "command" : "getCardsOnTable",
+    "output" : [
+      [
+        {
+          "mana" : 2,
+          "health" : 3,
+          "description" : "Standard card: Thrown from the highest cliff, revenge will be his glory.",
+          "name" : "The Cursed One",
+          "colors" : [
+            "Black",
+            "White",
+            "Red"
+          ],
+          "attackDamage" : 0
+        },
+        {
+          "mana" : 2,
+          "health" : 4,
+          "description" : "Standard card: Everything is sacred to him, all is but a gift from the saints.",
+          "name" : "Disciple",
+          "colors" : [
+            "Yellow",
+            "White"
+          ],
+          "attackDamage" : 0
+        },
+        {
+          "mana" : 3,
+          "health" : 1,
+          "description" : "Premium card: Nobody suspects an outcast, not even the Gods.",
+          "name" : "The Cursed One",
+          "colors" : [
+            "Black",
+            "White",
+            "Red"
+          ],
+          "attackDamage" : 0
+        },
+        {
+          "mana" : 3,
+          "health" : 3,
+          "description" : "Premium card: Nobody suspects an outcast, not even the Gods.",
+          "name" : "The Cursed One",
+          "colors" : [
+            "Black",
+            "White",
+            "Red"
+          ],
+          "attackDamage" : 0
+        }
+      ],
+      [
+        {
+          "mana" : 3,
+          "health" : 8,
+          "description" : "Premium card: No matter how many, his body will fight. Save your breath for the Mountain is strong.",
+          "name" : "Goliath",
+          "colors" : [
+            "Brown",
+            "Black",
+            "Grey"
+          ],
+          "attackDamage" : 2
+        },
+        {
+          "mana" : 3,
+          "health" : 4,
+          "description" : "Standard card: Death incarnate. No better time to die than now.",
+          "name" : "The Ripper",
+          "colors" : [
+            "Black",
+            "Yellow"
+          ],
+          "attackDamage" : 5
+        },
+        {
+          "mana" : 4,
+          "health" : 3,
+          "description" : "Premium card: Insanity is always an option, now it is an absolute.",
+          "name" : "Miraj",
+          "colors" : [
+            "Yellow",
+            "Orange",
+            "Red"
+          ],
+          "attackDamage" : 5
+        }
+      ],
+      [
+        {
+          "mana" : 3,
+          "health" : 7,
+          "description" : "Premium card: No matter how many, his body will fight. Save your breath for the Mountain is strong.",
+          "name" : "Goliath",
+          "colors" : [
+            "Brown",
+            "Black",
+            "Grey"
+          ],
+          "attackDamage" : 1
+        },
+        {
+          "mana" : 4,
+          "health" : 4,
+          "description" : "Standard card: Death incarnate. No better time to die than now.",
+          "name" : "The Ripper",
+          "colors" : [
+            "Black",
+            "Yellow"
+          ],
+          "attackDamage" : 6
+        },
+        {
+          "mana" : 2,
+          "health" : 5,
+          "description" : "Premium card: You shall not pass, you shall not prevail, you shall perish.",
+          "name" : "Warden",
+          "colors" : [
+            "Black",
+            "White",
+            "Green"
+          ],
+          "attackDamage" : 3
+        },
+        {
+          "mana" : 4,
+          "health" : 3,
+          "description" : "Standard card: Death incarnate. No better time to die than now.",
+          "name" : "The Ripper",
+          "colors" : [
+            "Black",
+            "Yellow"
+          ],
+          "attackDamage" : 6
+        }
+      ],
+      [
+        {
+          "mana" : 2,
+          "health" : 1,
+          "description" : "Standard card: A drink can always be served, with the blood of his enemies.",
+          "name" : "Berserker",
+          "colors" : [
+            "Purple",
+            "Yellow"
+          ],
+          "attackDamage" : 3
+        },
+        {
+          "mana" : 3,
+          "health" : 3,
+          "description" : "Premium card: Nobody suspects an outcast, not even the Gods.",
+          "name" : "The Cursed One",
+          "colors" : [
+            "Pink",
+            "Purple"
+          ],
+          "attackDamage" : 0
+        },
+        {
+          "mana" : 2,
+          "health" : 1,
+          "description" : "Standard card: A drink can always be served, with the blood of his enemies.",
+          "name" : "Berserker",
+          "colors" : [
+            "Red",
+            "Blue",
+            "Pink"
+          ],
+          "attackDamage" : 2
+        }
+      ]
+    ]
+  },
+  {
+    "command" : "getCardsInHand",
+    "output" : [ ],
+    "playerIdx" : 2
+  },
+  {
+    "command" : "getCardsInHand",
+    "output" : [ ],
+    "playerIdx" : 1
   }
 ]

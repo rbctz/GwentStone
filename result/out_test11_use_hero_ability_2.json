@@ -2,5 +2,130 @@
   {
     "command" : "getPlayerTurn",
     "output" : 1
+  },
+  {
+    "command" : "getPlayerMana",
+    "output" : 6,
+    "playerIdx" : 1
+  },
+  {
+    "command" : "getPlayerMana",
+    "output" : 7,
+    "playerIdx" : 2
+  },
+  {
+    "command" : "getCardsOnTable",
+    "output" : [
+      [ ],
+      [
+        {
+          "mana" : 1,
+          "health" : 4,
+          "description" : "Premium card: Ravished by the winds of hell, no soul is to be forgiven.",
+          "name" : "The Ripper",
+          "colors" : [
+            "Orange",
+            "Red",
+            "Black"
+          ],
+          "attackDamage" : 6
+        },
+        {
+          "mana" : 2,
+          "health" : 4,
+          "description" : "Premium card: Ravished by the winds of hell, no soul is to be forgiven.",
+          "name" : "The Ripper",
+          "colors" : [
+            "Black",
+            "Yellow"
+          ],
+          "attackDamage" : 6
+        }
+      ],
+      [ ],
+      [
+        {
+          "mana" : 2,
+          "health" : 4,
+          "description" : "Premium card: The will of Gods has been spoken, obey and you shall be saved...or not.",
+          "name" : "Disciple",
+          "colors" : [
+            "Green",
+            "Yellow",
+            "Blue"
+          ],
+          "attackDamage" : 0
+        },
+        {
+          "mana" : 2,
+          "health" : 3,
+          "description" : "Premium card: Nobody suspects an outcast, not even the Gods.",
+          "name" : "The Cursed One",
+          "colors" : [
+            "Black",
+            "White",
+            "Red"
+          ],
+          "attackDamage" : 0
+        }
+      ]
+    ]
+  },
+  {
+    "command" : "getCardsInHand",
+    "output" : [
+      {
+        "mana" : 2,
+        "health" : 3,
+        "description" : "Standard card: Thrown from the highest cliff, revenge will be his glory.",
+        "name" : "The Cursed One",
+        "colors" : [
+          "Pink",
+          "Purple"
+        ],
+        "attackDamage" : 0
+      },
+      {
+        "mana" : 2,
+        "health" : 1,
+        "description" : "Standard card: Thrown from the highest cliff, revenge will be his glory.",
+        "name" : "The Cursed One",
+        "colors" : [
+          "Pink",
+          "Purple"
+        ],
+        "attackDamage" : 0
+      }
+    ],
+    "playerIdx" : 1
+  },
+  {
+    "command" : "getCardsInHand",
+    "output" : [
+      {
+        "mana" : 2,
+        "health" : 2,
+        "description" : "Premium card: The will of Gods has been spoken, obey and you shall be saved...or not.",
+        "name" : "Disciple",
+        "colors" : [
+          "Green",
+          "Yellow",
+          "Blue"
+        ],
+        "attackDamage" : 0
+      },
+      {
+        "mana" : 1,
+        "health" : 1,
+        "description" : "Premium card: Fear him. Your last breath is now.",
+        "name" : "Berserker",
+        "colors" : [
+          "Purple",
+          "Yellow"
+        ],
+        "attackDamage" : 6
+      }
+    ],
+    "playerIdx" : 2
   }
 ]

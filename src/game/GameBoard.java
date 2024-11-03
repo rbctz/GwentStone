@@ -1,7 +1,6 @@
 package game;
 
 import cards.MinionCard;
-import enums.Constants;
 import fileio.Coordinates;
 
 import java.util.ArrayList;
@@ -10,8 +9,8 @@ public final class GameBoard {
 
     private final ArrayList<ArrayList<MinionCard>> board;
 
-    private static final int BOARD_ROWS = Constants.TABLE_ROWS.getValue();
-    private static final int BOARD_COLUMNS = Constants.TABLE_COLS.getValue();
+    private static final int BOARD_ROWS = 4;
+    private static final int BOARD_COLUMNS = 5;
 
     public GameBoard() {
         board = new ArrayList<>();
@@ -24,8 +23,16 @@ public final class GameBoard {
         return board;
     }
 
-    public int getBoardRows() {
+    public static int getBoardRows() {
         return BOARD_ROWS;
+    }
+
+    /**
+     * Returns all cards on the board.
+     * @return
+     */
+    public ArrayList<ArrayList<MinionCard>> getAllCardsOnTable() {
+        return new ArrayList<>(board);
     }
 
     /**
@@ -59,7 +66,7 @@ public final class GameBoard {
      * @param coordinates
      * @return
      */
-    public MinionCard getCardAtCoordinates(final Coordinates coordinates) {
+    public MinionCard getCardFromTable(final Coordinates coordinates) {
         return board.get(coordinates.getX()).get(coordinates.getY());
     }
 
@@ -102,5 +109,12 @@ public final class GameBoard {
                 card.setAttacked(false);
             }
         }
+    }
+
+    public boolean isEnemy(final Player player, final Coordinates coordinates) {
+        if (coordinates.getX() != player.getBackRow() && coordinates.getX() != player.getFrontRow()) {
+            return true;
+        }
+        return false;
     }
 }

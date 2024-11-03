@@ -62,7 +62,7 @@ public abstract class MinionCard extends Card {
         this.attackDamage = attackDamage;
     }
 
-
+    @JsonIgnore
     public boolean getAttacked() {
         return attacked;
     }

@@ -1,7 +1,9 @@
 package game;
 
+import cards.MinionCard;
 import enums.Command;
 import fileio.ActionsInput;
+import fileio.Coordinates;
 import fileio.Input;
 import fileio.StartGameInput;
 
@@ -43,6 +45,7 @@ public final class Game {
         playerTwo = new Player(input.getPlayerTwoDecks().getDecks()
                 .get(startGameInput.getPlayerTwoDeckIdx()),
                 startGameInput.getPlayerTwoHero(), 1, 0);
+        gameBoard = new GameBoard();
 
         random = new Random(startGameInput.getShuffleSeed());
         Collections.shuffle(playerOne.getDeck(), random);
@@ -51,8 +54,6 @@ public final class Game {
 
         playerOne.drawCard();
         playerTwo.drawCard();
-
-        gameBoard = new GameBoard();
 
         if (startingPlayer == 1) {
             currentPlayerTurn = playerOne;
@@ -98,6 +99,22 @@ public final class Game {
         playerTwo.drawCard();
     }
 
+    /**
+     * Places a card on the board.
+     * @param minionCard
+     */
+    public void placeCard(final MinionCard minionCard) {
+        if (minionCard.getRow() == 0) {
+            gameBoard.placeCard(minionCard, currentPlayerTurn.getBackRow());
+        } else {
+            gameBoard.placeCard(minionCard, currentPlayerTurn.getFrontRow());
+        }
+        currentPlayerTurn.reduceMana(minionCard.getMana());
+        if (minionCard.getIsTank()) {
+            currentPlayerTurn.addTankOnBoard();
+        }
+    }
+
     public int getTurnsPlayed() {
         return turnsPlayed;
     }
@@ -112,5 +129,36 @@ public final class Game {
 
     public Player getCurrentPlayerTurn() {
         return currentPlayerTurn;
+    }
+
+    public GameBoard getGameBoard() {
+        return gameBoard;
+    }
+
+    public boolean enemyHasTanks() {
+        if (currentPlayerTurn == playerOne) {
+            return playerTwo.getNumTanksOnBoard() > 0;
+        } else {
+            return playerOne.getNumTanksOnBoard() > 0;
+        }
+    }
+
+    public void cardAttacksMinion(final Coordinates attackCoordinates,
+                                  final Coordinates targetCoordinates) {
+        MinionCard attacker = gameBoard.getCardFromTable(attackCoordinates);
+        MinionCard target = gameBoard.getCardFromTable(targetCoordinates);
+
+        if (attacker.getAttackDamage() >= target.getHealth()) {
+            if (target.getIsTank()) {
+                if (currentPlayerTurn == playerOne) {
+                    playerTwo.removeTankFromBoard();
+                } else {
+                    playerOne.removeTankFromBoard();
+                }
+            }
+            gameBoard.removeCard(targetCoordinates);
+        } else {
+            target.takeDamage(attacker.getAttackDamage());
+        }
     }
 }

@@ -1,7 +1,6 @@
 [
   {
     "command" : "getPlayerDeck",
-    "playerIdx" : 2,
     "output" : [
       {
         "mana" : 2,
@@ -13,8 +12,7 @@
           "Yellow",
           "Blue"
         ],
-        "attackDamage" : 0,
-        "attacked" : false
+        "attackDamage" : 0
       },
       {
         "mana" : 5,
@@ -26,8 +24,7 @@
           "Orange",
           "Red"
         ],
-        "attackDamage" : 4,
-        "attacked" : false
+        "attackDamage" : 4
       },
       {
         "mana" : 4,
@@ -39,8 +36,7 @@
           "Orange",
           "Red"
         ],
-        "attackDamage" : 4,
-        "attacked" : false
+        "attackDamage" : 4
       },
       {
         "mana" : 4,
@@ -52,14 +48,13 @@
           "Orange",
           "Red"
         ],
-        "attackDamage" : 4,
-        "attacked" : false
+        "attackDamage" : 4
       }
-    ]
+    ],
+    "playerIdx" : 2
   },
   {
     "command" : "getPlayerDeck",
-    "playerIdx" : 1,
     "output" : [
       {
         "mana" : 4,
@@ -71,8 +66,7 @@
           "Orange",
           "Red"
         ],
-        "attackDamage" : 5,
-        "attacked" : false
+        "attackDamage" : 5
       },
       {
         "mana" : 5,
@@ -84,8 +78,7 @@
           "Orange",
           "Red"
         ],
-        "attackDamage" : 4,
-        "attacked" : false
+        "attackDamage" : 4
       },
       {
         "mana" : 4,
@@ -97,8 +90,7 @@
           "Black",
           "Grey"
         ],
-        "attackDamage" : 2,
-        "attacked" : false
+        "attackDamage" : 2
       },
       {
         "mana" : 3,
@@ -110,14 +102,13 @@
           "Red",
           "Black"
         ],
-        "attackDamage" : 6,
-        "attacked" : false
+        "attackDamage" : 6
       }
-    ]
+    ],
+    "playerIdx" : 1
   },
   {
     "command" : "getPlayerHero",
-    "playerIdx" : 1,
     "output" : {
       "mana" : 2,
       "health" : 30,
@@ -128,11 +119,11 @@
         "Black",
         "Grey"
       ]
-    }
+    },
+    "playerIdx" : 1
   },
   {
     "command" : "getPlayerHero",
-    "playerIdx" : 2,
     "output" : {
       "mana" : 2,
       "health" : 30,
@@ -143,7 +134,8 @@
         "Red",
         "Grey"
       ]
-    }
+    },
+    "playerIdx" : 2
   },
   {
     "command" : "getPlayerTurn",
