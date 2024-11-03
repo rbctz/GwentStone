@@ -41,6 +41,8 @@ public final class OutputConstructor {
     private Integer x;
     private Integer y;
 
+    private String gameEnded;
+
     /**
      * Constructor for the getPlayerDeck and getCardsInHand command.
      * @param command the command to be executed
@@ -70,6 +72,30 @@ public final class OutputConstructor {
         this.error = error;
         this.attackCoordinates = attackCoordinates;
         this.targetCoordinates = targetCoordinates;
+    }
+
+    /**
+     * Constructor for the useHeroAttack command.
+     * @param command the command to be executed
+     * @param attackCoordinates the coordinates of the attacking card
+     * @param error the error message
+     */
+    public OutputConstructor(final String command, final Coordinates attackCoordinates,
+                             final String error) {
+        this.command = command;
+        this.attackCoordinates = attackCoordinates;
+        this.error = error;
+    }
+
+
+    /**
+     * Constructor for the useHeroAttack command
+     *  when the hero dies
+     * @param gameEnded the command to be executed
+     *
+     */
+    public OutputConstructor(final String gameEnded) {
+        this.gameEnded = gameEnded;
     }
 
     /**
@@ -226,5 +252,9 @@ public final class OutputConstructor {
 
     public Integer getY() {
         return y;
+    }
+
+    public String getGameEnded() {
+        return gameEnded;
     }
 }

@@ -6,6 +6,7 @@ import cards.MinionCard;
 import enums.Command;
 import enums.ErrorMessage;
 import enums.MinionType;
+import enums.OutputMessage;
 import fileio.ActionsInput;
 import fileio.Coordinates;
 
@@ -44,6 +45,7 @@ public final class Actions {
                                 actionsInput.getCardAttacked());
                         break;
                     case USE_ATTACK_HERO:
+                        useAttackHero(actionsInput.getCardAttacker());
                         break;
                     case USE_HERO_ABILITY:
                         break;
@@ -195,7 +197,66 @@ public final class Actions {
             attackerCard.setAttacked(true);
             attackerCard.useAbility(game, target);
         }
+    }
 
+    private void useAttackHero(final Coordinates coordinates) {
+        boolean cardAttacked = false;
+        boolean cardFrozen = false;
+        boolean enemyNotTank = false;
+
+        if (game.getGameBoard().getCardFromTable(coordinates).isFrozen()) {
+            cardFrozen = true;
+        } else if (game.getGameBoard().getCardFromTable(coordinates).getAttacked()) {
+            cardAttacked = true;
+        } else if (game.enemyHasTanks()) {
+            enemyNotTank = true;
+        }
+
+        if (cardFrozen) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.USE_ATTACK_HERO.getCommand(), coordinates,
+                    ErrorMessage.FROZEN.getMessage()));
+        } else if (cardAttacked) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.USE_ATTACK_HERO.getCommand(), coordinates,
+                    ErrorMessage.ATTACKER_ALREADY_ATTACKED.getMessage()));
+        } else if (enemyNotTank) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.USE_ATTACK_HERO.getCommand(), coordinates,
+                    ErrorMessage.NOT_TANK.getMessage()));
+        } else {
+            int winner;
+            final Player currentPlayer = game.getCurrentPlayerTurn();
+            final Player otherPlayer;
+
+            if (currentPlayer == game.getPlayerOne()) {
+                otherPlayer = game.getPlayerTwo();
+            } else {
+                otherPlayer = game.getPlayerOne();
+            }
+
+            MinionCard attackerCard = game.getGameBoard().getCardFromTable(coordinates);
+            attackerCard.setAttacked(true);
+            if (attackerCard.getAttackDamage() >= otherPlayer.getHero().getHealth()) {
+                if (currentPlayer == game.getPlayerOne()) {
+                    winner = 1;
+                    parser.incrementPlayerOneWins();
+                } else {
+                    winner = 2;
+                    parser.incrementPlayerTwoWins();
+                }
+
+                if (winner == 1) {
+                    Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                            "Player one killed the enemy hero."));
+                } else {
+                    Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                            "Player two killed the enemy hero."));
+                }
+            } else {
+                otherPlayer.getHero().takeDamage(attackerCard.getAttackDamage());
+            }
+        }
     }
 
     private void endPlayerTurn() {

@@ -99,6 +99,22 @@
     "output" : 2
   },
   {
+    "command" : "useAttackHero",
+    "error" : "Attacked card is not of type 'Tank'.",
+    "attackCoordinates" : {
+      "x" : 0,
+      "y" : 1
+    }
+  },
+  {
+    "command" : "useAttackHero",
+    "error" : "Attacked card is not of type 'Tank'.",
+    "attackCoordinates" : {
+      "x" : 0,
+      "y" : 1
+    }
+  },
+  {
     "command" : "getPlayerTurn",
     "output" : 1
   },
@@ -128,6 +144,17 @@
     "command" : "getPlayerMana",
     "output" : 7,
     "playerIdx" : 2
+  },
+  {
+    "command" : "useAttackHero",
+    "error" : "Attacked card is not of type 'Tank'.",
+    "attackCoordinates" : {
+      "x" : 1,
+      "y" : 0
+    }
+  },
+  {
+    "gameEnded" : "Player one killed the enemy hero."
   },
   {
     "command" : "getCardsOnTable",

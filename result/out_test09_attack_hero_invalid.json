@@ -20,7 +20,7 @@
     "command" : "getPlayerHero",
     "output" : {
       "mana" : 2,
-      "health" : 30,
+      "health" : 21,
       "description" : "Premium card: Time to show who we are, the low-class was never scared of you.",
       "name" : "King Mudface",
       "colors" : [
@@ -93,7 +93,7 @@
     "command" : "getPlayerHero",
     "output" : {
       "mana" : 2,
-      "health" : 30,
+      "health" : 21,
       "description" : "Premium card: Time to show who we are, the low-class was never scared of you.",
       "name" : "King Mudface",
       "colors" : [
@@ -118,6 +118,9 @@
       ]
     },
     "playerIdx" : 2
+  },
+  {
+    "gameEnded" : "Player two killed the enemy hero."
   },
   {
     "command" : "getPlayerMana",
