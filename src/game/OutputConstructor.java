@@ -35,7 +35,10 @@ public final class OutputConstructor {
     private Integer playerIndex;
     @JsonProperty("handIdx")
     private Integer handIndex;
+    @JsonProperty("affectedRow")
+    private Integer row;
 
+    @JsonProperty("cardAttacker")
     private Coordinates attackCoordinates;
     private Coordinates targetCoordinates;
     private Integer x;
@@ -134,13 +137,23 @@ public final class OutputConstructor {
         this.outputCard = cardHelper.createCard(heroCard);
     }
 
+    public OutputConstructor(final String command,
+                             final String error,
+                             final int row) {
+        this.command = command;
+        this.error = error;
+        this.row = row;
+    }
+
     /**
      * Constructor for the placeCard command.
      * @param command the command to be executed
      * @param handIndex the index of the card in the hand
      * @param error the error message
      */
-    public OutputConstructor(final String command, final Integer handIndex, final String error) {
+    public OutputConstructor(final String command,
+                             final Integer handIndex,
+                             final String error) {
         this.command = command;
         this.handIndex = handIndex;
         this.error = error;

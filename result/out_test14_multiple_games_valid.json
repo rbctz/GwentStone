@@ -1218,5 +1218,17 @@
     "command" : "getCardsInHand",
     "output" : [ ],
     "playerIdx" : 2
+  },
+  {
+    "command" : "getPlayerOneWins",
+    "output" : 2
+  },
+  {
+    "command" : "getPlayerTwoWins",
+    "output" : 0
+  },
+  {
+    "command" : "getTotalGamesPlayed",
+    "output" : 2
   }
 ]

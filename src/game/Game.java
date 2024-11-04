@@ -153,7 +153,7 @@ public final class Game {
     }
 
     /**
-     * Checks if the game has ended.
+     * Checks if the enemy player has tanks on the board.
      * @return
      */
     public boolean enemyHasTanks() {

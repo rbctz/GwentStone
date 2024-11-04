@@ -36,7 +36,7 @@
   {
     "command" : "useHeroAbility",
     "error" : "Selected row does not belong to the current player.",
-    "handIdx" : 2
+    "affectedRow" : 2
   },
   {
     "command" : "getPlayerTurn",
@@ -144,7 +144,7 @@
   {
     "command" : "useHeroAbility",
     "error" : "Hero has already attacked this turn.",
-    "handIdx" : 2
+    "affectedRow" : 2
   },
   {
     "command" : "getPlayerTurn",

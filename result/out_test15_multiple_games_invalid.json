@@ -32,7 +32,7 @@
   {
     "command" : "useAttackHero",
     "error" : "Attacked card is not of type 'Tank'.",
-    "attackCoordinates" : {
+    "cardAttacker" : {
       "x" : 0,
       "y" : 0
     }
@@ -40,7 +40,7 @@
   {
     "command" : "useAttackHero",
     "error" : "Attacked card is not of type 'Tank'.",
-    "attackCoordinates" : {
+    "cardAttacker" : {
       "x" : 1,
       "y" : 0
     }
@@ -48,7 +48,7 @@
   {
     "command" : "useAttackHero",
     "error" : "Attacked card is not of type 'Tank'.",
-    "attackCoordinates" : {
+    "cardAttacker" : {
       "x" : 0,
       "y" : 2
     }
@@ -76,7 +76,7 @@
   {
     "command" : "useAttackHero",
     "error" : "Attacked card is not of type 'Tank'.",
-    "attackCoordinates" : {
+    "cardAttacker" : {
       "x" : 0,
       "y" : 0
     }
@@ -84,7 +84,7 @@
   {
     "command" : "useAttackHero",
     "error" : "Attacked card is not of type 'Tank'.",
-    "attackCoordinates" : {
+    "cardAttacker" : {
       "x" : 0,
       "y" : 1
     }
@@ -205,6 +205,18 @@
     "playerIdx" : 1
   },
   {
+    "command" : "getTotalGamesPlayed",
+    "output" : 0
+  },
+  {
+    "command" : "getPlayerTwoWins",
+    "output" : 0
+  },
+  {
+    "command" : "getPlayerOneWins",
+    "output" : 0
+  },
+  {
     "command" : "getPlayerTurn",
     "output" : 2
   },
@@ -230,7 +242,7 @@
   {
     "command" : "useAttackHero",
     "error" : "Attacked card is not of type 'Tank'.",
-    "attackCoordinates" : {
+    "cardAttacker" : {
       "x" : 3,
       "y" : 0
     }
@@ -291,7 +303,7 @@
   {
     "command" : "useHeroAbility",
     "error" : "Selected row does not belong to the current player.",
-    "handIdx" : 1
+    "affectedRow" : 1
   },
   {
     "command" : "getPlayerTurn",
@@ -416,5 +428,17 @@
       }
     ],
     "playerIdx" : 1
+  },
+  {
+    "command" : "getTotalGamesPlayed",
+    "output" : 1
+  },
+  {
+    "command" : "getPlayerTwoWins",
+    "output" : 1
+  },
+  {
+    "command" : "getPlayerOneWins",
+    "output" : 0
   }
 ]

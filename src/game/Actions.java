@@ -75,12 +75,13 @@ public final class Actions {
                         getFrozenCardsOnTable();
                         break;
                     case GET_TOTAL_GAMES_PLAYED:
+                        getTotalGamesPlayed();
                         break;
                     case GET_PLAYER_ONE_WINS:
+                        getPlayerOneWins();
                         break;
                     case GET_PLAYER_TWO_WINS:
-                        break;
-                    case GAME_ENDED:
+                        getPlayerTwoWins();
                         break;
                     default:
                         break;
@@ -95,12 +96,12 @@ public final class Actions {
          * These are temporary edge cases that need to be handled since
          * the game and all its functionalities are not implemented yet.
          */
-        if (game.getGameBoard().getBoard().get(attacker.getX()).size() <= attacker.getY()) {
-            return;
-        }
-        if (game.getGameBoard().getBoard().get(target.getX()).size() <= target.getY()) {
-            return;
-        }
+//        if (game.getGameBoard().getBoard().get(attacker.getX()).size() <= attacker.getY()) {
+//            return;
+//        }
+//        if (game.getGameBoard().getBoard().get(target.getX()).size() <= target.getY()) {
+//            return;
+//        }
 
         boolean cardAttacked = false;
         boolean cardFrozen = false;
@@ -147,12 +148,12 @@ public final class Actions {
         * These are temporary edge cases that need to be handled since
         * the game and all its functionalities are not implemented yet.
          */
-        if (game.getGameBoard().getBoard().get(attacker.getX()).size() <= attacker.getY()) {
-            return;
-        }
-        if (game.getGameBoard().getBoard().get(target.getX()).size() <= target.getY()) {
-            return;
-        }
+//        if (game.getGameBoard().getBoard().get(attacker.getX()).size() <= attacker.getY()) {
+//            return;
+//        }
+//        if (game.getGameBoard().getBoard().get(target.getX()).size() <= target.getY()) {
+//            return;
+//        }
 
         boolean cardAttacked = false;
         boolean cardFrozen = false;
@@ -297,20 +298,20 @@ public final class Actions {
         }
         if (notEnoughMana) {
             Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
-                    Command.USE_HERO_ABILITY.getCommand(), rowIndex,
-                    ErrorMessage.NOT_ENOUGH_MANA_HERO.getMessage()));
+                    Command.USE_HERO_ABILITY.getCommand(),
+                    ErrorMessage.NOT_ENOUGH_MANA_HERO.getMessage(), rowIndex));
         } else if (heroAttacked) {
             Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
-                    Command.USE_HERO_ABILITY.getCommand(), rowIndex,
-                    ErrorMessage.HERO_ALREADY_ATTACKED.getMessage()));
+                    Command.USE_HERO_ABILITY.getCommand(),
+                    ErrorMessage.HERO_ALREADY_ATTACKED.getMessage(), rowIndex));
         } else if (rowsNotEnemy) {
             Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
-                    Command.USE_HERO_ABILITY.getCommand(), rowIndex,
-                    ErrorMessage.NOT_ENEMY_ROW_HERO.getMessage()));
+                    Command.USE_HERO_ABILITY.getCommand(),
+                    ErrorMessage.NOT_ENEMY_ROW_HERO.getMessage(), rowIndex));
         } else if (rowsNotAlly) {
             Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
-                    Command.USE_HERO_ABILITY.getCommand(), rowIndex,
-                    ErrorMessage.NOT_CURRENT_PLAYER_ROW.getMessage()));
+                    Command.USE_HERO_ABILITY.getCommand(),
+                    ErrorMessage.NOT_CURRENT_PLAYER_ROW.getMessage(), rowIndex));
         } else {
             game.getCurrentPlayerTurn().getHero().setAttacked(true);
             game.getCurrentPlayerTurn().getHero().useAbility(game.getGameBoard(), rowIndex);
@@ -445,6 +446,21 @@ public final class Actions {
                     Command.GET_CARD_AT_POSITION.getCommand(), x, y,
                             ErrorMessage.NO_CARD.getMessage()));
         }
+    }
+
+    private void getPlayerOneWins() {
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                Command.GET_PLAYER_ONE_WINS.getCommand(), parser.getPlayerOneWins()));
+    }
+
+    private void getPlayerTwoWins() {
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                Command.GET_PLAYER_TWO_WINS.getCommand(), parser.getPlayerTwoWins()));
+    }
+
+    private void getTotalGamesPlayed() {
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                Command.GET_TOTAL_GAMES_PLAYED.getCommand(), parser.getGamesPlayed()));
     }
 }
 
