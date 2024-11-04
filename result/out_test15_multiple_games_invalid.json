@@ -30,30 +30,6 @@
     "playerIdx" : 1
   },
   {
-    "command" : "useAttackHero",
-    "error" : "Attacked card is not of type 'Tank'.",
-    "cardAttacker" : {
-      "x" : 0,
-      "y" : 0
-    }
-  },
-  {
-    "command" : "useAttackHero",
-    "error" : "Attacked card is not of type 'Tank'.",
-    "cardAttacker" : {
-      "x" : 1,
-      "y" : 0
-    }
-  },
-  {
-    "command" : "useAttackHero",
-    "error" : "Attacked card is not of type 'Tank'.",
-    "cardAttacker" : {
-      "x" : 0,
-      "y" : 2
-    }
-  },
-  {
     "command" : "getFrozenCardsOnTable",
     "output" : [ ]
   },
@@ -74,20 +50,7 @@
     }
   },
   {
-    "command" : "useAttackHero",
-    "error" : "Attacked card is not of type 'Tank'.",
-    "cardAttacker" : {
-      "x" : 0,
-      "y" : 0
-    }
-  },
-  {
-    "command" : "useAttackHero",
-    "error" : "Attacked card is not of type 'Tank'.",
-    "cardAttacker" : {
-      "x" : 0,
-      "y" : 1
-    }
+    "gameEnded" : "Player two killed the enemy hero."
   },
   {
     "command" : "getCardsOnTable",
@@ -206,11 +169,11 @@
   },
   {
     "command" : "getTotalGamesPlayed",
-    "output" : 0
+    "output" : 1
   },
   {
     "command" : "getPlayerTwoWins",
-    "output" : 0
+    "output" : 1
   },
   {
     "command" : "getPlayerOneWins",
@@ -431,11 +394,11 @@
   },
   {
     "command" : "getTotalGamesPlayed",
-    "output" : 1
+    "output" : 2
   },
   {
     "command" : "getPlayerTwoWins",
-    "output" : 1
+    "output" : 2
   },
   {
     "command" : "getPlayerOneWins",

@@ -13,7 +13,7 @@ public final class Player {
     private final ArrayList<Card> hand;
 
     private int mana;
-    private int numTanksOnBoard = 0;
+    private int numTanksOnBoard;
     private final HeroCard hero;
 
     private final int frontRow;
@@ -31,6 +31,7 @@ public final class Player {
         this.hero = (HeroCard) cardHelper.createCard(hero);
         this.frontRow = frontRow;
         this.backRow = backRow;
+        this.numTanksOnBoard = 0;
         this.mana = 1;
     }
 
@@ -96,5 +97,13 @@ public final class Player {
             hand.add(deck.getFirst());
             deck.removeFirst();
         }
+    }
+
+    /**
+     * checks if the player has tanks on the board
+     * @return true if the player has tanks on the board, false otherwise
+     */
+    public boolean hasTanksOnBoard() {
+        return numTanksOnBoard > 0;
     }
 }

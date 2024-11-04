@@ -1,7 +1,6 @@
 package cards.heroes;
 
 import cards.HeroCard;
-import cards.MinionCard;
 import enums.HeroType;
 import fileio.CardInput;
 import fileio.Coordinates;
@@ -16,6 +15,12 @@ public final class EmpressThorina extends HeroCard {
         super(heroCard);
     }
 
+    /**
+     * The ability of Empress Thorina is to remove the minion with the highest health from a row.
+     *
+     * @param gameBoard
+     * @param row
+     */
     @Override
     public void useAbility(final GameBoard gameBoard, final int row) {
         Coordinates coordinates = new Coordinates();
@@ -28,6 +33,9 @@ public final class EmpressThorina extends HeroCard {
                 maxHealth = minionHealth;
                 coordinates.setY(colIterator);
             }
+        }
+        if (gameBoard.getCardFromTable(coordinates).getIsTank()) {
+
         }
         gameBoard.removeCard(coordinates);
     }

@@ -215,12 +215,18 @@ public final class Actions {
         boolean cardAttacked = false;
         boolean cardFrozen = false;
         boolean enemyNotTank = false;
+        Player otherPlayer;
+        if (game.getCurrentPlayerTurn() == game.getPlayerOne()) {
+            otherPlayer = game.getPlayerTwo();
+        } else {
+            otherPlayer = game.getPlayerOne();
+        }
 
         if (game.getGameBoard().getCardFromTable(coordinates).isFrozen()) {
             cardFrozen = true;
         } else if (game.getGameBoard().getCardFromTable(coordinates).getAttacked()) {
             cardAttacked = true;
-        } else if (game.enemyHasTanks()) {
+        } else if (otherPlayer.hasTanksOnBoard()) {
             enemyNotTank = true;
         }
 
@@ -239,13 +245,6 @@ public final class Actions {
         } else {
             int winner;
             final Player currentPlayer = game.getCurrentPlayerTurn();
-            final Player otherPlayer;
-
-            if (currentPlayer == game.getPlayerOne()) {
-                otherPlayer = game.getPlayerTwo();
-            } else {
-                otherPlayer = game.getPlayerOne();
-            }
 
             MinionCard attackerCard = game.getGameBoard().getCardFromTable(coordinates);
             attackerCard.setAttacked(true);
@@ -272,10 +271,17 @@ public final class Actions {
     }
 
     private void useAbilityHero(final int rowIndex) {
+        HeroType heroType = game.getCurrentPlayerTurn().getHero().getHeroType();
         boolean notEnoughMana = false;
         boolean heroAttacked = false;
         boolean rowsNotEnemy = false;
         boolean rowsNotAlly = false;
+        Player otherPlayer;
+        if (game.getCurrentPlayerTurn() == game.getPlayerOne()) {
+            otherPlayer = game.getPlayerTwo();
+        } else {
+            otherPlayer = game.getPlayerOne();
+        }
 
         if (game.getCurrentPlayerTurn().getMana()
                 < game.getCurrentPlayerTurn().getHero().getMana()) {
@@ -283,7 +289,6 @@ public final class Actions {
         } else if (game.getCurrentPlayerTurn().getHero().getAttacked()) {
             heroAttacked = true;
         } else {
-            HeroType heroType = game.getCurrentPlayerTurn().getHero().getHeroType();
             if (heroType == HeroType.KING_MUDFACE || heroType == HeroType.GENERAL_KOCIORAW) {
                 if (game.getCurrentPlayerTurn().getFrontRow() != rowIndex
                         && game.getCurrentPlayerTurn().getBackRow() != rowIndex) {
@@ -313,12 +318,34 @@ public final class Actions {
                     Command.USE_HERO_ABILITY.getCommand(),
                     ErrorMessage.NOT_CURRENT_PLAYER_ROW.getMessage(), rowIndex));
         } else {
+            checkIfThorinaKilledTank(heroType, rowIndex, otherPlayer);
             game.getCurrentPlayerTurn().getHero().setAttacked(true);
             game.getCurrentPlayerTurn().getHero().useAbility(game.getGameBoard(), rowIndex);
             game.getCurrentPlayerTurn().reduceMana(
                     game.getCurrentPlayerTurn().getHero().getMana());
         }
 
+    }
+
+    private void checkIfThorinaKilledTank(final HeroType heroType,
+                                          final int rowIndex,
+                                          final Player otherPlayer) {
+        if (heroType == HeroType.EMPRESS_THORINA) {
+            Coordinates coordinates = new Coordinates();
+            coordinates.setX(rowIndex);
+            int maxHealth = 0;
+            int col;
+            for (col = 0; col < game.getGameBoard().getBoard().get(rowIndex).size(); col++) {
+                int minionHP = game.getGameBoard().getBoard().get(rowIndex).get(col).getHealth();
+                if (minionHP > maxHealth) {
+                    maxHealth = minionHP;
+                    coordinates.setY(col);
+                }
+            }
+            if (game.getGameBoard().getCardFromTable(coordinates).getIsTank()) {
+                otherPlayer.removeTankFromBoard();
+            }
+        }
     }
 
     private void endPlayerTurn() {
