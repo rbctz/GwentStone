@@ -11,7 +11,7 @@ public abstract class MinionCard extends Card {
 
     protected int attackDamage;
     protected boolean frozen;
-    protected boolean attacked;
+
     protected final boolean isTank;
     protected final MinionType minionType;
     protected final int row;

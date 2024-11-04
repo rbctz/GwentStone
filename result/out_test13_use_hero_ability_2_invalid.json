@@ -34,6 +34,11 @@
     }
   },
   {
+    "command" : "useHeroAbility",
+    "error" : "Selected row does not belong to the current player.",
+    "handIdx" : 2
+  },
+  {
     "command" : "getPlayerTurn",
     "output" : 1
   },
@@ -68,7 +73,7 @@
         "White",
         "Red"
       ],
-      "attackDamage" : 0
+      "attackDamage" : 1
     }
   },
   {
@@ -80,17 +85,22 @@
     "output" : 2
   },
   {
+    "command" : "useHeroAbility",
+    "error" : "Hero has already attacked this turn.",
+    "handIdx" : 2
+  },
+  {
     "command" : "getPlayerTurn",
     "output" : 2
   },
   {
     "command" : "getPlayerMana",
-    "output" : 16,
+    "output" : 10,
     "playerIdx" : 2
   },
   {
     "command" : "getPlayerMana",
-    "output" : 16,
+    "output" : 7,
     "playerIdx" : 1
   },
   {
@@ -107,7 +117,7 @@
             "White",
             "Red"
           ],
-          "attackDamage" : 0
+          "attackDamage" : 2
         },
         {
           "mana" : 2,
@@ -118,7 +128,7 @@
             "Yellow",
             "White"
           ],
-          "attackDamage" : 0
+          "attackDamage" : 2
         },
         {
           "mana" : 3,
@@ -130,7 +140,7 @@
             "White",
             "Red"
           ],
-          "attackDamage" : 0
+          "attackDamage" : 1
         },
         {
           "mana" : 3,
@@ -156,7 +166,7 @@
             "Black",
             "Grey"
           ],
-          "attackDamage" : 2
+          "attackDamage" : 3
         },
         {
           "mana" : 3,
@@ -167,7 +177,7 @@
             "Black",
             "Yellow"
           ],
-          "attackDamage" : 5
+          "attackDamage" : 6
         },
         {
           "mana" : 4,
@@ -179,7 +189,7 @@
             "Orange",
             "Red"
           ],
-          "attackDamage" : 5
+          "attackDamage" : 6
         }
       ],
       [

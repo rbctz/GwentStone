@@ -56,6 +56,11 @@
     }
   },
   {
+    "command" : "useHeroAbility",
+    "error" : "Not enough mana to use hero's ability.",
+    "handIdx" : 0
+  },
+  {
     "command" : "getCardAtPosition",
     "x" : 2,
     "y" : 0,
@@ -124,12 +129,17 @@
     "playerIdx" : 1
   },
   {
+    "command" : "useHeroAbility",
+    "error" : "Selected row does not belong to the current player.",
+    "handIdx" : 0
+  },
+  {
     "command" : "getCardAtPosition",
     "x" : 0,
     "y" : 0,
     "output" : {
       "mana" : 2,
-      "health" : 2,
+      "health" : 3,
       "description" : "Standard card: A drink can always be served, with the blood of his enemies.",
       "name" : "Berserker",
       "colors" : [
@@ -142,7 +152,7 @@
   },
   {
     "command" : "getPlayerMana",
-    "output" : 7,
+    "output" : 5,
     "playerIdx" : 2
   },
   {
@@ -162,7 +172,7 @@
       [
         {
           "mana" : 2,
-          "health" : 2,
+          "health" : 3,
           "description" : "Standard card: A drink can always be served, with the blood of his enemies.",
           "name" : "Berserker",
           "colors" : [

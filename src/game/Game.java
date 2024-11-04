@@ -81,12 +81,19 @@ public final class Game {
      * Ends a players turn.
      */
     public void endTurn() {
+
+        // Unfreeze all the players cards on the board
         gameBoard.unfreezeAllCardsOnRow(currentPlayerTurn.getBackRow());
         gameBoard.unfreezeAllCardsOnRow(currentPlayerTurn.getFrontRow());
 
+        // Reset the attacked status of all the players cards on the board
         gameBoard.resetAttackedOnRow(currentPlayerTurn.getBackRow());
         gameBoard.resetAttackedOnRow(currentPlayerTurn.getFrontRow());
 
+        // Reset the attacked status of the players hero
+        currentPlayerTurn.getHero().setAttacked(false);
+
+        // Switch the current player
         if (currentPlayerTurn == playerOne) {
             currentPlayerTurn = playerTwo;
         } else {

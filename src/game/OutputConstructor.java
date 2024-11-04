@@ -98,6 +98,13 @@ public final class OutputConstructor {
         this.gameEnded = gameEnded;
     }
 
+//    /**
+//     * Constructor for the useHeroAbility command.
+//     */
+//    public OutputConstructor(final String command, final Integer row, final String error) {
+//        this.command = command;
+//    }
+
     /**
      * Constructor for the GetPlayerTurn command.
      * @param command the command to be executed

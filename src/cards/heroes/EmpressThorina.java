@@ -16,6 +16,5 @@ public final class EmpressThorina extends HeroCard {
 
     @Override
     public void useAbility(final GameBoard gameBoard, final int row) {
-
     }
 }

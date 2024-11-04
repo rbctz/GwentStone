@@ -14,15 +14,15 @@ public abstract class Card {
     protected String description;
     protected String name;
     protected ArrayList<String> colors;
-    protected boolean usedAbility;
+    protected boolean attacked;
 
     public Card(final CardInput cardInput, final CardType cardType) {
         this.mana = cardInput.getMana();
         this.description = cardInput.getDescription();
         this.name = cardInput.getName();
         this.colors = cardInput.getColors();
-        this.usedAbility = false;
         this.cardType = cardType;
+        this.attacked = false;
     }
 
     /**
@@ -34,8 +34,8 @@ public abstract class Card {
         this.description = card.description;
         this.name = card.name;
         this.colors = card.colors;
-        this.usedAbility = card.usedAbility;
         this.cardType = card.cardType;
+        this.attacked = card.attacked;
     }
 
     /**
@@ -51,13 +51,6 @@ public abstract class Card {
     @JsonIgnore
     public CardType getCardType() {
         return cardType;
-    }
-
-    /**
-     * Method that returns the card type.
-     */
-    public void setCardType(final CardType cardType) {
-        this.cardType = cardType;
     }
 
     /**
@@ -131,17 +124,17 @@ public abstract class Card {
     }
 
     /**
-     * Method that returns if a card used ability/attack.
+     * Method that returns the attacked status of a card.
      */
     @JsonIgnore
-    public boolean isUsedAbility() {
-        return usedAbility;
+    public boolean getAttacked() {
+        return attacked;
     }
 
     /**
-     * Method that sets the used ability of a card.
+     * Method that sets the attacked status of a card.
      */
-    public void setUsedAbility(final boolean usedAbility) {
-        this.usedAbility = usedAbility;
+    public void setAttacked(final boolean attacked) {
+        this.attacked = attacked;
     }
 }

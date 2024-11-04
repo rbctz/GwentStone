@@ -5,8 +5,8 @@ import cards.HeroCard;
 import cards.MinionCard;
 import enums.Command;
 import enums.ErrorMessage;
+import enums.HeroType;
 import enums.MinionType;
-import enums.OutputMessage;
 import fileio.ActionsInput;
 import fileio.Coordinates;
 
@@ -48,6 +48,7 @@ public final class Actions {
                         useAttackHero(actionsInput.getCardAttacker());
                         break;
                     case USE_HERO_ABILITY:
+                        useAbilityHero(actionsInput.getAffectedRow());
                         break;
                     case GET_PLAYER_DECK:
                         getPlayerDeck(actionsInput.getPlayerIdx());
@@ -89,6 +90,10 @@ public final class Actions {
 
     private void cardUsesAttack(final Coordinates attacker, final Coordinates target) {
 
+        /*
+         * These are temporary edge cases that need to be handled since
+         * the game and all its functionalities are not implemented yet.
+         */
         if (game.getGameBoard().getBoard().get(attacker.getX()).size() <= attacker.getY()) {
             return;
         }
@@ -136,6 +141,11 @@ public final class Actions {
     }
 
     private void cardUsesAbility(final Coordinates attacker, final Coordinates target) {
+
+        /*
+        * These are temporary edge cases that need to be handled since
+        * the game and all its functionalities are not implemented yet.
+         */
         if (game.getGameBoard().getBoard().get(attacker.getX()).size() <= attacker.getY()) {
             return;
         }
@@ -257,6 +267,56 @@ public final class Actions {
                 otherPlayer.getHero().takeDamage(attackerCard.getAttackDamage());
             }
         }
+    }
+
+    private void useAbilityHero(final int rowIndex) {
+        boolean notEnoughMana = false;
+        boolean heroAttacked = false;
+        boolean rowsNotEnemy = false;
+        boolean rowsNotAlly = false;
+
+        if (game.getCurrentPlayerTurn().getMana()
+                < game.getCurrentPlayerTurn().getHero().getMana()) {
+            notEnoughMana = true;
+        } else if (game.getCurrentPlayerTurn().getHero().getAttacked()) {
+            heroAttacked = true;
+        } else {
+            HeroType heroType = game.getCurrentPlayerTurn().getHero().getHeroType();
+            if (heroType == HeroType.KING_MUDFACE || heroType == HeroType.GENERAL_KOCIORAW) {
+                if (game.getCurrentPlayerTurn().getFrontRow() != rowIndex
+                        && game.getCurrentPlayerTurn().getBackRow() != rowIndex) {
+                    rowsNotAlly = true;
+                }
+            } else if (heroType == HeroType.EMPRESS_THORINA || heroType == HeroType.LORD_ROYCE) {
+                if (game.getCurrentPlayerTurn().getFrontRow() == rowIndex
+                        || game.getCurrentPlayerTurn().getBackRow() == rowIndex) {
+                    rowsNotEnemy = true;
+                }
+            }
+        }
+        if (notEnoughMana) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.USE_HERO_ABILITY.getCommand(), rowIndex,
+                    ErrorMessage.NOT_ENOUGH_MANA_HERO.getMessage()));
+        } else if (heroAttacked) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.USE_HERO_ABILITY.getCommand(), rowIndex,
+                    ErrorMessage.HERO_ALREADY_ATTACKED.getMessage()));
+        } else if (rowsNotEnemy) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.USE_HERO_ABILITY.getCommand(), rowIndex,
+                    ErrorMessage.NOT_ENEMY_ROW_HERO.getMessage()));
+        } else if (rowsNotAlly) {
+            Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                    Command.USE_HERO_ABILITY.getCommand(), rowIndex,
+                    ErrorMessage.NOT_CURRENT_PLAYER_ROW.getMessage()));
+        } else {
+            game.getCurrentPlayerTurn().getHero().setAttacked(true);
+            game.getCurrentPlayerTurn().getHero().useAbility(game.getGameBoard(), rowIndex);
+            game.getCurrentPlayerTurn().reduceMana(
+                    game.getCurrentPlayerTurn().getHero().getMana());
+        }
+
     }
 
     private void endPlayerTurn() {

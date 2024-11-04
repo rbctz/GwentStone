@@ -18,6 +18,9 @@ public abstract class HeroCard extends Card {
         this.heroType = heroType;
     }
 
+    /**
+     * Copy constructor.
+     */
     public HeroCard(final HeroCard heroCard) {
         super(heroCard);
         this.heroType = heroCard.heroType;
@@ -27,4 +30,11 @@ public abstract class HeroCard extends Card {
      * for overriding in subclasses.
      */
     public abstract void useAbility(GameBoard gameBoard, int row);
+
+    /**
+     * Method that returns the hero type.
+     */
+    public HeroType getHeroType() {
+        return heroType;
+    }
 }

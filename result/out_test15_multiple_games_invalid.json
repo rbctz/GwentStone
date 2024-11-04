@@ -281,6 +281,11 @@
     "output" : 1
   },
   {
+    "command" : "useHeroAbility",
+    "error" : "Selected row does not belong to the current player.",
+    "handIdx" : 1
+  },
+  {
     "command" : "getPlayerTurn",
     "output" : 2
   },

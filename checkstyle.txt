@@ -1,4 +1,2 @@
 Starting audit...
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\Actions.java:9:8: Unused import - enums.OutputMessage. [UnusedImports]
 Audit done.
-Checkstyle ends with 1 errors.

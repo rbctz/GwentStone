@@ -5,7 +5,7 @@
     "y" : 0,
     "output" : {
       "mana" : 1,
-      "health" : 5,
+      "health" : 6,
       "description" : "Premium card: You shall not pass, you shall not prevail, you shall perish.",
       "name" : "Warden",
       "colors" : [
@@ -29,7 +29,7 @@
         "Grey",
         "Blue"
       ],
-      "attackDamage" : 6
+      "attackDamage" : 7
     }
   },
   {
@@ -38,12 +38,12 @@
   },
   {
     "command" : "getPlayerMana",
-    "output" : 6,
+    "output" : 4,
     "playerIdx" : 2
   },
   {
     "command" : "getPlayerMana",
-    "output" : 7,
+    "output" : 5,
     "playerIdx" : 1
   },
   {
@@ -60,7 +60,7 @@
             "Grey",
             "Blue"
           ],
-          "attackDamage" : 6
+          "attackDamage" : 7
         },
         {
           "mana" : 1,
@@ -72,7 +72,7 @@
             "White",
             "Red"
           ],
-          "attackDamage" : 0
+          "attackDamage" : 1
         }
       ],
       [
@@ -85,13 +85,13 @@
             "Black",
             "Yellow"
           ],
-          "attackDamage" : 6
+          "attackDamage" : 7
         }
       ],
       [
         {
           "mana" : 1,
-          "health" : 5,
+          "health" : 6,
           "description" : "Premium card: You shall not pass, you shall not prevail, you shall perish.",
           "name" : "Warden",
           "colors" : [
@@ -104,7 +104,7 @@
       [
         {
           "mana" : 2,
-          "health" : 2,
+          "health" : 3,
           "description" : "Premium card: The will of Gods has been spoken, obey and you shall be saved...or not.",
           "name" : "Disciple",
           "colors" : [
