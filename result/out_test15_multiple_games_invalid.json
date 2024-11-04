@@ -4,6 +4,10 @@
     "output" : 2
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getPlayerMana",
     "output" : 1,
     "playerIdx" : 2
@@ -15,6 +19,10 @@
   {
     "command" : "getPlayerTurn",
     "output" : 2
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getPlayerMana",
@@ -44,6 +52,10 @@
       "x" : 0,
       "y" : 2
     }
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getCardAtPosition",
@@ -129,18 +141,6 @@
       ],
       [ ],
       [
-        {
-          "mana" : 2,
-          "health" : 8,
-          "description" : "Standard card: A warrior who is never afraid of battle, no matter the costs",
-          "name" : "Goliath",
-          "colors" : [
-            "Brown",
-            "Black",
-            "Grey"
-          ],
-          "attackDamage" : 4
-        },
         {
           "mana" : 2,
           "health" : 3,
@@ -236,6 +236,10 @@
     }
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getCardAtPosition",
     "x" : 0,
     "y" : 0,
@@ -250,6 +254,10 @@
       ],
       "attackDamage" : 5
     }
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getPlayerMana",

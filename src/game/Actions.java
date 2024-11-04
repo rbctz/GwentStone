@@ -72,6 +72,7 @@ public final class Actions {
                         getCardAtPosition(actionsInput.getX(), actionsInput.getY());
                         break;
                     case GET_FROZEN_CARDS_ON_TABLE:
+                        getFrozenCardsOnTable();
                         break;
                     case GET_TOTAL_GAMES_PLAYED:
                         break;
@@ -401,6 +402,12 @@ public final class Actions {
         ArrayList<ArrayList<MinionCard>> cardsOnTable = game.getGameBoard().getAllCardsOnTable();
         Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
                 Command.GET_CARDS_ON_TABLE.getCommand(), cardsOnTable));
+    }
+
+    private void getFrozenCardsOnTable() {
+        ArrayList<MinionCard> frozenCardsOnTable = game.getGameBoard().getAllFrozenCardsOnTable();
+        Parser.getArrayNodeOutput().addPOJO(new OutputConstructor(
+                frozenCardsOnTable, Command.GET_FROZEN_CARDS_ON_TABLE.getCommand()));
     }
 
     private void getPlayerMana(final int playerIndex) {

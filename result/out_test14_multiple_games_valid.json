@@ -4,9 +4,21 @@
     "output" : 2
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getPlayerMana",
     "output" : 1,
     "playerIdx" : 1
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getCardAtPosition",
@@ -23,6 +35,10 @@
       ],
       "attackDamage" : 4
     }
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getPlayerTurn",
@@ -68,6 +84,10 @@
     }
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getPlayerTurn",
     "output" : 1
   },
@@ -92,6 +112,10 @@
       ],
       "attackDamage" : 0
     }
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getPlayerTurn",
@@ -123,6 +147,10 @@
     }
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getCardAtPosition",
     "x" : 2,
     "y" : 0,
@@ -137,6 +165,10 @@
       ],
       "attackDamage" : 5
     }
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getCardAtPosition",
@@ -186,6 +218,10 @@
     "playerIdx" : 1
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getCardAtPosition",
     "x" : 0,
     "y" : 0,
@@ -201,6 +237,14 @@
       ],
       "attackDamage" : 0
     }
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getPlayerMana",
@@ -239,8 +283,24 @@
     "playerIdx" : 2
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getPlayerTurn",
     "output" : 1
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getPlayerTurn",
@@ -250,6 +310,10 @@
     "command" : "getPlayerMana",
     "output" : 57,
     "playerIdx" : 2
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getCardAtPosition",
@@ -269,9 +333,17 @@
     }
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getPlayerMana",
     "output" : 67,
     "playerIdx" : 2
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "gameEnded" : "Player one killed the enemy hero."
@@ -527,6 +599,10 @@
     "output" : 2
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getCardAtPosition",
     "x" : 2,
     "y" : 0,
@@ -545,6 +621,10 @@
   {
     "command" : "getPlayerTurn",
     "output" : 1
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getCardAtPosition",
@@ -573,6 +653,10 @@
     "output" : 1
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getCardAtPosition",
     "x" : 1,
     "y" : 0,
@@ -588,12 +672,20 @@
       ],
       "attackDamage" : 3
     }
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getPlayerTurn",
     "output" : 2
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getCardAtPosition",
     "x" : 1,
     "y" : 0,
@@ -609,6 +701,10 @@
       ],
       "attackDamage" : 3
     }
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getCardAtPosition",
@@ -625,6 +721,10 @@
       ],
       "attackDamage" : 3
     }
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getPlayerTurn",
@@ -648,6 +748,10 @@
     }
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getCardAtPosition",
     "x" : 2,
     "y" : 0,
@@ -664,9 +768,17 @@
     }
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getPlayerMana",
     "output" : 11,
     "playerIdx" : 2
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getPlayerTurn",
@@ -682,6 +794,10 @@
     "playerIdx" : 1
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getPlayerTurn",
     "output" : 2
   },
@@ -698,6 +814,10 @@
   {
     "command" : "getPlayerTurn",
     "output" : 1
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getCardAtPosition",
@@ -717,6 +837,10 @@
     }
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getPlayerMana",
     "output" : 21,
     "playerIdx" : 2
@@ -729,6 +853,10 @@
   {
     "command" : "getPlayerTurn",
     "output" : 1
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getCardAtPosition",
@@ -789,6 +917,10 @@
     "playerIdx" : 1
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getCardAtPosition",
     "x" : 0,
     "y" : 0,
@@ -811,12 +943,20 @@
     "playerIdx" : 2
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getPlayerTurn",
     "output" : 2
   },
   {
     "command" : "getPlayerTurn",
     "output" : 1
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getPlayerMana",
@@ -839,6 +979,10 @@
       ],
       "attackDamage" : 2
     }
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "gameEnded" : "Player one killed the enemy hero."

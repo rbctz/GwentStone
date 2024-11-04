@@ -98,12 +98,19 @@ public final class OutputConstructor {
         this.gameEnded = gameEnded;
     }
 
-//    /**
-//     * Constructor for the useHeroAbility command.
-//     */
-//    public OutputConstructor(final String command, final Integer row, final String error) {
-//        this.command = command;
-//    }
+
+    /**
+     * Constructor for the getFrozenCardsOnTable command.
+     * @param command the command to be executed
+     * @param cards the cards to be output
+     */
+    public OutputConstructor(final ArrayList<MinionCard> cards, final String command) {
+        this.command = command;
+        this.outputList = new ArrayList<>();
+        for (Card card : cards) {
+            this.outputList.add(cardHelper.createCard(card));
+        }
+    }
 
     /**
      * Constructor for the GetPlayerTurn command.

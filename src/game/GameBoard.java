@@ -1,5 +1,6 @@
 package game;
 
+import cards.Card;
 import cards.MinionCard;
 import fileio.Coordinates;
 
@@ -33,6 +34,18 @@ public final class GameBoard {
      */
     public ArrayList<ArrayList<MinionCard>> getAllCardsOnTable() {
         return new ArrayList<>(board);
+    }
+
+    public ArrayList<MinionCard> getAllFrozenCardsOnTable() {
+        ArrayList<MinionCard> frozenCards = new ArrayList<>();
+        for (ArrayList<MinionCard> row : board) {
+            for (MinionCard card : row) {
+                if (card != null && card.isFrozen()) {
+                    frozenCards.add(card);
+                }
+            }
+        }
+        return frozenCards;
     }
 
     /**
@@ -77,14 +90,6 @@ public final class GameBoard {
      */
     public boolean cardAttacked(final Coordinates coordinates) {
         return board.get(coordinates.getX()).get(coordinates.getY()).getAttacked();
-    }
-
-    /**
-     * Freezes a card on the board.
-     * @param coordinates
-     */
-    public void freezeCard(final Coordinates coordinates) {
-        board.get(coordinates.getX()).get(coordinates.getY()).freeze();
     }
 
     /**

@@ -1,8 +1,10 @@
 package cards.heroes;
 
 import cards.HeroCard;
+import cards.MinionCard;
 import enums.HeroType;
 import fileio.CardInput;
+import fileio.Coordinates;
 import game.GameBoard;
 
 public final class EmpressThorina extends HeroCard {
@@ -16,5 +18,17 @@ public final class EmpressThorina extends HeroCard {
 
     @Override
     public void useAbility(final GameBoard gameBoard, final int row) {
+        Coordinates coordinates = new Coordinates();
+        coordinates.setX(row);
+        int maxHealth = 0;
+        int colIterator;
+        for (colIterator = 0; colIterator < gameBoard.getBoard().get(row).size(); colIterator++) {
+            int minionHealth = gameBoard.getBoard().get(row).get(colIterator).getHealth();
+            if (minionHealth > maxHealth) {
+                maxHealth = minionHealth;
+                coordinates.setY(colIterator);
+            }
+        }
+        gameBoard.removeCard(coordinates);
     }
 }

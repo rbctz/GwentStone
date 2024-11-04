@@ -4,9 +4,21 @@
     "output" : 1
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getPlayerMana",
     "output" : 1,
     "playerIdx" : 2
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getPlayerMana",
@@ -124,6 +136,10 @@
     "output" : 1
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getPlayerMana",
     "output" : 3,
     "playerIdx" : 1
@@ -149,6 +165,10 @@
       ],
       "attackDamage" : 2
     }
+  },
+  {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
   },
   {
     "command" : "getPlayerMana",

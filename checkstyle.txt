@@ -1,2 +1,6 @@
 Starting audit...
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\cards\heroes\EmpressThorina.java:4:8: Unused import - cards.MinionCard. [UnusedImports]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\GameBoard.java:3:8: Unused import - cards.Card. [UnusedImports]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\GameBoard.java:39:5: Missing a Javadoc comment. [MissingJavadocMethod]
 Audit done.
+Checkstyle ends with 3 errors.

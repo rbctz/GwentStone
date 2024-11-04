@@ -4,16 +4,15 @@
     "x" : 1,
     "y" : 0,
     "output" : {
-      "mana" : 1,
+      "mana" : 2,
       "health" : 4,
       "description" : "Premium card: Ravished by the winds of hell, no soul is to be forgiven.",
       "name" : "The Ripper",
       "colors" : [
-        "Orange",
-        "Red",
-        "Black"
+        "Black",
+        "Yellow"
       ],
-      "attackDamage" : 7
+      "attackDamage" : 6
     }
   },
   {
@@ -34,6 +33,10 @@
     }
   },
   {
+    "command" : "getFrozenCardsOnTable",
+    "output" : [ ]
+  },
+  {
     "command" : "getPlayerTurn",
     "output" : 1
   },
@@ -52,18 +55,6 @@
     "output" : [
       [ ],
       [
-        {
-          "mana" : 1,
-          "health" : 4,
-          "description" : "Premium card: Ravished by the winds of hell, no soul is to be forgiven.",
-          "name" : "The Ripper",
-          "colors" : [
-            "Orange",
-            "Red",
-            "Black"
-          ],
-          "attackDamage" : 8
-        },
         {
           "mana" : 2,
           "health" : 4,
