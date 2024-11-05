@@ -92,17 +92,6 @@ public final class Actions {
 
     private void cardUsesAttack(final Coordinates attacker, final Coordinates target) {
 
-        /*
-         * These are temporary edge cases that need to be handled since
-         * the game and all its functionalities are not implemented yet.
-         */
-//        if (game.getGameBoard().getBoard().get(attacker.getX()).size() <= attacker.getY()) {
-//            return;
-//        }
-//        if (game.getGameBoard().getBoard().get(target.getX()).size() <= target.getY()) {
-//            return;
-//        }
-
         boolean cardAttacked = false;
         boolean cardFrozen = false;
         boolean notEnemy = false;
@@ -144,17 +133,6 @@ public final class Actions {
 
     private void cardUsesAbility(final Coordinates attacker, final Coordinates target) {
 
-        /*
-        * These are temporary edge cases that need to be handled since
-        * the game and all its functionalities are not implemented yet.
-         */
-//        if (game.getGameBoard().getBoard().get(attacker.getX()).size() <= attacker.getY()) {
-//            return;
-//        }
-//        if (game.getGameBoard().getBoard().get(target.getX()).size() <= target.getY()) {
-//            return;
-//        }
-
         boolean cardAttacked = false;
         boolean cardFrozen = false;
 
@@ -171,7 +149,7 @@ public final class Actions {
         final MinionType minionType = game.getGameBoard().
                 getCardFromTable(attacker).getMinionType();
         if (minionType == MinionType.DISCIPLE) {
-            if (game.getGameBoard().isEnemy(game.getCurrentPlayerTurn(), attacker)) {
+            if (game.getGameBoard().isEnemy(game.getCurrentPlayerTurn(), target)) {
                 notCurrentPlayer = true;
             }
         } else if (minionType == MinionType.MIRAJ

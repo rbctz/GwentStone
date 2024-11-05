@@ -15,6 +15,13 @@ public final class TheCursedOne extends MinionCard {
         super(minionCard);
     }
 
+    /**
+     * The ability of The Cursed One is to interchange
+     *  the health and attack damage of a minion.
+     *
+     * @param game        The game.
+     * @param coordinates The coordinates of the minion.
+     */
     @Override
     public void useAbility(final Game game, final Coordinates coordinates) {
         final MinionCard target = game.getGameBoard().getCardFromTable(coordinates);

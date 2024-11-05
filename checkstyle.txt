@@ -1,7 +1,6 @@
 Starting audit...
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\cards\heroes\EmpressThorina.java:37:66: Must have at least one statement. [EmptyBlock]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\GameBoard.java:3:8: Unused import - cards.Card. [UnusedImports]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\GameBoard.java:39:5: Missing a Javadoc comment. [MissingJavadocMethod]
-[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\game\Player.java:102:5: Missing a Javadoc comment. [MissingJavadocMethod]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\main\Main.java:5:8: Unused import - com.fasterxml.jackson.annotation.JsonAutoDetect. [UnusedImports]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\main\Main.java:6:8: Unused import - com.fasterxml.jackson.annotation.PropertyAccessor. [UnusedImports]
+[ERROR] C:\Robi\fac\anul2\tema1poo\.\src\main\Main.java:11:8: Unused import - com.fasterxml.jackson.databind.SerializationFeature. [UnusedImports]
 Audit done.
-Checkstyle ends with 4 errors.
+Checkstyle ends with 3 errors.

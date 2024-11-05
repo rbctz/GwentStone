@@ -31,8 +31,8 @@ public final class Game {
 
     /**
      * Starts the game.
-     * @param input
-     * @param index
+     * @param input input file
+     * @param index index of the game to be started
      */
     public void startGame(final Input input, final int index) {
         final StartGameInput startGameInput = input.getGames().get(index).getStartGame();
@@ -118,7 +118,7 @@ public final class Game {
 
     /**
      * Places a card on the board.
-     * @param minionCard
+     * @param minionCard card to be placed
      */
     public void placeCard(final MinionCard minionCard) {
         if (minionCard.getRow() == 0) {
@@ -154,7 +154,7 @@ public final class Game {
 
     /**
      * Checks if the enemy player has tanks on the board.
-     * @return
+     * @return boolean value if the enemy has tanks on the board
      */
     public boolean enemyHasTanks() {
         if (currentPlayerTurn == playerOne) {
@@ -166,8 +166,8 @@ public final class Game {
 
     /**
      * Attacks a minion with another minion.
-     * @param attackCoordinates
-     * @param targetCoordinates
+     * @param attackCoordinates coordinates of the attacking card
+     * @param targetCoordinates coordinates of the target card
      */
     public void cardAttacksMinion(final Coordinates attackCoordinates,
                                   final Coordinates targetCoordinates) {

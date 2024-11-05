@@ -78,21 +78,6 @@ public abstract class MinionCard extends Card {
     }
 
     /**
-     * Method that returns the attacked status of a card.
-     */
-    @JsonIgnore
-    public boolean getAttacked() {
-        return attacked;
-    }
-
-    /**
-     * Method that sets the attacked status of a card.
-     */
-    public void setAttacked(final boolean attacked) {
-        this.attacked = attacked;
-    }
-
-    /**
      * Method that returns the tank status of a card.
      */
     @JsonIgnore
@@ -101,7 +86,7 @@ public abstract class MinionCard extends Card {
     }
 
     /**
-     * Method that returns the minion type of a card.
+     * Method that returns the minion type of card.
      */
     @JsonIgnore
     public MinionType getMinionType() {

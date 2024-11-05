@@ -66,11 +66,6 @@
     "handIdx" : 1
   },
   {
-    "command" : "placeCard",
-    "error" : "Not enough mana to place card on table.",
-    "handIdx" : 1
-  },
-  {
     "command" : "getCardsInHand",
     "output" : [
       {
@@ -144,6 +139,16 @@
     "output" : 2
   },
   {
+    "command" : "placeCard",
+    "error" : "Not enough mana to place card on table.",
+    "handIdx" : 0
+  },
+  {
+    "command" : "placeCard",
+    "error" : "Not enough mana to place card on table.",
+    "handIdx" : 0
+  },
+  {
     "command" : "getPlayerMana",
     "output" : 9,
     "playerIdx" : 2
@@ -197,18 +202,6 @@
           "attackDamage" : 1
         },
         {
-          "mana" : 5,
-          "health" : 3,
-          "description" : "Standard card: When he is near, close your eyes. They betray your mind.",
-          "name" : "Miraj",
-          "colors" : [
-            "Yellow",
-            "Orange",
-            "Red"
-          ],
-          "attackDamage" : 4
-        },
-        {
           "mana" : 4,
           "health" : 7,
           "description" : "Premium card: No matter how many, his body will fight. Save your breath for the Mountain is strong.",
@@ -219,6 +212,18 @@
             "Grey"
           ],
           "attackDamage" : 1
+        },
+        {
+          "mana" : 5,
+          "health" : 3,
+          "description" : "Standard card: When he is near, close your eyes. They betray your mind.",
+          "name" : "Miraj",
+          "colors" : [
+            "Yellow",
+            "Orange",
+            "Red"
+          ],
+          "attackDamage" : 4
         }
       ],
       [
@@ -248,6 +253,17 @@
         },
         {
           "mana" : 4,
+          "health" : 4,
+          "description" : "Standard card: When he is near, close your eyes. They betray your mind.",
+          "name" : "Miraj",
+          "colors" : [
+            "Red",
+            "Black"
+          ],
+          "attackDamage" : 4
+        },
+        {
+          "mana" : 4,
           "health" : 7,
           "description" : "Premium card: No matter how many, his body will fight. Save your breath for the Mountain is strong.",
           "name" : "Goliath",
@@ -267,17 +283,6 @@
             "Purple"
           ],
           "attackDamage" : 1
-        },
-        {
-          "mana" : 4,
-          "health" : 4,
-          "description" : "Standard card: When he is near, close your eyes. They betray your mind.",
-          "name" : "Miraj",
-          "colors" : [
-            "Red",
-            "Black"
-          ],
-          "attackDamage" : 4
         }
       ],
       [ ]

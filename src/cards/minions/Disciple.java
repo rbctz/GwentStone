@@ -15,6 +15,12 @@ public final class Disciple extends MinionCard {
         super(minionCard);
     }
 
+    /**
+     * The ability of Disciple is to increase the health of a minion by 2.
+     *
+     * @param game        The game.
+     * @param coordinates The coordinates of the minion.
+     */
     @Override
     public void useAbility(final Game game, final Coordinates coordinates) {
         MinionCard minionCard = game.getGameBoard().getCardFromTable(coordinates);

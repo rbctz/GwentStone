@@ -15,6 +15,12 @@ public final class Miraj extends MinionCard {
         super(minionCard);
     }
 
+    /**
+     * The ability of Miraj is to swap health with a minion.
+     *
+     * @param game        The game.
+     * @param coordinates The coordinates of the minion.
+     */
     @Override
     public void useAbility(final Game game, final Coordinates coordinates) {
         MinionCard minionCard = game.getGameBoard().getCardFromTable(coordinates);

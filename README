@@ -1,11 +1,16 @@
-Singleton pattern for GameThread class to avoid more than one instance,
-it runs all the games that are played, which are objects of the Game class.
+    Implementarea incepe din clasa Main, unde creez un nou obiect de tip Parser si apelez metoda parseGames,
+ce va incepe sa "ruleze" jocurile si se salveaza rezultatele diferitelor comenzi. Dupa ce se termina jocurile, se creeaza
+obiectul output de tip ArrayNode, ce contine diferite ObjectNode-uri, fiind output-ul final al programului.
+    In clasa Parser, se creeaza un obiect de tip Game, pentru fiecare joc, si se apeleaza metoda startGame,
+ce va rula fiecare joc.
+    In clasa Game, exista metode obisnuite pentru joc de exemplu endTurn si endRound, dar mai important,
+exista metoda startGame ce pregateste jocul pentru a incepe, prin a seta jucatorii, cartile si tabla.
+Dupa aceea, se apeleaza parseActions prin clasa Actions.
+    Clasa Actions este cea care decide ce comanda se va executa conform input-ului primit. Aceasta contine
+un switch statement, ce va executa comanda corespunzatoare.
+    Cartile sunt impartite astfel: superclasa Card cu campuri ce sunt comune tuturor cartile,
+alte 2 superclase ce extind clasa Card, clasesle MinionCard si HeroCard, ce contin campuri specifice
+fiecarei tip de carte, iar in final clasele pentru fiecare carte in parte, ce extind una din cele 2 superclase.
+Fiecare clasa finala contine metode implementate prin suprascriere pentru a executa abilitatea cartii,
+in cazul in care aceasta are o abilitate.
 
-Made the package commands in order to avoid having an abstract "God class",
-that stores all the static methods, which would have become hard to manage.
-So inside that package there is a class for every static method that is
-implemented. We don't need instances of these classes so they are final
-with private constructors.
-
-UPDATE: Deleted package "commands" and made abstract class Commands to
-hold all of the methods regarding the game actions.

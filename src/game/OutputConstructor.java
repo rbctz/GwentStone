@@ -40,6 +40,7 @@ public final class OutputConstructor {
 
     @JsonProperty("cardAttacker")
     private Coordinates attackCoordinates;
+    @JsonProperty("cardAttacked")
     private Coordinates targetCoordinates;
     private Integer x;
     private Integer y;
@@ -63,7 +64,7 @@ public final class OutputConstructor {
     }
 
     /**
-     * Constructor for the cardUsesAttack command.
+     * Constructor for the cardUsesAttack and cardUsesAbility command.
      * @param command the command to be executed
      * @param attackCoordinates the coordinates of the attacking card
      * @param targetCoordinates the coordinates of the target card
@@ -116,7 +117,7 @@ public final class OutputConstructor {
     }
 
     /**
-     * Constructor for the GetPlayerTurn command.
+     * Constructor for the GetPlayerTurn, GetTotalGamesPlayed and getWins commands.
      * @param command the command to be executed
      * @param outputInteger the integer
      */
@@ -257,22 +258,6 @@ public final class OutputConstructor {
         return error;
     }
 
-    public Integer getPlayerIndex() {
-        return playerIndex;
-    }
-
-    public Integer getHandIndex() {
-        return handIndex;
-    }
-
-    public Coordinates getAttackCoordinates() {
-        return attackCoordinates;
-    }
-
-    public Coordinates getTargetCoordinates() {
-        return targetCoordinates;
-    }
-
     public Integer getX() {
         return x;
     }
@@ -283,5 +268,25 @@ public final class OutputConstructor {
 
     public String getGameEnded() {
         return gameEnded;
+    }
+
+    public Integer getPlayerIndex() {
+        return playerIndex;
+    }
+
+    public Integer getHandIndex() {
+        return handIndex;
+    }
+
+    public Integer getRow() {
+        return row;
+    }
+
+    public Coordinates getAttackCoordinates() {
+        return attackCoordinates;
+    }
+
+    public Coordinates getTargetCoordinates() {
+        return targetCoordinates;
     }
 }

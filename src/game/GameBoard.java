@@ -1,6 +1,5 @@
 package game;
 
-import cards.Card;
 import cards.MinionCard;
 import fileio.Coordinates;
 
@@ -30,12 +29,16 @@ public final class GameBoard {
 
     /**
      * Returns all cards on the board.
-     * @return
+     * @return all cards on the board
      */
     public ArrayList<ArrayList<MinionCard>> getAllCardsOnTable() {
         return new ArrayList<>(board);
     }
 
+    /**
+     * Returns all cards on the board that are frozen.
+     * @return all cards on the board that are frozen
+     */
     public ArrayList<MinionCard> getAllFrozenCardsOnTable() {
         ArrayList<MinionCard> frozenCards = new ArrayList<>();
         for (ArrayList<MinionCard> row : board) {
@@ -50,8 +53,8 @@ public final class GameBoard {
 
     /**
      * Checks if a row is full.
-     * @param row
-     * @return
+     * @param row the row to check
+     * @return true if the row is full, false otherwise
      */
     public boolean isRowFull(final int row) {
         return board.get(row).size() == BOARD_COLUMNS;
@@ -59,8 +62,8 @@ public final class GameBoard {
 
     /**
      * Places a card on the board.
-     * @param card
-     * @param row
+     * @param card the card to place
+     * @param row the row to place the card on
      */
     public void placeCard(final MinionCard card, final int row) {
         board.get(row).add(card);
@@ -68,7 +71,7 @@ public final class GameBoard {
 
     /**
      * Removes a card from the board.
-     * @param coordinates
+     * @param coordinates the coordinates of the card to remove
      */
     public void removeCard(final Coordinates coordinates) {
         board.get(coordinates.getX()).remove(coordinates.getY());
@@ -76,8 +79,8 @@ public final class GameBoard {
 
     /**
      * Returns the card at the given coordinates.
-     * @param coordinates
-     * @return
+     * @param coordinates the coordinates of the card
+     * @return the card at the given coordinates
      */
     public MinionCard getCardFromTable(final Coordinates coordinates) {
         return board.get(coordinates.getX()).get(coordinates.getY());
@@ -85,8 +88,8 @@ public final class GameBoard {
 
     /**
      * Checks if a card already attacked.
-     * @param coordinates
-     * @return
+     * @param coordinates the coordinates of the card
+     * @return true if the card already attacked, false otherwise
      */
     public boolean cardAttacked(final Coordinates coordinates) {
         return board.get(coordinates.getX()).get(coordinates.getY()).getAttacked();
@@ -94,7 +97,7 @@ public final class GameBoard {
 
     /**
      * Unfreezes all cards on the specified row.
-     * @param row
+     * @param row the row to unfreeze
      */
     public void unfreezeAllCardsOnRow(final int row) {
         for (MinionCard card : board.get(row)) {
@@ -106,7 +109,7 @@ public final class GameBoard {
 
     /**
      * Resets the attacked status of all cards on the specified row.
-     * @param row
+     * @param row the row to reset
      */
     public void resetAttackedOnRow(final int row) {
         for (MinionCard card : board.get(row)) {
@@ -121,13 +124,10 @@ public final class GameBoard {
      *  an enemy of the current player
      * @param player - the player
      * @param coordinates - the coordinates
-     * @return
+     * @return true if the card is an enemy, false otherwise
      */
     public boolean isEnemy(final Player player, final Coordinates coordinates) {
-        if (coordinates.getX() != player.getBackRow()
-                && coordinates.getX() != player.getFrontRow()) {
-            return true;
-        }
-        return false;
+        return coordinates.getX() != player.getBackRow()
+                && coordinates.getX() != player.getFrontRow();
     }
 }

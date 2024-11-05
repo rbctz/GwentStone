@@ -18,8 +18,8 @@ public final class EmpressThorina extends HeroCard {
     /**
      * The ability of Empress Thorina is to remove the minion with the highest health from a row.
      *
-     * @param gameBoard
-     * @param row
+     * @param gameBoard The board of the game.
+     * @param row      The row in which the ability is used.
      */
     @Override
     public void useAbility(final GameBoard gameBoard, final int row) {
@@ -33,9 +33,6 @@ public final class EmpressThorina extends HeroCard {
                 maxHealth = minionHealth;
                 coordinates.setY(colIterator);
             }
-        }
-        if (gameBoard.getCardFromTable(coordinates).getIsTank()) {
-
         }
         gameBoard.removeCard(coordinates);
     }

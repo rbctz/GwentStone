@@ -22,8 +22,55 @@
     }
   },
   {
+    "command" : "cardUsesAttack",
+    "error" : "Attacked card is not of type 'Tank'.",
+    "cardAttacker" : {
+      "x" : 2,
+      "y" : 0
+    },
+    "cardAttacked" : {
+      "x" : 0,
+      "y" : 0
+    }
+  },
+  {
+    "command" : "cardUsesAttack",
+    "error" : "Attacker card has already attacked this turn.",
+    "cardAttacker" : {
+      "x" : 2,
+      "y" : 0
+    },
+    "cardAttacked" : {
+      "x" : 1,
+      "y" : 0
+    }
+  },
+  {
+    "command" : "cardUsesAttack",
+    "error" : "Attacked card does not belong to the enemy.",
+    "cardAttacker" : {
+      "x" : 3,
+      "y" : 0
+    },
+    "cardAttacked" : {
+      "x" : 3,
+      "y" : 0
+    }
+  },
+  {
     "command" : "getCardsInHand",
     "output" : [
+      {
+        "mana" : 2,
+        "health" : 3,
+        "description" : "Premium card: Nobody suspects an outcast, not even the Gods.",
+        "name" : "The Cursed One",
+        "colors" : [
+          "Pink",
+          "Purple"
+        ],
+        "attackDamage" : 0
+      },
       {
         "mana" : 1,
         "health" : 1,
@@ -40,7 +87,7 @@
   },
   {
     "command" : "getPlayerMana",
-    "output" : 4,
+    "output" : 6,
     "playerIdx" : 2
   },
   {
@@ -53,7 +100,7 @@
     "y" : 0,
     "output" : {
       "mana" : 3,
-      "health" : 1,
+      "health" : 2,
       "description" : "Standard card: A warrior who is never afraid of battle, no matter the costs",
       "name" : "Goliath",
       "colors" : [
@@ -79,15 +126,15 @@
     "output" : [
       [
         {
-          "mana" : 2,
-          "health" : 3,
-          "description" : "Premium card: Nobody suspects an outcast, not even the Gods.",
-          "name" : "The Cursed One",
+          "mana" : 1,
+          "health" : 2,
+          "description" : "Premium card: His presence is not known even by ghosts, success at all costs.",
+          "name" : "Sentinel",
           "colors" : [
-            "Pink",
-            "Purple"
+            "Black",
+            "White"
           ],
-          "attackDamage" : 0
+          "attackDamage" : 2
         },
         {
           "mana" : 1,
@@ -99,9 +146,32 @@
             "Yellow"
           ],
           "attackDamage" : 3
+        },
+        {
+          "mana" : 2,
+          "health" : 3,
+          "description" : "Premium card: Nobody suspects an outcast, not even the Gods.",
+          "name" : "The Cursed One",
+          "colors" : [
+            "Pink",
+            "Purple"
+          ],
+          "attackDamage" : 0
         }
       ],
       [
+        {
+          "mana" : 3,
+          "health" : 2,
+          "description" : "Standard card: A warrior who is never afraid of battle, no matter the costs",
+          "name" : "Goliath",
+          "colors" : [
+            "Brown",
+            "Black",
+            "Grey"
+          ],
+          "attackDamage" : 2
+        },
         {
           "mana" : 4,
           "health" : 3,
@@ -117,6 +187,28 @@
       ],
       [
         {
+          "mana" : 3,
+          "health" : 1,
+          "description" : "Premium card: You shall not pass, you shall not prevail, you shall perish.",
+          "name" : "Warden",
+          "colors" : [
+            "Brown",
+            "Blue"
+          ],
+          "attackDamage" : 3
+        },
+        {
+          "mana" : 3,
+          "health" : 7,
+          "description" : "Standard card: A warrior who is never afraid of battle, no matter the costs",
+          "name" : "Goliath",
+          "colors" : [
+            "Red",
+            "Purple"
+          ],
+          "attackDamage" : 2
+        },
+        {
           "mana" : 4,
           "health" : 3,
           "description" : "Standard card: When he is near, close your eyes. They betray your mind.",
@@ -129,6 +221,18 @@
         }
       ],
       [
+        {
+          "mana" : 2,
+          "health" : 3,
+          "description" : "Standard card: Trained by the best, nothing will catch him off-guard.",
+          "name" : "Sentinel",
+          "colors" : [
+            "Black",
+            "Grey",
+            "Blue"
+          ],
+          "attackDamage" : 1
+        },
         {
           "mana" : 2,
           "health" : 2,

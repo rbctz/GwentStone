@@ -16,9 +16,10 @@ public final class LordRoyce extends HeroCard {
     }
 
     /**
-     * Freeze all enemy cards on the affected row
-     * @param gameBoard
-     * @param row
+     * The ability of Lord Royce is to freeze all minions in a row.
+     *
+     * @param gameBoard The board of the game.
+     * @param row      The row in which the ability is used.
      */
     @Override
     public void useAbility(final GameBoard gameBoard, final int row) {

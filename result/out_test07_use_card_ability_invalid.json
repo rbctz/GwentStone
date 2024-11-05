@@ -20,15 +20,15 @@
     "command" : "getCardsInHand",
     "output" : [
       {
-        "mana" : 3,
+        "mana" : 4,
         "health" : 4,
-        "description" : "Premium card: The will of Gods has been spoken, obey and you shall be saved...or not.",
-        "name" : "Disciple",
+        "description" : "Premium card: Ravished by the winds of hell, no soul is to be forgiven.",
+        "name" : "The Ripper",
         "colors" : [
-          "Yellow",
-          "White"
+          "Black",
+          "Yellow"
         ],
-        "attackDamage" : 0
+        "attackDamage" : 6
       },
       {
         "mana" : 5,
@@ -46,7 +46,7 @@
   },
   {
     "command" : "getPlayerMana",
-    "output" : 4,
+    "output" : 5,
     "playerIdx" : 1
   },
   {
@@ -54,8 +54,56 @@
     "output" : 1
   },
   {
+    "command" : "cardUsesAbility",
+    "error" : "Attacked card is not of type 'Tank'.",
+    "cardAttacker" : {
+      "x" : 1,
+      "y" : 0
+    },
+    "cardAttacked" : {
+      "x" : 2,
+      "y" : 1
+    }
+  },
+  {
+    "command" : "cardUsesAbility",
+    "error" : "Attacker card has already attacked this turn.",
+    "cardAttacker" : {
+      "x" : 1,
+      "y" : 2
+    },
+    "cardAttacked" : {
+      "x" : 2,
+      "y" : 0
+    }
+  },
+  {
+    "command" : "cardUsesAbility",
+    "error" : "Attacked card does not belong to the enemy.",
+    "cardAttacker" : {
+      "x" : 1,
+      "y" : 0
+    },
+    "cardAttacked" : {
+      "x" : 0,
+      "y" : 0
+    }
+  },
+  {
+    "command" : "cardUsesAbility",
+    "error" : "Attacked card does not belong to the current player.",
+    "cardAttacker" : {
+      "x" : 0,
+      "y" : 0
+    },
+    "cardAttacked" : {
+      "x" : 2,
+      "y" : 0
+    }
+  },
+  {
     "command" : "getPlayerMana",
-    "output" : 8,
+    "output" : 11,
     "playerIdx" : 2
   },
   {
@@ -94,7 +142,7 @@
       [
         {
           "mana" : 4,
-          "health" : 10,
+          "health" : 5,
           "description" : "Standard card: When he is near, close your eyes. They betray your mind.",
           "name" : "Miraj",
           "colors" : [
@@ -102,18 +150,18 @@
             "Orange",
             "Red"
           ],
-          "attackDamage" : 1
+          "attackDamage" : 5
         },
         {
           "mana" : 4,
-          "health" : 8,
+          "health" : 3,
           "description" : "Premium card: No matter how many, his body will fight. Save your breath for the Mountain is strong.",
           "name" : "Goliath",
           "colors" : [
             "Red",
             "Purple"
           ],
-          "attackDamage" : 0
+          "attackDamage" : 2
         },
         {
           "mana" : 4,
@@ -126,24 +174,12 @@
             "Black"
           ],
           "attackDamage" : 5
-        },
-        {
-          "mana" : 3,
-          "health" : 3,
-          "description" : "Standard card: He has seen everything, his mind has never been asleep since the making of the realm.",
-          "name" : "Warden",
-          "colors" : [
-            "Black",
-            "White",
-            "Green"
-          ],
-          "attackDamage" : 3
         }
       ],
       [
         {
           "mana" : 2,
-          "health" : 7,
+          "health" : 10,
           "description" : "Standard card: He has seen everything, his mind has never been asleep since the making of the realm.",
           "name" : "Warden",
           "colors" : [
@@ -151,33 +187,11 @@
             "White",
             "Green"
           ],
-          "attackDamage" : 4
-        },
-        {
-          "mana" : 4,
-          "health" : 4,
-          "description" : "Premium card: Ravished by the winds of hell, no soul is to be forgiven.",
-          "name" : "The Ripper",
-          "colors" : [
-            "Black",
-            "Yellow"
-          ],
-          "attackDamage" : 6
-        },
-        {
-          "mana" : 4,
-          "health" : 10,
-          "description" : "Standard card: A warrior who is never afraid of battle, no matter the costs",
-          "name" : "Goliath",
-          "colors" : [
-            "Red",
-            "Purple"
-          ],
           "attackDamage" : 0
         },
         {
           "mana" : 5,
-          "health" : 5,
+          "health" : 8,
           "description" : "Standard card: When he is near, close your eyes. They betray your mind.",
           "name" : "Miraj",
           "colors" : [
@@ -185,6 +199,17 @@
             "Black"
           ],
           "attackDamage" : 5
+        },
+        {
+          "mana" : 4,
+          "health" : 8,
+          "description" : "Standard card: A warrior who is never afraid of battle, no matter the costs",
+          "name" : "Goliath",
+          "colors" : [
+            "Red",
+            "Purple"
+          ],
+          "attackDamage" : 1
         },
         {
           "mana" : 3,
@@ -197,6 +222,17 @@
             "Grey"
           ],
           "attackDamage" : 1
+        },
+        {
+          "mana" : 4,
+          "health" : 4,
+          "description" : "Premium card: Ravished by the winds of hell, no soul is to be forgiven.",
+          "name" : "The Ripper",
+          "colors" : [
+            "Black",
+            "Yellow"
+          ],
+          "attackDamage" : 6
         }
       ],
       [
@@ -217,6 +253,18 @@
   {
     "command" : "getCardsInHand",
     "output" : [
+      {
+        "mana" : 3,
+        "health" : 5,
+        "description" : "Standard card: He has seen everything, his mind has never been asleep since the making of the realm.",
+        "name" : "Warden",
+        "colors" : [
+          "Black",
+          "White",
+          "Green"
+        ],
+        "attackDamage" : 3
+      },
       {
         "mana" : 4,
         "health" : 4,
